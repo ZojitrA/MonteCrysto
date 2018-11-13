@@ -1,0 +1,9 @@
+/.bundle
+node_modules/
+bundle.js
+bundle.js.map
+.byebug_history
+npm-debug-log
+package-lock.json
+/tmp/*
+/log/*
