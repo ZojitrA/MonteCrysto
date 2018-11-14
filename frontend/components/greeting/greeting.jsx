@@ -1,26 +1,28 @@
 import React from 'react';
-import {link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 
 const Greeting = (props) => {
 
-  const sessionLinks = () => (
-    <Link to="/login">LogIn</Link>
-    <Link to="/signup">SignUp</Link>
-  )
+  if(props.currentUser){
+    return (
+      <div>
+        <h1>Hello {props.currentUser.username}</h1>
+        <button onClick={props.logout}>Log Out</button>
+      </div>
 
-  if(currentUser){
-
-    return {
-      <h1>Hello {props.currentUser.username}</h1>
-      <button onClick={logout(props.currentUser)}>Log Out</button>
-    }
+    )
   } else
   {
 
-    return {
-
-    }
+    return (
+      <div>
+        <Link to="/login">LogIn</Link>
+        <Link to="/signup">SignUp</Link>
+      </div>
+    )
   }
 }
+
+export default Greeting;

@@ -1,5 +1,5 @@
 {
-  "name": "Monte Crysto",
+  "name": "MonteCrysto",
   "version": "1.0.0",
   "description": "trade now and forever dawgs and dawgettes!",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack",
+    "postinstall": "webpack --mode=production",
     "webpack": "webpack --watch --mode=development"
   },
   "repository": {

@@ -7,23 +7,29 @@ import {
 } from 'react-router-dom';
 
 import GreetingContainer from './greeting/greeting_container';
-import SignUpFormContainer from './session_form/signup_form_container';
-import LogInFormContainer from './session_form/login_form_container';
+import SignUpFormContainer from './SessionForm/signup_form_container';
+import LogInFormContainer from './SessionForm/login_form_container';
 
 
-const App = () => (
-  <div>
-    <header>
-      <Link to="/" className="header-link">
-        <h1>Monte Crysto</h1>
-      </Link>
-      <GreetingContainer />
-    </header>
-    <Switch>
-      <Route exact path="/login" component={LogInFormContainer} />
-      <Route exact path="/signup" component={SignUpFormContainer} />
-    </Switch>
-  </div>
-);
+const App = () => {
+  return(
 
+<div>
+  <header>
+
+    <h1>Monte Crysto</h1>
+
+    <GreetingContainer />
+  </header>
+
+  <Route path="/login" component={LogInFormContainer} />
+  <Route path="/signup" component={SignUpFormContainer} />
+
+</div>
+
+  )
+};
+
+// <Route exact path="/login" component={LogInFormContainer} />
+// <Route exact path="/signup" component={SignUpFormContainer} />
 export default App;
