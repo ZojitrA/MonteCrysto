@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import {
   Route,
+  Switch,
   Link,
   HashRouter
 } from 'react-router-dom';
@@ -9,6 +10,7 @@ import {
 import GreetingContainer from './greeting/greeting_container';
 import SignUpFormContainer from './SessionForm/signup_form_container';
 import LogInFormContainer from './SessionForm/login_form_container';
+import {AuthRoute} from '../util/route_util'
 
 
 const App = () => {
@@ -21,9 +23,10 @@ const App = () => {
 
     <GreetingContainer />
   </header>
-
-  <Route path="/login" component={LogInFormContainer} />
-  <Route path="/signup" component={SignUpFormContainer} />
+<switch>
+  <AuthRoute path="/login" component={LogInFormContainer} />
+  <AuthRoute path="/signup" component={SignUpFormContainer} />
+</switch>
 
 </div>
 
