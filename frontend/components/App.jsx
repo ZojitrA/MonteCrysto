@@ -8,8 +8,8 @@ import {
 } from 'react-router-dom';
 
 import GreetingContainer from './greeting/greeting_container';
-import SignUpFormContainer from './SessionForm/signup_form_container';
-import LogInFormContainer from './SessionForm/login_form_container';
+import SignUpFormContainer from './SessionForms/signup_form_container';
+import LogInFormContainer from './SessionForms/login_form_container';
 import {AuthRoute} from '../util/route_util'
 
 
@@ -17,16 +17,12 @@ const App = () => {
   return(
 
 <div>
-  <header>
 
-    <h1>Monte Crysto</h1>
-
-    <GreetingContainer />
-  </header>
-<switch>
+<Switch>
   <AuthRoute path="/login" component={LogInFormContainer} />
   <AuthRoute path="/signup" component={SignUpFormContainer} />
-</switch>
+  <Route path="/" component={GreetingContainer}/>
+</Switch>
 
 </div>
 

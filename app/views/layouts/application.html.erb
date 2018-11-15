@@ -7,6 +7,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+      window.blob = '<%= image_url("green.jpg") %>'
+    </script>
   </head>
 
   <body>
