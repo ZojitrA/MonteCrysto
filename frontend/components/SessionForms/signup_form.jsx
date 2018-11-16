@@ -41,7 +41,7 @@ class SignupForm extends React.Component {
 <Link to={"/"}><img className="logo" src={window.logo}></img></Link>
         <h1 className="groove-title">Let Your Money Groove.</h1>
 
-          <p className="signup-subtitle">Monte Crysto will Rock your world 24/7. For free.</p>
+          <p className="signup-subtitle">Montecrysto will rock your world. For free.</p>
 
       <div className="signup-form-container">
         {this.renderErrors()}
