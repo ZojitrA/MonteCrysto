@@ -10,17 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_153248) do
+ActiveRecord::Schema.define(version: 2018_11_16_201222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "currencies", force: :cascade do |t|
+    t.string "symbol", null: false
+    t.string "name", null: false
+    t.integer "popularity"
+    t.index ["symbol"], name: "index_currencies_on_symbol", unique: true
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "ticker", null: false
+    t.string "company_name", null: false
+    t.integer "market_cap", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "popularity"
+    t.float "price"
+    t.index ["ticker"], name: "index_stocks_on_ticker", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "password_digest", null: false
-    t.string "email"
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.float "account_value"
+    t.integer "portfolio_id"
+    t.string "email", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 

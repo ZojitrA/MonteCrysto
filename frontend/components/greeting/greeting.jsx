@@ -1,26 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import LandingNav from '../navbars/landing_nav';
+import LandingNav from '../landing/nav';
+import SplashNav from '../splash/nav';
+import LandingChild1 from '../landing/landing_info_child1'
+import LandingChild2 from '../landing/landing_info_child2'
 
 const Greeting = props => {
-
+debugger
   if (props.currentUser) {
     return (
-      <div>
-        <h1>Hello {props.currentUser.email}</h1>
+      <div className="greeting-container">
+        <h1>Hello {props.currentUser.first_name}</h1>
         <button onClick={props.logout}>Log Out</button>
+        <section className="splash-container">
+          <SplashNav/>
+        </section>
       </div>
     );
   } else {
+
     return (
       <div>
-        <div className="landing-container">
-          <LandingNav/>
-          
+      <LandingNav/>
 
-        </div>
-        <img className="landing-pic1" src={window.blob}></img>
+      <div className="landing-container">
+        <LandingChild1 className="landing-child"/>
+        <LandingChild2 className="landing-child"/>
       </div>
+    </div>
+
     );
   }
 }

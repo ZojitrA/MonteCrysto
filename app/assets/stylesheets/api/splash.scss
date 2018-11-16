@@ -1,0 +1,22 @@
+.splash-container{
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.splash-nav{
+  padding-right: 50px;
+}
+
+.splash-landing-buttons{
+  float: left;
+  display: block;
+  padding: 15px 30px;
+  background-color: white;
+  color: deepskyblue;
+  font-weight: 700;
+  font-family: 'PT Sans', sans-serif;
+}

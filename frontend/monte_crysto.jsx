@@ -9,27 +9,24 @@ import * as sessionActions from './actions/session_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // let store;
-  // if (window.currentUser) {
-  //   const preloadedState = {
-  //     session: { id: window.currentUser.id },
-  //     entities: {
-  //       users: { [window.currentUser.id]: window.currentUser }
-  //     }
-  //   };
-  //   store = configureStore(preloadedState);
-  //   delete window.currentUser;
-  // } else {
-  //   store = configureStore();
-  // }
+  let store;
+  if (window.currentUser) {
+    const preloadedState = {
+      session: { id: window.currentUser.id },
+      entities: {
+        users: { [window.currentUser.id]: window.currentUser }
+      }
+    };
+    store = configureStore(preloadedState);
+    delete window.currentUser;
+  } else {
+    store = configureStore();
+  }
 
-
-  const store = configureStore()
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 
+  window.dispatch = store.dispatch;
+  window.sessionActions = sessionActions;
 
 });
-
-// window.dispatch = store.dispatch;
-// window.sessionActions = sessionActions;
