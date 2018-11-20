@@ -1,0 +1,62 @@
+.stock-page-logo-link{
+  width: 10%;
+  margin-top: 10px;
+  margin-left: 40px;
+  // width: 7%;
+  // margin-top: 10px;
+  // margin-left: 25px;
+}
+.info-top{
+
+  margin-left: 250px;
+  padding-left: 200px;
+  padding: 100px 0;
+}
+
+.companyName{
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.price-label{
+  font-size: 38px;
+
+}
+
+
+.recharts-wrapper{
+// margin-top: 300px;
+margin-left: 250px;
+}
+
+.chart-button-container{
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+  height: 40px;
+  margin-left: 250px;
+
+
+  border-bottom: 1px solid black;
+
+}
+
+.stock-show-page{
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-button{
+  font-size: 16px;
+  font-weight: 700;
+  width: 40px;
+  box-sizing: border-box;
+  flex-direction: row;
+
+}
+.chart-button:focus{
+  color: red;
+  border-bottom: 2px solid red;
+
+}

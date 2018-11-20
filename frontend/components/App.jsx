@@ -10,8 +10,8 @@ import {
 import GreetingContainer from './greeting/greeting_container';
 import SignUpFormContainer from './SessionForms/signup_form_container';
 import LogInFormContainer from './SessionForms/login_form_container';
-import {AuthRoute} from '../util/route_util'
-
+import {AuthRoute} from '../util/route_util';
+import StockContainer from './stocks/stock_container';
 
 const App = () => {
   return(
@@ -19,6 +19,7 @@ const App = () => {
 <div>
 
 <Switch>
+  <Route path="/stock/:ticker" component={StockContainer}/>
   <AuthRoute path="/login" component={LogInFormContainer} />
   <AuthRoute path="/signup" component={SignUpFormContainer} />
   <Route path="/" component={GreetingContainer}/>
@@ -26,7 +27,7 @@ const App = () => {
 
 </div>
 
-  )
+);
 };
 
 // <Route exact path="/login" component={LogInFormContainer} />

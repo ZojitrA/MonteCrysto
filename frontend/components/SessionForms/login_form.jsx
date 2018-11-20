@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
 
 
       <div className="login-form-container">
-        <h1 className="logintitle">Welcome to <Link className="loginpagelinktolanding" to="/">MonteCrysto</Link></h1>
+        <h1 className="logintitle">Welcome to <Link className="loginpagelinktolanding" to="/">Montecrysto</Link></h1>
         {this.renderErrors()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
 

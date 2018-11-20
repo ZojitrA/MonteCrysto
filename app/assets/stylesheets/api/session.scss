@@ -25,9 +25,9 @@
 .session-submit{
   background-color: deepskyblue;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     color: white;
-    padding: 16px 52px;
+    padding: 16px 238px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
@@ -127,7 +127,8 @@ color: gold;
 }
 
 .groove-title{
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
   font-size: 45px;
 
 }
@@ -212,9 +213,10 @@ color: gold;
 
 
 .signup-subtitle{
-  font-weight: lighter;
+  font-family: 'Raleway', sans-serif;
+    font-weight:400;
     font-size: 28px;
-
+    width: 400px;
     padding-top: 20px;
     padding-bottom: 20px;
 }

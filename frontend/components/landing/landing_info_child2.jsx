@@ -3,10 +3,10 @@ import React from 'react';
 
 export default () => (
 
-  <div className="info-and-image">
+  <div className="info-and-image2">
     <img className="landing-image-globe" src={window.globe}></img>
     <div className="text-and-signup">
-      <p>24/7 Commission free trading.</p>
+      <p>Commission free trading.</p>
     </div>
   </div>
 

@@ -5,16 +5,21 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailAddress: '',
-      password: ''
+      email: '',
+      password: '',
+      first_name: '',
+      last_name: ''
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return e => {
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+    };
   }
 
   handleSubmit(e) {
@@ -39,9 +44,9 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form">
 <Link to={"/"}><img className="logo" src={window.logo}></img></Link>
-        <h1 className="groove-title">Let Your Money Groove.</h1>
+        <h1 className="groove-title">Let's learn to fly.</h1>
 
-          <p className="signup-subtitle">Montecrysto will rock your world. For free.</p>
+          <p className="signup-subtitle">High speed trading. Now for everyone.</p>
 
       <div className="signup-form-container">
         {this.renderErrors()}
@@ -53,16 +58,16 @@ class SignupForm extends React.Component {
             <section className="signup-name-inputs">
               <label>First Name:
                 <input type="text"
-                  value={this.state.firstName}
-                  onChange={this.update('firstName')}
+                  value={this.state.first_name}
+                  onChange={this.update('first_name')}
                   className="signup-input0"
                   />
               </label>
               <br/>
               <label>Last Name:
                 <input type="text"
-                  value={this.state.lastName}
-                  onChange={this.update('lastName')}
+                  value={this.state.last_name}
+                  onChange={this.update('last_name')}
                   className="signup-input0"
                   />
               </label>

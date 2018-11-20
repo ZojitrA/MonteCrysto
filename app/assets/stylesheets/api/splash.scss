@@ -1,22 +1,67 @@
-.splash-container{
-  position: fixed;
+.splash-nav-button-container{
   width: 100%;
-  background-color: white;
+  margin-right: 40px;
   display: flex;
   justify-content: flex-end;
 
 }
 
-.splash-nav{
-  padding-right: 50px;
+.splash-logo{
+  width: 100%;
+  height: auto;
 }
 
-.splash-landing-buttons{
-  float: left;
-  display: block;
-  padding: 15px 30px;
+.splash-logo-and-search{
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.splash-nav{
+  display: flex;
+  flex-direction: row;
+  padding-right: 50px;
+  align-items: center;
+}
+
+.splash-nav-buttons{
+
+  padding: 20px 30px;
   background-color: white;
-  color: deepskyblue;
+  color: black;
   font-weight: 700;
   font-family: 'PT Sans', sans-serif;
+}
+
+.splash-logo-link{
+  width: 10%;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.splash-container{
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+}
+
+.notifications-tab{
+  position: absolute;
+  top: 50px;
+  right: 100px;
+
+}
+
+.account-tab{
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.account-tab-section0{
+
 }
