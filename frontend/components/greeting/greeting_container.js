@@ -5,13 +5,15 @@ import Greeting from './greeting';
 const mapStateToProps = (state) => {
 
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    ticker: null
   };
 
-}
+};
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-})
+  logout: () => dispatch(logout()),
+  getWatchlists: (user_id) => dispatch(getWatchlists())
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Greeting)
+export default connect(mapStateToProps, mapDispatchToProps)(Greeting);

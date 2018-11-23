@@ -60,3 +60,58 @@ margin-left: 250px;
   border-bottom: 2px solid red;
 
 }
+.watchlist-title{
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+
+}
+
+.add-button{
+  font-family: 'Raleway', sans-serif;
+  color: green;
+font-weight: 500px;
+text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 2px solid green;
+    width: 150px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.remove-button{
+  font-family: 'Raleway', sans-serif;
+  color: red;
+  text-align: center;
+  font-weight: 500px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 2px solid red;
+    width: 150px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.green-price{
+  color: green;
+}
+
+.red-price{
+  color: red;
+}
+
+.gray-price{
+  color: gray;
+}
+
+.watchlist-ticker{
+  cursor: pointer;
+}
+
+.watchlist-item{
+  display: flex;
+  flex-direction: row;
+}

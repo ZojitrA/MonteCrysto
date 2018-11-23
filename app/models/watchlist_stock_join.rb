@@ -1,4 +1,4 @@
-class Join < ApplicationRecord
+class WatchlistStockJoin < ApplicationRecord
 
 
   belongs_to :watchlist,

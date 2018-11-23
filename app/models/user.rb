@@ -8,7 +8,26 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  
+has_one :primary_watchlist, -> {where title: "primary_watchlist"},
+foreign_key: :user_id,
+class_name: :Watchlist
+
+
+has_many :watchlists,
+foreign_key: :user_id,
+class_name: :Watchlist
+
+has_many :stocks,
+through: :watchlists,
+source: :stocks
+
+has_many :watchlist_stock_joins,
+through: :watchlists,
+source: :WatchlistStockJoin
+
+  def primary_watchlist_id
+    self.primary_watchlist.id
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

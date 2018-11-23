@@ -5,7 +5,9 @@ class Api::SessionsController < ApplicationController
       params[:user][:password]
     )
 
+
     if @user
+      @primary = @user.primary_watchlist.id
       login(@user)
       render "api/users/show"
     else

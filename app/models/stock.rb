@@ -1,16 +1,18 @@
 class Stock < ApplicationRecord
 
   validates :ticker, uniqueness: true, presence: true
-  validates :company_name, :market_cap, presence: true
+  
 
 
-  has_many :joins,
+  has_many :watchlist_stock_joins,
   foreign_key: :stock_id,
-  class_name: :Join
+  class_name: :WatchlistStockJoin
 
   has_many :watchlists,
-  through: :joins,
+  through: :watchlist_stock_joins,
   source: :watchlist
+
+
 
 
 

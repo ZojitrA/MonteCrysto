@@ -18,6 +18,7 @@ class Search extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.wipeState = this.wipeState.bind(this);
+
   }
 
   getInfo() {
@@ -31,6 +32,7 @@ class Search extends Component {
   // ZRQW53GP2UJEJ1UK
 
   handleInputChange(){
+
     this.setState({
       query: this.search.value
     }, () => {
@@ -43,6 +45,7 @@ class Search extends Component {
     })
   }
   wipeState(){
+
     this.setState({
       stockResults: [],
       query: ""
@@ -51,13 +54,14 @@ class Search extends Component {
 
 
   render() {
+
     return (
       <div >
       <form className="search-bar">
         <input
           placeholder="Search"
           ref={input => this.search = input}
-          onChange={() => this.handleInputChange()}
+          onChange={this.handleInputChange}
           value={this.state.query}
         />
       </form>

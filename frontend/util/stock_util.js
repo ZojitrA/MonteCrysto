@@ -1,11 +1,16 @@
 
-
+export const fetchStocks = watchlist_id => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/watchlists/${watchlist_id}/stocks`
+  })
+);
 
 export const getStockBy = ticker => (
   $.ajax({
     method: 'GET',
     url: `https://api.iextrading.com/1.0/stock/${ticker}/quote`
-    })
+  })
 );
 
 export const getChartBy = (ticker, timeframe) => (
