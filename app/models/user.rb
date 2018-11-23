@@ -21,9 +21,9 @@ has_many :stocks,
 through: :watchlists,
 source: :stocks
 
-has_many :watchlist_stock_joins,
-through: :watchlists,
-source: :watchlist_stock_joins
+# has_many :watchlist_stock_joins,
+# through: :watchlists,
+# source: :watchlist_stock_joins
 
   def primary_watchlist_id
     self.primary_watchlist.id
