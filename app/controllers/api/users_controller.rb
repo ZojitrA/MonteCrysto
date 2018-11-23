@@ -4,8 +4,8 @@
     @user = User.new(user_params)
     @user.funds_usd = 0;
     if @user.save
-      WatchList.create(user_id: self.id, title: "portfolio")
-      Watchlist.create(user_id: self.id, title: "primary_watchlist")
+      Watchlist.create(user_id: @user.id, title: "portfolio")
+      Watchlist.create(user_id: @user.id, title: "primary_watchlist")
       login(@user)
       render "api/users/show"
     else

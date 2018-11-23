@@ -1,8 +1,8 @@
-import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER} from '../actions/session_actions'
+import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER} from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 
-export default (state=[], action) => {
+export default (state = [], action) => {
 
 Object.freeze(state);
 
@@ -14,4 +14,4 @@ Object.freeze(state);
       default:
         return state;
   }
-}
+};

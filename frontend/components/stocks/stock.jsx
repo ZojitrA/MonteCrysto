@@ -119,15 +119,16 @@ render(){
 let button;
 let buttonType;
 let buttonClass;
+let tickers = [];
 
 if(this.state.watchlists && this.state.stocks){
-  const tickers = this.state.watchlists[this.props.primary_id].stock_ids.map(id => {
+  tickers = this.state.watchlists[this.props.primary_id].stock_ids.map(id => {
 
     return(
       this.state.stocks[id].ticker
     );
   });
-
+}
 
   if(tickers.includes(this.props.ticker)){
     button = this.handleDrop;
@@ -138,7 +139,7 @@ if(this.state.watchlists && this.state.stocks){
     buttonType = "Add to Watchlist";
     buttonClass = "add-button";
   }
-}
+
 
 
 

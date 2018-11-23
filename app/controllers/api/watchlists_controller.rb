@@ -17,7 +17,7 @@ class Api::WatchlistsController < ApplicationController
 
 
   def update
-    debugger
+
     @watchlist = Watchlist.find(params[:id])
     @stock = Stock.find_by(ticker: params[:ticker])
 
