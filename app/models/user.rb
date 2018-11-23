@@ -23,7 +23,7 @@ source: :stocks
 
 has_many :watchlist_stock_joins,
 through: :watchlists,
-source: :WatchlistStockJoin
+source: :watchlist_stock_joins
 
   def primary_watchlist_id
     self.primary_watchlist.id
