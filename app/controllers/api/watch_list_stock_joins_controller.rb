@@ -20,6 +20,7 @@ class Api::WatchListStockJoinsController < ApplicationController
 
     @stock = Stock.find_by(ticker: params[:ticker])
     @watchlist_join = WatchlistStockJoin.find_by(watchlist_id: params[:watchlist_id], stock_id: @stock.id)
+    
     @watchlist_join.destroy
     @watchlist = @watchlist_join.watchlist
 

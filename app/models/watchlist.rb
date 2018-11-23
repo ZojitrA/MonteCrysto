@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: watchlists
+#
+#  id      :bigint(8)        not null, primary key
+#  user_id :integer          not null
+#  title   :string           not null
+#
+
 class Watchlist < ApplicationRecord
 
   validates :title, presence: true
