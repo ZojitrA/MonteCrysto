@@ -7,8 +7,8 @@ class Api::WatchlistsController < ApplicationController
   def index
     @watchlists = Watchlist.where(user_id: params[:user_id]).includes(:stocks)
     @user = params[:user_id]
-    if @watchlists
 
+    if @watchlists
       render :index
     else
       render json: @user.errors.full_messages, status: 422
