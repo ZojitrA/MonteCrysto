@@ -9,7 +9,7 @@ class Api::WatchlistsController < ApplicationController
     @user = params[:user_id]
     if @watchlists
 
-      render "api/watchlists/index"
+      render :index
     else
       render json: @user.errors.full_messages, status: 422
     end
