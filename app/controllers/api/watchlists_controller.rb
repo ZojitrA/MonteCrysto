@@ -27,7 +27,7 @@ class Api::WatchlistsController < ApplicationController
 
       WatchlistStockJoin.create(watchlist_id: @watchlist.id, stock_id: @stock.id)
 
-      render "api/watchlists/show"
+      render :show
     # if @watchlist.update(watchlist_params)
     #   render "api/watchlists/show"
   end
