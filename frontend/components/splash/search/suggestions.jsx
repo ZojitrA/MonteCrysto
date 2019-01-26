@@ -32,8 +32,14 @@ if(props.results){
   //   {r["1. symbol"]}: {r["2. name"]}
   // </Link>
 
+  const style = {
+    "background": "whitesmoke",
+    "cursor": "pointer",
+    "border": "none",
+    "borderRadius": "8px"
+  };
   return (
-    <ul className="search-suggestions">{options}</ul>
+    <ul style={style} className="search-suggestions">{options}</ul>
     );
 };
 

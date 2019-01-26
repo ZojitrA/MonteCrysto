@@ -18,7 +18,7 @@ export const getChartBy = (ticker, timeframe) => (
     method: 'GET',
     url: `https://api.iextrading.com/1.0/stock/${ticker}/chart/${timeframe}`
     })
-)
+);
 
 
 

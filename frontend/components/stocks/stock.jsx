@@ -68,7 +68,7 @@ class Stock extends Component {
     if(prevProps.ticker !== this.props.ticker){
       this.props.getStock(this.props.ticker).then(data => this.setState({data: data.data}));
 
-      this.grabWatchlists()
+      this.grabWatchlists();
     }
 
 

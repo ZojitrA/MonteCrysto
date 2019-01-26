@@ -23,7 +23,7 @@ class Splash extends React.Component {
         this.setState({
           [field]: true,
           [other]: false
-        })
+        });
       }
     }
 

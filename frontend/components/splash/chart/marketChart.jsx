@@ -3,7 +3,7 @@ import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
 
 
-class reChart extends Component {
+class marketChart extends Component {
 
   constructor(props){
     super(props);
@@ -47,14 +47,14 @@ class reChart extends Component {
 
 getPrice(){
 
-  const url = `https://api.iextrading.com/1.0//tops/last?symbols=${this.props.ticker}`
+  const url = `https://api.iextrading.com/1.0/tops?symbols=${this.props.ticker}`
 
   axios.get(url)
   .then( data => {
 
     // const keyz = Object.keys(data[this.state.datakey])
     const previousPrice = this.state.price;
-    const price = data.data[0].price;
+    const price = data.data[0].lastSalePrice;
     let percentageChange;
     if(previousPrice === null){
       percentageChange = null;
@@ -75,7 +75,7 @@ getChart(){
 
 let url;
   if(this.state.timeframe === "1d"){
-    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1d`;
+    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/dynamic`;
   }
   else{
     url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/${this.state.timeframe}`;
@@ -163,15 +163,6 @@ if(data && data[0].price > data[data.length-1].price){
 }
 return(
   <div>
-
-  <ul className="info-top">
-    <li className="companyName">
-      {this.props.ticker}
-    </li>
-    <li className="price-label" id="price-label"></li>
-    <li className="change-label" id="change-label"></li>
-  </ul>
-  <div>
     <LineChart
     width={650}
     height={200}
@@ -192,7 +183,6 @@ return(
     <button className="chart-button" onClick={() => this.handleClick("1y")}>1Y</button>
     <button className="chart-button" onClick={() => this.handleClick("5y")}>5Y</button>
   </div>
-</div>
 </div>
 );
 }

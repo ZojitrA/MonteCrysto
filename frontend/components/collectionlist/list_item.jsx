@@ -10,12 +10,14 @@ class Item extends React.Component {
     this.state = {data: null, price: null};
 
     this.handleClick = this.handleClick.bind(this);
-    this.getStuff = this.getStuff.bind(this);
-  }
+    this.getChart = this.getChart.bind(this);
+    this.getPrice = this.getPrice.bind(this);
+    }
 
   componentDidMount() {
-    this.getStuff();
-    this.intervalId = setInterval(this.getStuff , 10000);
+    this.getPrice();
+    this.getChart();
+    this.intervalId = setInterval(this.getPrice, 1000);
 
   }
   //
@@ -25,8 +27,24 @@ class Item extends React.Component {
   }
 
 
+  getPrice(){
 
-  getStuff(){
+    const url = `https://api.iextrading.com/1.0//tops/last?symbols=${this.props.ticker}`;
+
+    axios.get(url)
+    .then( data => {
+
+      // const keyz = Object.keys(data[this.state.datakey])
+      const price = data.data[0].price;
+      this.setState({
+        price: price,
+      });
+    });
+
+  }
+
+
+  getChart(){
     const url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 
     // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
@@ -43,7 +61,6 @@ class Item extends React.Component {
      });
       this.setState({
         data: data,
-        price: data[data.length-1].price
       });
     });
   }

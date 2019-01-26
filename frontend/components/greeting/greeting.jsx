@@ -5,20 +5,44 @@ import LandingChild1 from '../landing/landing_info_child1';
 import EveryPageNav from '../everyPageNav';
 import List from '../collectionlist/list_container';
 import Chart from '../splash/chart/rechart';
+import News from '../news/news';
 
 // <h1>Hello {props.currentUser.first_name}</h1>
 // <button onClick={props.logout}>Log Out</button>
 // <Chart/>
 // <Chart className="splash-chart" ticker="aapl"/>
 const Greeting = props => {
+
+  const style = {
+    "display": "flex",
+    "flexDirection": "column",
+    "maxWidth": "400px",
+   "height": "1120px",
+  };
+
+  const chartStyle = {
+  "marginTop": "300px",
+  "marginLeft": "-200px",
+  "position": "absolute",
+  "zIndex": "-10px"
+  };
+
+
+
   if (props.currentUser) {
     return (
       <div>
         <div className="splash-container">
-        <EveryPageNav currentUser={props.currentUser} logout={props.logout}/>
-        <div>
-          <List/>
+          <EveryPageNav currentUser={props.currentUser} logout={props.logout}/>
+          <div>
+            <List/>
+          </div>
         </div>
+        <div style={chartStyle}>
+          <Chart ticker="spy"/>
+        </div>
+        <div style={style}>
+          <News/>
         </div>
       </div>
     );
