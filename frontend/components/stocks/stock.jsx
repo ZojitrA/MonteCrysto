@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Chart from '../splash/chart/rechart';
+import Chart from '../splash/chart/marketChart';
 import EveryPageNav from '../everyPageNav';
-
-
+import axios from 'axios';
+import News from '../news/news';
 
 class Stock extends Component {
 
@@ -14,7 +14,8 @@ class Stock extends Component {
     this.state = {
       data: [],
       watchlists: null,
-      stocks: null
+      stocks: null,
+      news: null
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
@@ -28,6 +29,8 @@ class Stock extends Component {
 
     this.props.getWatchlists(this.props.currentUser.id).then(data =>
       this.setState({watchlists: data.data.watchlists, stocks: data.data.stocks}));
+
+
   }
 
     // this.props.getWatchlists()
@@ -78,7 +81,7 @@ class Stock extends Component {
     //     this.grabWatchlists();
     //
     // }
-  }
+    }
 }
 
 
@@ -114,6 +117,7 @@ class Stock extends Component {
 
 
 render(){
+
   const data = Object.entries(this.state.data).map((datum, idx) => (
     <li key={idx}>{datum}</li>
   ));
@@ -146,6 +150,7 @@ if(this.state.watchlists && this.state.stocks){
 
 
   return(
+    <div>
     <div className="stock-show-page">
       <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout}/>
       <ul className="info-top">
@@ -160,6 +165,10 @@ if(this.state.watchlists && this.state.stocks){
       <button className={buttonClass} onClick={button}>{buttonType}</button>
       <br>
       </br>
+    </div>
+      <div>
+        <News source="rapidApi" companyName={this.state.data.companyName} ticker={this.props.ticker}/>
+      </div>
     </div>
   );
 }

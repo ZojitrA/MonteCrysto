@@ -54,6 +54,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "unirest": "^0.5.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   }

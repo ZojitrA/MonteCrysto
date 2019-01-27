@@ -3,7 +3,7 @@ import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
 
 
-class marketChart extends Component {
+class Chart extends Component {
 
   constructor(props){
     super(props);
@@ -47,14 +47,14 @@ class marketChart extends Component {
 
 getPrice(){
 
-  const url = `https://api.iextrading.com/1.0/tops?symbols=${this.props.ticker}`
+  const url = `https://api.iextrading.com/1.0//tops/last?symbols=${this.props.ticker}`
 
   axios.get(url)
   .then( data => {
 
     // const keyz = Object.keys(data[this.state.datakey])
     const previousPrice = this.state.price;
-    const price = data.data[0].lastSalePrice;
+    const price = data.data[0].price;
     let percentageChange;
     if(previousPrice === null){
       percentageChange = null;
@@ -75,7 +75,7 @@ getChart(){
 
 let url;
   if(this.state.timeframe === "1d"){
-    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/dynamic`;
+    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1d`;
   }
   else{
     url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/${this.state.timeframe}`;
@@ -191,4 +191,4 @@ return(
 // <Line type="monotone" dataKey="time" stroke="#ff7300" yAxisId={0} />
 
 
-export default reChart;
+export default Chart;

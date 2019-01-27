@@ -14,17 +14,18 @@ import News from '../news/news';
 const Greeting = props => {
 
   const style = {
-    "display": "flex",
-    "flexDirection": "column",
-    "maxWidth": "400px",
-   "height": "1120px",
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: "400px",
+   height: "1120px",
   };
 
   const chartStyle = {
-  "marginTop": "300px",
-  "marginLeft": "-200px",
-  "position": "absolute",
-  "zIndex": "-10px"
+  // marginTop: "100px",
+  marginLeft: "-200px",
+  position: "absolute",
+  zIndex: "-10px",
+  fontFamily: "'Raleway', sans-serif",
   };
 
 
@@ -42,7 +43,7 @@ const Greeting = props => {
           <Chart ticker="spy"/>
         </div>
         <div style={style}>
-          <News/>
+          <News source="newsApi"/>
         </div>
       </div>
     );
