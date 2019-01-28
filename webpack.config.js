@@ -1,6 +1,11 @@
 const path = require('path');
 
 module.exports = {
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+  },
   context: __dirname,
   entry: './frontend/monte_crysto.jsx',
   output: {

@@ -1,57 +1,48 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NewsItem from './newsItem';
-
+import { CognitiveServicesCredentials } from 'ms-rest-azure';
+import NewsSearchAPIClient from 'azure-cognitiveservices-newssearch';
 
 // <h1>Hello {props.currentUser.first_name}</h1>
 // <button onClick={props.logout}>Log Out</button>
 // <Chart/>
 // <Chart className="splash-chart" ticker="aapl"/>
-class news extends Component {
+class stockNews extends Component {
   constructor(props){
     super(props);
-    this.state = {news: [], ticker: this.props.ticker};
+    this.state = {news: []};
 
     this.getStuff.bind(this);
   }
 
 getStuff(){
 
+  let credentials = new CognitiveServicesCredentials('2d203a380f9c414a84bcb431ada82c94');
+  let search_term = `${this.props.companyName} stock`;
+  let client = new NewsSearchAPIClient(credentials);
 
-    const url1 = 'https://newsapi.org/v2/top-headlines?sources=business-insider&apiKey=77afed1e14d4491bae7f0dcabc44554f';
-    const url2 = 'https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=77afed1e14d4491bae7f0dcabc44554f';
-    const url3 = 'https://newsapi.org/v2/top-headlines?sources=reuters&apiKey=77afed1e14d4491bae7f0dcabc44554f';
-
-    axios.get(url1)
-    .then( payload => {
-
-      let news = [...this.state.news].concat(payload.data.articles);
-
-      this.setState({
-        news: news
-      });
-    }).then(
-    axios.get(url2)
-    .then( payload => {
-      let news = [...this.state.news].concat(payload.data.articles);
-      this.setState({
-        news: news
-      });
-    })).then(
-    axios.get(url3)
-    .then( payload => {
-      let news = [...this.state.news].concat(payload.data.articles);
-      this.setState({
-        news: news
-      });
-    }));
+  client.newsOperations.search(search_term).then((result) => {
+    console.log(result);
+    this.setState({news: result.value});
+}).catch((err) => {
+    throw err;
+});
 }
-
 
 
   componentDidMount(){
-    this.getStuff();
+    if(this.props.companyName){
+      this.getStuff();
+    }
 }
+
+componentDidUpdate(prevProps){
+  if(this.props.companyName != prevProps.companyName){
+    this.getStuff();
+  }
+}
+
 shuffle(array) {
 
 	var currentIndex = array.length;
@@ -88,17 +79,18 @@ shuffle(array) {
     if(this.state.news.length > 0){
 
 
-    articles = this.shuffle([...this.state.news]).map(article => {
+
+    articles = this.shuffle([...this.state.news]).filter((article) => (article.image)).map((article) => {
         return(
-          <NewsItem source="newsApi" article={article}/>
+          <NewsItem source="azure" article={article}/>
         );
-      }).filter((article, idx) => (idx%2 === 0));
+      });
     }
 
     var style = {
-      "marginTop": "70px",
-      "maxWidth": "300px",
-      "marginLeft": "40px"
+      "marginTop": "-50px",
+      "maxWidth": "280px",
+      "marginLeft": "900px"
     };
 
 
@@ -115,4 +107,4 @@ shuffle(array) {
 }
 }
 
-export default news;
+export default stockNews;

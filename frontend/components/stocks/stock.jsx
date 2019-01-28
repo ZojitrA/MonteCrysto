@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Chart from '../splash/chart/marketChart';
 import EveryPageNav from '../everyPageNav';
 import axios from 'axios';
-import News from '../news/news';
+import News from '../news/stocknews';
 
 class Stock extends Component {
 
@@ -118,6 +118,7 @@ class Stock extends Component {
 
 render(){
 
+
   const data = Object.entries(this.state.data).map((datum, idx) => (
     <li key={idx}>{datum}</li>
   ));
@@ -147,6 +148,10 @@ if(this.state.watchlists && this.state.stocks){
   }
 
 
+let buttonStyle ={
+  position: "relative",
+  marginTop: "-450px"
+};
 
 
   return(
@@ -162,12 +167,12 @@ if(this.state.watchlists && this.state.stocks){
       </ul>
       <Chart className="stock-chart" ticker={this.props.ticker}/>
 
-      <button className={buttonClass} onClick={button}>{buttonType}</button>
+      <button style={buttonStyle} className={buttonClass} onClick={button}>{buttonType}</button>
       <br>
       </br>
     </div>
       <div>
-        <News source="rapidApi" companyName={this.state.data.companyName} ticker={this.props.ticker}/>
+        <News companyName={this.state.data.companyName} ticker={this.props.ticker}/>
       </div>
     </div>
   );

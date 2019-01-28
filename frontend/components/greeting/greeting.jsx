@@ -23,7 +23,7 @@ const Greeting = props => {
   const chartStyle = {
   // marginTop: "100px",
   marginLeft: "-200px",
-  position: "absolute",
+  // position: "absolute",
   zIndex: "-10px",
   fontFamily: "'Raleway', sans-serif",
   };
@@ -40,10 +40,10 @@ const Greeting = props => {
           </div>
         </div>
         <div style={chartStyle}>
-          <Chart ticker="spy"/>
+          <Chart ticker="SPY"/>
         </div>
         <div style={style}>
-          <News source="newsApi"/>
+          <News/>
         </div>
       </div>
     );

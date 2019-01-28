@@ -11,11 +11,11 @@ if(props.source === "newsApi"){
   url = props.article.url;
   imageUrl = props.article.urlToImage;
 }
-else if(props.source === "rapidApi"){
+else if(props.source === "azure"){
 
-  title = props.article.title;
+  title = props.article.name;
   url = props.article.url;
-  imageUrl = props.article.image.url;
+  imageUrl = props.article.image.thumbnail.contentUrl;
 
 }
 
