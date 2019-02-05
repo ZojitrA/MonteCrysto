@@ -23,6 +23,7 @@ const Greeting = props => {
   const chartStyle = {
   // marginTop: "100px",
   marginLeft: "-200px",
+  // position: "relative",
   // position: "absolute",
   zIndex: "-10px",
   fontFamily: "'Raleway', sans-serif",
