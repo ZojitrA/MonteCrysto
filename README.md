@@ -1,24 +1,25 @@
 # README
+## MonteCristo
+[Live Site](https://montecrysto.herokuapp.com)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![screenshot](screenshot1.png)
 
-Things you may want to cover:
+## About
+ Single-page Stock tracking and investment app inspired by online brokerage and trading site Robinhood
 
-* Ruby version
+## Technologies
+React/Redux front-end
 
-* System dependencies
+Ruby on Rails backend with PostgreSQL database
 
-* Configuration
+Recharts library for data graphing
 
-* Database creation
+IEXtrading API for data
 
-* Database initialization
+![screenshot](screenshot2.png)
 
-* How to run the test suite
+## Curated News
 
-* Services (job queues, cache servers, search engines, etc.)
+Company specific news through Microsoft Azure News search engine
 
-* Deployment instructions
-
-* ...
+![screenshot](screenshot3.png)

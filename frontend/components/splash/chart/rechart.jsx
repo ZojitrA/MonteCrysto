@@ -27,7 +27,7 @@ class reChart extends Component {
 
 
   setPriceInterval(){
-    this.getPrice()
+    this.getPrice();
     this.priceIntervalId = setInterval(this.getPrice, 2000);
   }
 
