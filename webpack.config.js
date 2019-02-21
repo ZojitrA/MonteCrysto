@@ -1,6 +1,13 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  plugins: [
+  new CopyWebpackPlugin([
+    // relative path is from src
+    { from: './app/assets/images/favicon.ico' }, // <- your path to favicon
+  ])
+],
   node: {
     fs: 'empty',
     net: 'empty',
