@@ -9,4 +9,4 @@ export default (props) => (
       <App/>
     </HashRouter>
   </Provider>
-)
+);
