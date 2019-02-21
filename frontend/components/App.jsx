@@ -12,9 +12,10 @@ import SignUpFormContainer from './SessionForms/signup_form_container';
 import LogInFormContainer from './SessionForms/login_form_container';
 import {AuthRoute, ProtectedRoute} from '../util/route_util';
 import StockContainer from './stocks/stock_container';
-
+import Favicon from 'react-favicon';
 const App = () => (
   <div>
+    <Favicon url="https://cdn2.iconfinder.com/data/icons/royal-crowns/512/royal-alphabet-crown-letter-english-m-512.png"/>
     <Switch>
       <Route exact path="/" component={GreetingContainer}/>
       <AuthRoute exact path="/login" component={LogInFormContainer} />
