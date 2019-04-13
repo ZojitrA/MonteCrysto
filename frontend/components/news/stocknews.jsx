@@ -18,7 +18,7 @@ class stockNews extends Component {
 
 getStuff(){
 
-  let credentials = new CognitiveServicesCredentials('2d203a380f9c414a84bcb431ada82c94');
+  let credentials = new CognitiveServicesCredentials('6423b6d57d9f43a6bb7067829d60762c');
   let search_term = `${this.props.companyName} stock`;
   let client = new NewsSearchAPIClient(credentials);
 
