@@ -7,8 +7,11 @@ if(args.onOff){
 return(
 
   <section className="notifications-tab">
-    <h1 className="notifications-title">Funds Available</h1>
-    <h2 className="notifications-subtitle-with-value">{args.currentUser.funds_usd} is now available for trading</h2>
+    <h3 >Funds Available</h3>
+    <h2 className="notifications-subtitle-with-value"> {args.currentUser.funds_usd ? args.currentUser.funds_usd : 0 } USD</h2>
+    <br></br>
+    <h3>Messages</h3>
+    <h2>0</h2>
   </section>
 
 );
