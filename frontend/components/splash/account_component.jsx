@@ -28,15 +28,21 @@ constructor(props){
     <section className="account-tab">
       <h1>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</h1>
       <div className="account-tab-section0">
-        {this.props.currentUser.funds_usd} available for trading
+        {this.props.currentUser.funds_usd} ...available for trading
       </div>
       <div className="account-tab-section1">
         <Link className="account-tab-links" to="/">Account</Link>
+      <div/>
+      <div>
         <Link className="account-tab-links" to="/">Banking</Link>
+      </div>
+      <div>
         <Link className="account-tab-links" to="/">Settings</Link>
-        <div/>
+      </div>
         <div className="account-tab-section2">
           <Link className="account-tab-links" to="/">Help</Link>
+        </div>
+        <div>
           <Link className="account-tab-links" to="/">Discourses</Link>
         </div>
       </div>
