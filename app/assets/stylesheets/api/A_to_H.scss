@@ -1,0 +1,74 @@
+.account-tab{
+  position: absolute;
+  top: 50px;
+  right: 94px;
+  background: whitesmoke;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+}
+
+.account-tab-section0{
+
+}
+
+.account-tab-button{
+  font-weight: bold;
+}
+
+.add-button{
+
+  font-family: 'Raleway', sans-serif;
+  color: green;
+font-weight: 500px;
+text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 2px solid green;
+    width: 150px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.companyName{
+  font-size: 38px;
+  font-weight: 700;
+}
+.chart-button{
+  font-size: 16px;
+  font-weight: 700;
+  width: 40px;
+  box-sizing: border-box;
+  flex-direction: row;
+}
+.chart-button:focus{
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+.chart-button-container{
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+  height: 40px;
+  margin-left: 240px;
+
+
+  border-bottom: 1px solid black;
+
+}
+
+.groove-title{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 45px;
+
+}
+.gray-price{
+  color: gray;
+}
+.green-price{
+  color: green;
+}

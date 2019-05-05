@@ -1,0 +1,185 @@
+
+.image-blob{
+  width: 600px;
+  height: 100vh;
+}
+
+.info-and-image{
+
+  display: flex;
+  flex-direction: row;
+  margin: 100px;
+  justify-content: space-between;
+}
+
+.info-top{
+
+  margin-left: 250px;
+  padding-left: 200px;
+  padding: 100px 0;
+}
+
+
+
+.landing-container{
+  display: flex;
+  flex-direction: column;
+  padding: 37px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.landing-child{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.landing-image-cellphone2{
+
+  width: 30%;
+  height: 30%;
+
+}
+
+
+.landing-image-globe{
+  // position: absolute;
+  width: 20%;
+  height: 20%;
+}
+.landing-nav-button-container{
+
+  width: 100%;
+  margin-right: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing-nav-container{
+  display: flex;
+  position: fixed;
+  margin: 0 30px;
+  background-color: white;
+  width: 100%;
+}
+
+.landing-watchlist{
+  font-family: 'Raleway', sans-serif;
+  position: fixed;
+  bottom: -150px;
+  right: 100px;
+  height: 100vh;
+
+}
+.link-login-button{
+  color: deepskyblue;
+}
+
+.link-signup-button{
+  color: deepskyblue;
+
+}
+
+.login-form-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  line-height: 19px;
+  font-family: 'PT Sans', sans-serif;
+  padding: 20px;
+}
+
+.login-input:focus{
+  border: 1px solid gold;
+  background-color: white;
+}
+
+.login-input:hover{
+  background-color: white;
+}
+
+.login-input{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  width: 200px;
+  border-radius: 4px;
+  padding: 10px 20px;
+}
+
+
+.login-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+.logo{
+  padding: 10px;
+  width:5%;
+  height: 5%;
+}
+
+
+.link-landing-buttons{
+  float: left;
+  display: block;
+  padding: 30px 70px;
+  background-color: white;
+  color: deepskyblue;
+  font-weight: 700;
+  font-family: 'PT Sans', sans-serif;
+}
+.link-landing-buttons:hover{
+  color: gold;
+}
+
+.landing-signup-button{
+  display: flex;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+  flex-direction: column;
+  border: 1px solid whitesmoke;
+  background-color: deepskyblue;
+  width: 100px;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: white;
+  font-weight: 700;
+
+}
+
+h1.logintitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+  line-height: 30px;
+  margin: 0 0 16px;
+}
+
+.loginpagelinktolanding:hover{
+color: gold;
+}
+.notifications-tab{
+  position: absolute;
+  top: 50px;
+  right: 196px;
+  background: whitesmoke;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+
+}
+
+.price-label{
+  font-size: 38px;
+
+}
