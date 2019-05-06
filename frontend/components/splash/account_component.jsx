@@ -26,27 +26,16 @@ constructor(props){
 
     return (
     <section className="account-tab">
-      <h1>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</h1>
-      <div className="account-tab-section1">
-        <Link className="account-tab-links" to="/">Account</Link>
-      <div/>
       <div>
-        <Link className="account-tab-links" to="/">Banking</Link>
+      <h1>Welcome {this.props.currentUser.first_name} {this.props.currentUser.last_name}</h1>
+
+
+        <button
+          className="account-tab-button"
+          onClick={this.props.logout}>Log Out
+        </button>
+
       </div>
-      <div>
-        <Link className="account-tab-links" to="/">Settings</Link>
-      </div>
-        <div className="account-tab-section2">
-          <Link className="account-tab-links" to="/">Help</Link>
-        </div>
-        <div>
-          <Link className="account-tab-links" to="/">Discourses</Link>
-        </div>
-      </div>
-      <button
-        className="account-tab-button"
-        onClick={this.props.logout}>Log Out
-      </button>
     </section>
   );
 }
