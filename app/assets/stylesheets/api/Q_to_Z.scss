@@ -2,6 +2,10 @@
 // margin-top: 300px;
 margin-left: 240px;
 }
+.recharts-surface{
+  position: relative;
+  z-index: -200;
+}
 .red-price{
   color: red;
 }
