@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
+import Radium from 'radium';
 
 
 class Item extends React.Component {
@@ -119,8 +120,8 @@ else {
   return(
     <div className="watchlist-item">
       <ul>
-        <li className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
-        <li className={className}>{this.state.price}</li>
+        <li style={stroke === 'red'? {':hover' : { color: "red", fontWeight: 600}} : {':hover' : { color: "green", fontWeight: 600}}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
+        <li style={stroke === 'red'? {color: "red"} : {color: "green"}}>{this.state.price}</li>
         <br/>
         <br/>
       </ul>
@@ -138,4 +139,4 @@ else {
 }
 
 
-export default Item;
+export default Radium(Item);

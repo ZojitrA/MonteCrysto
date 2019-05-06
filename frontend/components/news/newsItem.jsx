@@ -35,8 +35,8 @@ else if(props.source === "azure"){
   const style = {
     flexDirection: "column",
     // "padding": "3px",
-    borderRight: "1px solid #dfe1e5",
-    borderTop: "1px solid #dfe1e5",
+    borderRight: "2px solid whitesmoke",
+    borderTop: "2px solid whitesmoke",
     // "boxShadow": "1px 0px rgb(223, 225, 229)",
     borderRadius: "0px 8px 0px 0px",
     fontFamily: "'Raleway', sans-serif",
@@ -44,7 +44,7 @@ else if(props.source === "azure"){
     textAlign: "right",
     margin: "2px",
     ':hover' : {
-      boxShadow: "7px 0px 0px 0px rgb(223, 225, 229)"
+      boxShadow: "3px 0px 0px 4px whitesmoke"
     }
   };
   return(
