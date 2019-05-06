@@ -66,6 +66,7 @@
 .landing-watchlist{
   font-family: 'Raleway', sans-serif;
   position: fixed;
+  z-index: -100;
   bottom: -150px;
   right: 100px;
   height: 100vh;
@@ -170,6 +171,8 @@ color: gold;
 .notifications-tab{
   position: absolute;
   top: 50px;
+  z-index: 100;
+
   right: 196px;
   background: whitesmoke;
   border: none;
