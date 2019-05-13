@@ -150,7 +150,8 @@ if(this.state.watchlists && this.state.stocks){
 
 let buttonStyle ={
   position: "relative",
-  marginTop: "-450px"
+  marginTop: "-450px",
+  zIndex: "-300"
 };
 
 

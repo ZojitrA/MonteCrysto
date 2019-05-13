@@ -27,7 +27,7 @@ constructor(props){
     return (
     <section className="account-tab">
       <div>
-      <h1>Welcome {this.props.currentUser.first_name} {this.props.currentUser.last_name}</h1>
+      <h1>Welcome {this.props.currentUser.first_name}</h1>
 
 
         <button
