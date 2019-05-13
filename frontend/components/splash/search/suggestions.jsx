@@ -21,13 +21,19 @@ if(props.results){
   options = props.results.map((r, idx) => {
     var symbol = r["1. symbol"];
     var symbolIdx = symbol.indexOf(props.query.toUpperCase());
+    let lengthIdx;
+    let normal1;
+    let bold;
+    let normal2;
     if(symbolIdx === -1){
       
+    } else{
+      lengthIdx = props.query.length + symbolIdx;
+      normal1 = symbol.slice(0, symbolIdx);
+      bold = symbol.slice(symbolIdx, lengthIdx);
+      normal2 = symbol.slice(lengthIdx);
     }
-    var lengthIdx = props.query.length + symbolIdx;
-    var normal1 = symbol.slice(0, symbolIdx);
-    var bold = symbol.slice(symbolIdx, lengthIdx);
-    var normal2 = symbol.slice(lengthIdx);
+
 // console.log(symbolIdx)
 
     return(
