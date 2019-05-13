@@ -18,11 +18,37 @@ let options = [];
 
 if(props.results){
 
-  options = props.results.map((r, idx) => (
+  options = props.results.map((r, idx) => {
+    var symbol = r["1. symbol"];
+    var symbolIdx = symbol.indexOf(props.query.toUpperCase());
+    if(symbolIdx === -1){
+      
+    }
+    var lengthIdx = props.query.length + symbolIdx;
+    var normal1 = symbol.slice(0, symbolIdx);
+    var bold = symbol.slice(symbolIdx, lengthIdx);
+    var normal2 = symbol.slice(lengthIdx);
+// console.log(symbolIdx)
+
+    return(
+
     <li key={idx} onClick={someFunc(r["1. symbol"])}>
-      {r["1. symbol"]}: {r["2. name"]}
+      <div style={{display:"inline-block"}}>
+        {normal1}
+      </div>
+      <div style={{display:"inline-block", fontWeight: "600"}}>
+        {bold}
+      </div>
+      <div style={{display:"inline-block"}}>
+        {normal2}:&nbsp;
+      </div>
+      <div style={{display:"inline-block"}}>
+        {r["2. name"]}
+      </div>
     </li>
-  ));
+
+  );
+});
 
 } else {
 

@@ -20,7 +20,7 @@ else if(props.source === "azure"){
 }
 
   const imgStyle = {
-    "width": "60%",
+    "width": "50%",
     "border": "none",
     // "border": "1px solid #dfe1e5",
     "justifyContent": "center",
