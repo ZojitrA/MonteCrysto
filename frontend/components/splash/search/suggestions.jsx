@@ -26,7 +26,10 @@ if(props.results){
     let bold;
     let normal2;
     if(symbolIdx === -1){
-      
+      normal1 = symbol
+      bold = ""
+      normal2 = ""
+
     } else{
       lengthIdx = props.query.length + symbolIdx;
       normal1 = symbol.slice(0, symbolIdx);
