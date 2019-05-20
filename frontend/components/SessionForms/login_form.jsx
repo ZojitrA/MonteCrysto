@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
   }
 
   demo(){
-    this.setState({email: "mclovin@mclovin.com", password: "startrek"});
+    this.setState({email: "test@test.test", password: "startrek"});
     this.props.action(this.state);
   }
 
