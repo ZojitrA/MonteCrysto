@@ -41,6 +41,9 @@ class Stock extends Component {
     if(obj1 === null || obj2 === null){
       return false;
     }
+    if(obj1.length === 0 && obj2.length === 0){
+      return true
+    }
     let values1 = Object.values(obj1);
     let values2 = Object.values(obj2);
 
@@ -80,8 +83,7 @@ class Stock extends Component {
     //
     //     this.grabWatchlists();
     //
-    // }
-    }
+      }
 }
 
 

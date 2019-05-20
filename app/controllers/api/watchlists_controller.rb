@@ -5,6 +5,7 @@ class Api::WatchlistsController < ApplicationController
   end
 
   def index
+    # @watchlists = Watchlist.where(user_id: params[:user_id])
     @watchlists = Watchlist.where(user_id: params[:user_id]).includes(:stocks)
     @user = params[:user_id]
 
