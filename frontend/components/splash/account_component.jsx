@@ -29,7 +29,7 @@ constructor(props){
       <div>
       <h1>Welcome {this.props.currentUser.first_name}</h1>
 
-
+<br></br>
         <button
           className="account-tab-button"
           onClick={this.props.logout}>Log Out
