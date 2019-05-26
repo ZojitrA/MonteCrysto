@@ -27,8 +27,12 @@ margin-left: 240px;
 }
 
 .search-bar{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
   background-color: whitesmoke;
-  height: auto;
+  font-size: auto;
+  height: 40px;
   width: 265px;
   border: none;
   border-radius: 4px;
