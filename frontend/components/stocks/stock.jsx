@@ -41,8 +41,11 @@ class Stock extends Component {
     if(obj1 === null || obj2 === null){
       return false;
     }
-    if(obj1.length === 0 && obj2.length === 0){
-      return true
+    if(obj1.length === 0 || obj2.length === 0){
+      if(obj1.length === 0 && obj2.length === 0){
+        return true;
+      }
+      return false
     }
     let values1 = Object.values(obj1);
     let values2 = Object.values(obj2);
@@ -99,8 +102,8 @@ class Stock extends Component {
 
   handleAdd(){
 
-    const stock = {ticker: this.props.ticker};
-
+    let stock = {ticker: this.props.ticker};
+    console.log(this.props);
     this.props.addToList(this.props.currentUser.primary_watchlist_id, stock).then(
       () => this.grabWatchlists()
     );
@@ -109,7 +112,7 @@ class Stock extends Component {
 
   handleDrop(){
 
-    const stock = {ticker: this.props.ticker};
+    let stock = {ticker: this.props.ticker};
 
     this.props.dropFromList(this.props.currentUser.primary_watchlist_id, stock).then(
       () => this.grabWatchlists());
@@ -121,7 +124,7 @@ class Stock extends Component {
 render(){
 
 
-  const data = Object.entries(this.state.data).map((datum, idx) => (
+  let data = Object.entries(this.state.data).map((datum, idx) => (
     <li key={idx}>{datum}</li>
   ));
 

@@ -6,8 +6,8 @@ import Stock from './stock';
 
 const mapStateToProps = (state, ownProps) => {
 
-  const currentUser = state.entities.users[state.session.id];
-  const primary_watchlist_id = currentUser.primary_watchlist_id;
+  let currentUser = state.entities.users[state.session.id];
+  let primary_watchlist_id = currentUser.primary_watchlist_id;
 
 
   return {
