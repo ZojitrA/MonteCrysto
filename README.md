@@ -12,7 +12,7 @@ React/Redux front-end
 
 Ruby on Rails backend with PostgreSQL database
 
-Recharts library for data graphing
+Recharts D3 library for data graphing
 
 IEXtrading API for data
 
@@ -20,6 +20,6 @@ IEXtrading API for data
 
 ## Curated News
 
-Company specific news through Microsoft Azure News search engine
+Company specific news using Bing search engine through MS Azure.
 
 ![screenshot](screenshot3.png)
