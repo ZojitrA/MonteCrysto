@@ -38,15 +38,11 @@ class Stock extends Component {
 
   compare(obj1, obj2){
 
-    if(obj1 === null || obj2 === null){
-      return false;
+
+    if(obj1.length === 0 && obj2.length === 0){
+      return true;
     }
-    if(obj1.length === 0 || obj2.length === 0){
-      if(obj1.length === 0 && obj2.length === 0){
-        return true;
-      }
-      return false
-    }
+
     let values1 = Object.values(obj1);
     let values2 = Object.values(obj2);
 
@@ -81,7 +77,7 @@ class Stock extends Component {
     }
 
 
-      if(!this.compare(this.props.watchlists, this.state.watchlists)){
+      if(this.compare(this.props.watchlists, this.state.watchlists)){
         this.grabWatchlists();
     //
     //     this.grabWatchlists();
