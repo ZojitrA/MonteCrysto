@@ -39,12 +39,17 @@ class Stock extends Component {
   compare(obj1, obj2){
 
 
-    if(obj1.length === 0 && obj2.length === 0){
-      return true;
-    }
+    // if(obj1.length === 0 && obj2.length === 0){
+    //   return true;
+    // }
 
-    let values1 = Object.values(obj1);
-    let values2 = Object.values(obj2);
+    let values1;
+    let values2;
+    if(obj1 && obj2){
+      values1 = Object.values(obj1);
+      values2 = Object.values(obj2);
+
+
 
     for(var key in values1){
       if(!values2[key]){
@@ -62,7 +67,9 @@ class Stock extends Component {
       }
     }
     return true;
+    }
 
+    return false
   }
 
 
@@ -77,7 +84,7 @@ class Stock extends Component {
     }
 
 
-      if(this.compare(this.props.watchlists, this.state.watchlists)){
+      if(!this.compare(this.props.watchlists, this.state.watchlists)){
         this.grabWatchlists();
     //
     //     this.grabWatchlists();
@@ -152,7 +159,7 @@ if(this.state.watchlists && this.state.stocks){
 let buttonStyle ={
   position: "relative",
   marginTop: "-450px",
-  zIndex: "-300"
+  // zIndex: "-10"
 };
 
 
