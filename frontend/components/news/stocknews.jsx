@@ -32,13 +32,13 @@ getStuff(){
 
 
   componentDidMount(){
-    if(this.props.companyName){
+    if(this.props.companyName && this.props.companyName !== prevProps.companyName ){
       this.getStuff();
     }
 }
 
 componentDidUpdate(prevProps){
-  if(this.props.companyName != prevProps.companyName){
+  if(this.props.companyName !== prevProps.companyName){
     this.getStuff();
   }
 }

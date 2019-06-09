@@ -45,6 +45,7 @@ class Stock extends Component {
 
     let values1;
     let values2;
+
     if(obj1 && obj2){
       values1 = Object.values(obj1);
       values2 = Object.values(obj2);
@@ -52,7 +53,7 @@ class Stock extends Component {
 
 
     for(var key in values1){
-      if(!values2[key]){
+      if(!obj2.hasOwnProperty(key)){
         return false;
       }
       if(Array.isArray(values1[key])){
@@ -84,7 +85,7 @@ class Stock extends Component {
     }
 
 
-      if(!this.compare(this.props.watchlists, this.state.watchlists)){
+      if(this.compare(this.props.watchlists, this.state.watchlists)){
         this.grabWatchlists();
     //
     //     this.grabWatchlists();
