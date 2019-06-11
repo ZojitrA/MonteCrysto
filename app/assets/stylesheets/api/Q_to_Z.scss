@@ -125,7 +125,7 @@ border-radius: 8px;
   margin-right: 40px;
   display: flex;
   justify-content: flex-end;
-
+opacity: .9;
 }
 
 .splash-logo{
@@ -139,6 +139,8 @@ border-radius: 8px;
   width: 70%;
   justify-content: space-between;
   align-items: center;
+
+
 }
 
 .splash-nav{
@@ -147,6 +149,7 @@ border-radius: 8px;
   padding-right: 50px;
   align-items: center;
   z-index: 10;
+
 }
 
 .splash-nav-buttons{
@@ -162,6 +165,7 @@ border-radius: 8px;
   width: 10%;
   margin-top: 10px;
   margin-left: 40px;
+
 }
 
 .splash-container{
@@ -169,6 +173,7 @@ border-radius: 8px;
   display: flex;
   position: fixed;
   background-color: white;
+  opacity: .93;
   width: 100%;
 }
 
