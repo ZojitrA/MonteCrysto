@@ -37,12 +37,12 @@ class Chart extends Component {
 
   componentDidMount() {
     this.getChart();
-    this.setPriceInterval();
+    // this.setPriceInterval();
   }
   //
   componentWillUnmount() {
 
-    this.clearPriceInterval();
+    // this.clearPriceInterval();
   }
 
 getPrice(){
