@@ -1,25 +1,155 @@
-
-export const fetchStocks = watchlist_id => (
+export const fetchStocks = () => (
   $.ajax({
-    method: 'GET',
-    url: `/api/watchlists/${watchlist_id}/stocks`
+    url: "api/stocks",
+    method: "GET",
   })
 );
 
-export const getStockBy = ticker => (
+export const queryStocks = (query) => (
   $.ajax({
-    method: 'GET',
-    url: `https://api.iextrading.com/1.0/stock/${ticker}/quote`
+    url: `api/stocks/search/${query}`,
+    method: "GET"
   })
-);
+)
 
-export const getChartBy = (ticker, timeframe) => (
+export const fetchStock = (id) => (
   $.ajax({
-    method: 'GET',
-    url: `https://api.iextrading.com/1.0/stock/${ticker}/chart/${timeframe}`
+    url: `api/stocks/${id}`,
+    method: "GET"
+  })
+)
+
+export const fetchPrice = (sym) => (
+  $.ajax({
+    url: `https://min-api.cryptocompare.com/data/price?fsym=${sym}&tsyms=USD`,
+    method: "GET",
+
+  })
+)
+
+export const altFetchStocksData = (symbols) => {
+  const symzed = symbols.map((arr)=>(arr[0])).join(",");
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symzed}&tsyms=USD`,
+      method: "GET",
     })
-);
+  )
+}
+
+export const fetchStocksData = (symbols) => {
+  const symzed = symbols.map((arr)=>(arr[0])).join(",");
+
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symzed}&tsyms=USD`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchStockDaily = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histominute?fsym=${sym}&tsym=USD&limit=1441`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const altFetchStockDaily = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=25`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchStockWeekly = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=169`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchStockMonthly = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=31`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchStockTriMonthly = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=93`,
+      method: "GET",
+
+    })
+  )
+}
 
 
+export const fetchStockYearly = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=365`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchStockFiveYearly = (sym) => {
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=1825`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchAllNews = (syms) => {
+  const categories = ["BTC","ETH","LTC","XMR","ZEC","ETC","XRP","TRX","ADA","DASH","XTZ","USDT"];
+  let symbols = syms.map((sym) => {
+    if (categories.includes(sym)){
+      return sym
+    }
+  })
+  if (symbols.length < 1){
+    symbols = ["Blockchain","Market","Exchange","Regulation","Trading"];
+  }
+  symbols = symbols.join(",");
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/v2/news/?categories=${symbols}&excludeCategories=Sponsored`,
+      method: "GET",
+
+    })
+  )
+}
+
+export const fetchNews = (symbol) => {
+  if (symbol.length<3){
+    symbol = "Blockchain"
+  }
+  return (
+    $.ajax({
+      url: `https://min-api.cryptocompare.com/data/v2/news/?categories=${sym}&excludeCategories=Sponsored`,
+      method: "GET"
+    })
+  )
+}
 
 // `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=ZRQW53GP2UJEJ1UK`
