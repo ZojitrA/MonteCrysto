@@ -24,18 +24,38 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-has_one :primary_watchlist, -> {where title: "primary_watchlist"},
-foreign_key: :user_id,
-class_name: :Watchlist
+  has_one :watchlist,
+      foreign_key: :user_id,
+      class_name: 'Watchlist'
+
+# has_one :primary_watchlist, -> {where title: "primary_watchlist"},
+# foreign_key: :user_id,
+# class_name: :Watchlist
 
 
-has_many :watchlists,
-foreign_key: :user_id,
-class_name: :Watchlist
+# has_many :watchlists,
+# foreign_key: :user_id,
+# class_name: :Watchlist
 
 has_many :stocks,
 through: :watchlists,
 source: :stocks
+
+has_one :portfolio_history,
+  foreign_key: :user_id,
+  class_name: :PortfolioHistory
+
+has_many :portfolios,
+  through: :portfolio_history,
+  source: :portfolios
+
+has_many :transactions,
+  foreign_key: :user_id,
+  class_name: :Transaction
+
+has_many :shares,
+  through: :transactions,
+  source: :stock
 
 # has_many :watchlist_stock_joins,
 # through: :watchlists,

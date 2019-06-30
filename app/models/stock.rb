@@ -13,12 +13,16 @@
 class Stock < ApplicationRecord
 
   validates :ticker, uniqueness: true, presence: true
-  
+
 
 
   has_many :watchlist_stock_joins,
   foreign_key: :stock_id,
   class_name: :WatchlistStockJoin
+
+  has_many :transactions,
+      foreign_key: :stock_id,
+      class_name: :Transaction
 
   has_many :watchlists,
   through: :watchlist_stock_joins,
