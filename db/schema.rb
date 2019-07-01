@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_230710) do
+ActiveRecord::Schema.define(version: 2019_07_01_024655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 2019_06_29_230710) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "popularity"
     t.float "price"
+    t.float "price_change"
+    t.string "name", null: false
     t.index ["ticker"], name: "index_stocks_on_ticker", unique: true
   end
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_230710) do
   create_table "watchlist_stock_joins", force: :cascade do |t|
     t.integer "watchlist_id", null: false
     t.integer "stock_id", null: false
+    t.index ["watchlist_id", "stock_id"], name: "index_watchlist_stock_joins_on_watchlist_id_and_stock_id", unique: true
     t.index ["watchlist_id"], name: "index_watchlist_stock_joins_on_watchlist_id"
   end
 
