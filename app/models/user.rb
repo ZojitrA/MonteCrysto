@@ -23,10 +23,11 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
+  after_create :give_watchlist, :give_portfolio_history, :give_first_portfolio
 
   has_one :watchlist,
       foreign_key: :user_id,
-      class_name: 'Watchlist'
+      class_name: :Watchlist
 
 # has_one :primary_watchlist, -> {where title: "primary_watchlist"},
 # foreign_key: :user_id,
@@ -61,9 +62,9 @@ has_many :shares,
 # through: :watchlists,
 # source: :watchlist_stock_joins
 
-  def primary_watchlist_id
-    self.primary_watchlist.id
-  end
+  # def primary_watchlist_id
+  #   self.primary_watchlist.id
+  # end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -86,7 +87,27 @@ has_many :shares,
     self.session_token
   end
 
-  private
+  def create_watchlist
+    Watchlist.create({user_id: self.id })
+  end
+
+  def create_portfolio_history
+    PortfolioHistory.create({user_id: self.id })
+  end
+
+  def self.create_portfolio_state(portfolio_history_id, value)
+    Portfolio.create({portfolio_history_id: portfolio_history_id , account_value: value})
+  end
+
+  def self.find_stock_shares(userId,stockId)
+    Transaction.where("user_id = ? and stock_id = ?",userId, stockId).group(:stock_id).sum(:amount)
+  end
+
+  def self.find_all_shares(userId)
+    am = Transaction.where("user_id = ?",userId).group(:stock_id).having("sum(amount) > 0").sum(:amount)
+  end
+
+
 
   def ensure_session_token
     generate_unique_session_token unless self.session_token
@@ -102,6 +123,18 @@ has_many :shares,
       self.session_token = new_session_token
     end
     self.session_token
+  end
+
+  def give_watchlist
+    self.create_watchlist
+  end
+
+  def give_portfolio_history
+    self.create_portfolio_history
+  end
+
+  def give_first_portfolio
+    User.create_portfolio_state(self.portfolio_history.id, self.funds_usd)
   end
 
 end

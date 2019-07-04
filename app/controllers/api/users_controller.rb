@@ -4,9 +4,9 @@
     @user = User.new(user_params)
     @user.funds_usd = 10000;
     if @user.save
-      Watchlist.create(user_id: @user.id, title: "portfolio")
-      Watchlist.create(user_id: @user.id, title: "primary_watchlist")
-      login(@user)
+      # Watchlist.create(user_id: @user.id, title: "portfolio")
+      # Watchlist.create(user_id: @user.id, title: "primary_watchlist")
+      login!(@user)
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422
@@ -22,10 +22,24 @@
     end
   end
 
+  # User.create([{
+  #   email:"soji@soji.com",
+  #     password:"startrek",
+  #     first_name: "soji",
+  #     last_name: "soji",
+  #     funds_usd: 0
+  #   }
+  #   ])
+
+  def show
+    @user = User.find(params[:id])
+    @shares = User.find_all_shares(params[:user_id])
+  end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name, :funds_usd, :portfolio_id)
+    params.require(:user).permit(:email, :password, :first_name, :last_name, :funds_usd)
   end
 end

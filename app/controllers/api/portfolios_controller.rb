@@ -1,6 +1,6 @@
 
 class Api::PortfoliosController < ApplicationController
-  
+
   def create
       @portfolio = Portfolio.new(portfolio_params)
       @portfolio.portfolio_history_id = current_user.portfolio_history.id
@@ -11,8 +11,8 @@ class Api::PortfoliosController < ApplicationController
       end
     end
 
-    def allportfolios
-      @portfolios = current_user.portfolios.order('portfolios.id ASC')
+    def index
+      @portfolios = current_user.portfolios.order('portfolios.created_at ASC')
     end
 
     private

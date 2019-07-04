@@ -9,8 +9,6 @@
 
 class Watchlist < ApplicationRecord
 
-  validates :title, presence: true
-  validates_uniqueness_of :title, scope: :user_id
 
 
 

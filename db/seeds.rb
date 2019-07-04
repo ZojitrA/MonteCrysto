@@ -7,525 +7,525 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Watchlist.destroy_all
-WatchlistJoin.destroy_all
+WatchlistStockJoin.destroy_all
 Transaction.destroy_all
 User.destroy_all
 PortfolioHistory.destroy_all
 Portfolio.destroy_all
-users = User.create!([{
+User.create([{
     email:"mclovin@mclovin.com",
     password: "startrek",
     first_name: "Mc",
     last_name: "Lovin",
-    funds: 0
+    funds_usd: 0
   }
   ])
 
 Stock.destroy_all
-stocks = Stock.create!([
+Stock.create([
 
     {
     name: "Bitcoin",
-    symbol: "BTC"
+    ticker: "BTC"
     },
 
     {
     name: "Ethereum",
-    symbol: "ETH"
+    ticker: "ETH"
     },
 
     {
     name: "RIPPLE",
-    symbol: "XRP"
+    ticker: "XRP"
     },
 
     {
     name: "LiteCoin",
-    symbol: "LTC"
+    ticker: "LTC"
     },
 
     {
     name: "Bitcoin Cash",
-    symbol: "BCH"
+    ticker: "BCH"
     },
 
     {
     name: "EOS",
-    symbol: "EOS"
+    ticker: "EOS"
     },
 
     {
     name: "Binance Coin",
-    symbol: "BNB"
+    ticker: "BNB"
     },
 
     {
     name: "Bitcoin SV",
-    symbol: "BSV"
+    ticker: "BSV"
     },
 
     {
     name: "Tether",
-    symbol: "USDT"
+    ticker: "USDT"
     },
 
     {
     name: "Cardano",
-    symbol: "ADA"
+    ticker: "ADA"
     },
 
     {
     name: "TRON",
-    symbol: "TRX"
+    ticker: "TRX"
     },
 
     {
     name: "Stellar",
-    symbol: "XLM"
+    ticker: "XLM"
     },
 
     {
     name: "UNUS SED LEO",
-    symbol: "LEO"
+    ticker: "LEO"
     },
 
     {
     name: "Monero",
-    symbol: "XMR"
+    ticker: "XMR"
     },
 
     {
     name: "Dash",
-    symbol: "DASH"
+    ticker: "DASH"
     },
 
     {
     name: "Chainlink",
-    symbol: "LINK"
+    ticker: "LINK"
     },
 
     {
     name: "NEO",
-    symbol: "NEO"
+    ticker: "NEO"
     },
     {
     name: "IOTA",
-    symbol: "MIOTA"
+    ticker: "MIOTA"
     },
 
     {
     name: "Cosmos",
-    symbol: "ATOM"
+    ticker: "ATOM"
     },
 
     {
     name: "Ethereum Classic",
-    symbol: "ETC"
+    ticker: "ETC"
     },
 
     {
     name: "NEM",
-    symbol: "XEM"
+    ticker: "XEM"
     },
 
     {
     name: "Ontology",
-    symbol: "ONT"
+    ticker: "ONT"
     },
 
     {
     name: "Zcash",
-    symbol: "ZEC"
+    ticker: "ZEC"
     },
 
     {
     name: "Maker",
-    symbol: "MKR"
+    ticker: "MKR"
     },
 
     {
     name: "Tezos",
-    symbol: "XTZ"
+    ticker: "XTZ"
     },
 
     {
     name: "Qtum",
-    symbol: "QTUM"
+    ticker: "QTUM"
     },
 
     {
     name: "Bitcoin Gold",
-    symbol: "BTG"
+    ticker: "BTG"
     },
 
     {
     name: "VeChain",
-    symbol: "VET"
+    ticker: "VET"
     },
 
     {
     name: "Crypto.com Chain",
-    symbol: "CRO"
+    ticker: "CRO"
     },
 
     {
     name: "Basic Attention Token",
-    symbol: "BAT"
+    ticker: "BAT"
     },
 
     {
     name: "Dogecoin",
-    symbol: "DOGE"
+    ticker: "DOGE"
     },
 
     {
     name: "USD Coin",
-    symbol: "USDC"
+    ticker: "USDC"
     },
 
     {
     name: "OmiseGO",
-    symbol: "OMG"
+    ticker: "OMG"
     },
 
     {
     name: "BitTorrent",
-    symbol: "BTT"
+    ticker: "BTT"
     },
 
     {
     name: "Decred",
-    symbol: "DCR"
+    ticker: "DCR"
     },
 
     {
     name: "V Systems",
-    symbol: "VSYS"
+    ticker: "VSYS"
     },
 
     {
     name: "Holo",
-    symbol: "HOT"
+    ticker: "HOT"
     },
 
     {
     name: "Aurora",
-    symbol: "AOA"
+    ticker: "AOA"
     },
 
     {
     name: "Bitcoin Diamond",
-    symbol: "BCD"
+    ticker: "BCD"
     },
 
     {
     name: "Lisk",
-    symbol: "LSK"
+    ticker: "LSK"
     },
 
     {
     name: "TrueUSD",
-    symbol: "TUSD"
+    ticker: "TUSD"
     },
 
     {
     name: "HyperCash",
-    symbol: "HC"
+    ticker: "HC"
     },
 
     {
     name: "Ravencoin",
-    symbol: "RVN"
+    ticker: "RVN"
     },
 
     {
     name: "Huobi Token",
-    symbol: "HT"
+    ticker: "HT"
     },
 
     {
     name: "Pundi X",
-    symbol: "NPXS"
+    ticker: "NPXS"
     },
 
     {
     name: "Egretia",
-    symbol: "EGT"
+    ticker: "EGT"
     },
 
     {
     name: "HedgeTrade",
-    symbol: "HEDG"
+    ticker: "HEDG"
     },
 
     {
     name: "Waves",
-    symbol: "WAVES"
+    ticker: "WAVES"
     },
 
     {
     name: "0x",
-    symbol: "ZRX"
+    ticker: "ZRX"
     },
 
     {
     name: "Augur",
-    symbol: "REP"
+    ticker: "REP"
     },
 
     {
     name: "Oubitica",
-    symbol: "QBIT"
+    ticker: "QBIT"
     },
 
     {
     name: "Nano",
-    symbol: "NANO"
+    ticker: "NANO"
     },
 
     {
     name: "BitShares",
-    symbol: "BTS"
+    ticker: "BTS"
     },
 
     {
     name: "Bytecoin",
-    symbol: "BCN"
+    ticker: "BCN"
     },
 
     {
     name: "MonaCoin",
-    symbol: "MONA"
+    ticker: "MONA"
     },
 
     {
     name: "Bytom",
-    symbol: "BTM"
+    ticker: "BTM"
     },
 
     {
     name: "Komodo",
-    symbol: "KMD"
+    ticker: "KMD"
     },
 
     {
     name: "Paxos Standard",
-    symbol: "PAX"
+    ticker: "PAX"
     },
 
     {
     name: "IOST",
-    symbol: "IOST"
+    ticker: "IOST"
     },
 
     {
     name: "Zilliqa",
-    symbol: "ZIL"
+    ticker: "ZIL"
     },
 
     {
     name: "ICON",
-    symbol: "ICX"
+    ticker: "ICX"
     },
 
     {
     name: "ThoreCoin",
-    symbol: "THR"
+    ticker: "THR"
     },
 
     {
     name: "DigiByte",
-    symbol: "DGB"
+    ticker: "DGB"
     },
 
     {
     name: "KuCoin Shares",
-    symbol: "KCS"
+    ticker: "KCS"
     },
 
     {
     name: "Energi",
-    symbol: "NRG"
+    ticker: "NRG"
     },
 
     {
     name: "Siacoin",
-    symbol: "SC"
+    ticker: "SC"
     },
 
     {
     name: "Metaverse ETP",
-    symbol: "ETP"
+    ticker: "ETP"
     },
 
     {
     name: "ABBC Coin",
-    symbol: "ABBC"
+    ticker: "ABBC"
     },
 
     {
     name: "Aeternity",
-    symbol: "AE"
+    ticker: "AE"
     },
 
     {
     name: "GXChain",
-    symbol: "GXC"
+    ticker: "GXC"
     },
 
     {
     name: "Verge",
-    symbol: "XVG"
+    ticker: "XVG"
     },
 
     {
     name: "Mixin",
-    symbol: "XIN"
+    ticker: "XIN"
     },
 
     {
     name: "Steem",
-    symbol: "STEEM"
+    ticker: "STEEM"
     },
 
     {
     name: "Ardor",
-    symbol: "ARDR"
+    ticker: "ARDR"
     },
 
     {
     name: "Dent",
-    symbol: "DENT"
+    ticker: "DENT"
     },
 
     {
     name: "Insight Chain",
-    symbol: "INB"
+    ticker: "INB"
     },
 
     {
     name: "VestChain",
-    symbol: "VEST"
+    ticker: "VEST"
     },
 
     {
     name: "THETA",
-    symbol: "THETA"
+    ticker: "THETA"
     },
 
     {
     name: "aelf",
-    symbol: "ELF"
+    ticker: "ELF"
     },
 
     {
     name: "Lambda",
-    symbol: "LAMB"
+    ticker: "LAMB"
     },
 
     {
     name: "MaidSafeCoin",
-    symbol: "MAID"
+    ticker: "MAID"
     },
 
     {
     name: "Enjin Coin",
-    symbol: "ENJ"
+    ticker: "ENJ"
     },
 
     {
     name: "Status",
-    symbol: "SNT"
+    ticker: "SNT"
     },
 
     {
     name: "Crypto.com",
-    symbol: "MCO"
+    ticker: "MCO"
     },
 
     {
     name: "Nash Exchange",
-    symbol: "NEX"
+    ticker: "NEX"
     },
 
     {
     name: "Golem",
-    symbol: "GNT"
+    ticker: "GNT"
     },
 
     {
     name: "Zcoin",
-    symbol: "XZC"
+    ticker: "XZC"
     },
 
     {
     name: "EDUCare",
-    symbol: "EKT"
+    ticker: "EKT"
     },
 
     {
     name: "Dai",
-    symbol: "DAI"
+    ticker: "DAI"
     },
 
     {
     name: "Stratis",
-    symbol: "STRAT"
+    ticker: "STRAT"
     },
 
     {
     name: "Quant",
-    symbol: "QNT"
+    ticker: "QNT"
     },
 
     {
     name: "SOLVE",
-    symbol: "SOLVE"
+    ticker: "SOLVE"
     },
 
     {
     name: "WAX",
-    symbol: "WAX"
+    ticker: "WAX"
     },
 
     {
     name: "ELA",
-    symbol: "Elastos"
+    ticker: "Elastos"
     },
 
     {
     name: "Maximine Coin",
-    symbol: "MXM"
+    ticker: "MXM"
     },
 
     {
     name: "Nebulas",
-    symbol: "NAS"
+    ticker: "NAS"
     },
 
     {
     name: "Project Pai",
-    symbol: "PAI"
+    ticker: "PAI"
     },
 
     {
     name: "Santiment Network Token",
-    symbol: "SAN"
+    ticker: "SAN"
     },
 
     {
     name: "Grin",
-    symbol: "GRIN"
+    ticker: "GRIN"
     },
 
     {
     name: "Nexo",
-    symbol: "NEXO"
+    ticker: "NEXO"
     },
 
     {
     name: "AdEx",
-    symbol: "ADX"
+    ticker: "ADX"
     },
 
     ])
