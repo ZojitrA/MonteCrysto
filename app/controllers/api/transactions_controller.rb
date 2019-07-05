@@ -11,8 +11,8 @@ class Api::TransactionsController < ApplicationController
 
 
 
-  def allshares
-    @allshares = User.find_all_shares(params[:user_id])
+  def holdings
+    @holdings = User.find_all_shares(params[:user_id])
   end
 
   def shares
@@ -21,6 +21,6 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:transaction).permit(:user_id, :stock_id,:amount,:price)
+    params.require(:transaction).permit(:user_id, :stock_id,:quantity,:buy_price)
   end
 end

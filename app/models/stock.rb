@@ -28,6 +28,10 @@ class Stock < ApplicationRecord
   through: :watchlist_stock_joins,
   source: :watchlist
 
+  def self.find_by_search_input(input)
+    input = "#{input}%"
+    Stock.where("name ilike ? OR symbol ilike ?",input,input)
+  end
 
 
 
