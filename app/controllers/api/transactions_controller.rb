@@ -9,12 +9,14 @@ class Api::TransactionsController < ApplicationController
     end
   end
 
-  def shares
-    @shares = User.find_shares(params[:user_id].to_i,(params[:stock_id]).to_i)
-  end
+
 
   def allshares
     @allshares = User.find_all_shares(params[:user_id])
+  end
+
+  def shares
+    @shares = User.find_stock_shares(params[:user_id].to_i,(params[:stock_id]).to_i)
   end
 
   private
