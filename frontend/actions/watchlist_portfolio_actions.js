@@ -9,26 +9,31 @@ export const RECEIVE_WATCHLIST = 'RECEIVE_WATCHLIST';
 export const RECEIVE_PORTFOLIO = 'RECEIVE_PORTFOLIO';
 export const RECEIVE_PORTFOLIOS = "RECEIVE_PORTFOLIOS";
 
+
 const receiveWatchLists = data => {
   return ({
   type: RECEIVE_WATCHLISTS,
-  data: data
+  data
 });
 };
 const receiveWatchList = data => {
   return ({
   type: RECEIVE_WATCHLIST,
-  data: data
+  data
 });
 };
 
 export const getWatchlists = user_id => dispatch => (
 USERUtil.fetchUser(user_id).then(data => {
 
+  let watchlist = data.watchlist;
+
   return (
-    dispatch(receiveWatchLists(data.watchlist))
+    dispatch(receiveWatchLists(watchlist))
   );
-  }
+}, err => (
+  dispatch(receiveErrors(err.responseJSON))
+)
 ));
 
 export const createPortfolio = (portfolio) => dispatch => (

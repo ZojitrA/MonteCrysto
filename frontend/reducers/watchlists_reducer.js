@@ -5,9 +5,9 @@ const watchlistsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_WATCHLISTS:
-      return merge({}, state, action.data.watchlists);
+      return merge({}, state, action.data);
     case RECEIVE_WATCHLIST:
-      return merge({}, state, action.data.watchlist);
+      return merge({}, state, action.data);
     default:
       return state;
   }

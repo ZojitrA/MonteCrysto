@@ -6,7 +6,7 @@ import List from "./list";
 const mapStateToProps = (state, ownProps) => {
   return {
     user_id: state.session.id,
-    watchlist_ids: state.entities.users[state.session.id].watchlist_ids,
+    watchlist: state.entities.watchlists,
     history: ownProps.history
   };
 };

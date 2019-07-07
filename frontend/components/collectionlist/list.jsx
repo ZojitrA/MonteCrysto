@@ -8,35 +8,22 @@ class Collection extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getWatchlists(this.props.user_id)
-      .then( data => {
+    this.props.getWatchlists(this.props.user_id).then(data => {
 
-
-        const titled_watchlists = this.props.watchlist_ids.map(id => {
-
-          let title = data.data.watchlists[id].title;
-          let stocks = data.data.watchlists[id].stock_ids.map(id => {
-            let ticker = data.data.stocks[id].ticker;
-            return(
-              ticker
-            );
-          });
-          return({
-          title: title,
-          stocks: stocks
-        });
-      });
-      for(var i = 0; i < titled_watchlists.length; i++){
-        if(titled_watchlists[i].title === "primary_watchlist" && titled_watchlists[i].stocks !== undefined){
-          this.setState({tickers: titled_watchlists[i].stocks});
-        }
-        else if(titled_watchlists[i].title === "portfolio" && titled_watchlists[i].stocks !== undefined){
-          this.setState({assets: titled_watchlists[i].stocks});
-        }
+      let stuff = this.props.watchlist
+      let ticks = [];
+      for (var i = 0; i < stuff.stocks.length; i++) {
+        ticks.push(stuff.stocks[i].ticker)
       }
+      this.setState({tickers: ticks})
 
-  });
-}
+      }
+    )
+
+  }
+  componentDidUpdate(){
+    console.log(this.state.tickers)
+  }
 
 
   render () {

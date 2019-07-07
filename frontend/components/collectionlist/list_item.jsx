@@ -30,13 +30,12 @@ class Item extends React.Component {
 
   getPrice(){
 
-    const url = `https://api.iextrading.com/1.0//tops/last?symbols=${this.props.ticker}`;
-
+    const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD`
     axios.get(url)
     .then( data => {
 
       // const keyz = Object.keys(data[this.state.datakey])
-      const price = data.data[0].price;
+      const price = data.data.USD;
       this.setState({
         price: price,
       });
@@ -46,18 +45,21 @@ class Item extends React.Component {
 
 
   getChart(){
-    const url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
+    const url = `https://min-api.cryptocompare.com/data/histominute?fsym=${this.props.ticker}&tsym=USD&limit=60`
+
+    // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 
     // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
 
     axios.get(url)
     .then( chartdata => {
+
       // const keyz = Object.keys(data[this.state.datakey])
-      const data = chartdata.data.map(datum => {
+      const data = chartdata.data.Data.map(datum => {
        // if(this.state.timeframe === "1D")
        return{
-         time: datum.date,
-         price: datum.close
+         time: datum.time,
+         price: datum.open
        };
      });
       this.setState({
