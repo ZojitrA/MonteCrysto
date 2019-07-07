@@ -12,7 +12,7 @@ const receiveStockData = data => {
 };
 
 export const getStockBy = ticker => dispatch => (
-STOCKUtil.getStockBy(ticker).then(data => 
+STOCKUtil.searchStocks(ticker).then(data => 
   {
   return (
     dispatch(receiveStockData(data))

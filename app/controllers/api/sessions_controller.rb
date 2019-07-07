@@ -8,8 +8,8 @@ class Api::SessionsController < ApplicationController
 
 
     if @user
-
-      @primary = @user.primary_watchlist.id
+      @watchlist = @user.watchlist
+      @watchlist_id = @user.watchlist.id
       login(@user)
       render "api/users/show"
     else
@@ -20,6 +20,7 @@ class Api::SessionsController < ApplicationController
   def destroy
     @user = current_user
     if @user
+        @watchlist = @user.watchlist
       logout
       render "api/users/show"
     else

@@ -29,17 +29,12 @@ class User < ApplicationRecord
       foreign_key: :user_id,
       class_name: :Watchlist
 
-# has_one :primary_watchlist, -> {where title: "primary_watchlist"},
-# foreign_key: :user_id,
-# class_name: :Watchlist
 
 
-# has_many :watchlists,
-# foreign_key: :user_id,
-# class_name: :Watchlist
+
 
 has_many :stocks,
-through: :watchlists,
+through: :watchlist,
 source: :stocks
 
 has_one :portfolio_history,
@@ -100,11 +95,11 @@ has_many :shares,
   end
 
   def self.find_stock_shares(userId,stockId)
-    Transaction.where("user_id = ? and stock_id = ?",userId, stockId).group(:stock_id).sum(:amount)
+    Transaction.where("user_id = ? and stock_id = ?",userId, stockId).group(:stock_id).sum(:quantity)
   end
 
   def self.find_all_shares(userId)
-    am = Transaction.where("user_id = ?",userId).group(:stock_id).having("sum(amount) > 0").sum(:amount)
+    am = Transaction.where("user_id = ?",userId).group(:stock_id).having("sum(quantity) > 0").sum(:quantity)
   end
 
 

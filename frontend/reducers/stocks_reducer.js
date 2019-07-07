@@ -10,7 +10,7 @@ const stocksReducer = (state = {}, action) => {
     case RECEIVE_WATCHLIST:
       return merge({}, state, action.data.stocks);
     case RECEIVE_STOCK:
-      return merge({}, state, { [action.data.symbol]: action.data});
+      return merge({}, state, { [action.data.ticker]: action.data});
     default:
       return state;
   }

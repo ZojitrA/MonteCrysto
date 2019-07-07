@@ -2,7 +2,7 @@
 
 json.watchlist do
     json.set! @watchlist.id do
-      json.extract! @watchlist, :id, :title, :stock_ids
+      json.extract! @watchlist, :id, :stock_ids
     end
   end
 

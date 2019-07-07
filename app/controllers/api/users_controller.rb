@@ -34,6 +34,7 @@
   def show
     @user = User.find(params[:id])
     @shares = User.find_all_shares(params[:user_id])
+    @watchlist = @user.watchlist
   end
 
 

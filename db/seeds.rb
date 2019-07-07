@@ -13,11 +13,11 @@ User.destroy_all
 PortfolioHistory.destroy_all
 Portfolio.destroy_all
 User.create([{
-    email:"mclovin@mclovin.com",
+    email:"test@test.test",
     password: "startrek",
-    first_name: "Mc",
-    last_name: "Lovin",
-    funds_usd: 0
+    first_name: "test",
+    last_name: "demo",
+    funds_usd: 10000
   }
   ])
 
@@ -529,3 +529,15 @@ Stock.create([
     },
 
     ])
+
+    Transaction.create([{
+        user_id: User.find_by(email: "test@test.test").id,
+        stock_id: Stock.find_by(ticker: "ETH").id,
+        ticker: "ETH",
+        buy_price: 323,
+        quantity: 6
+      }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "test@test.test").watchlist.id,
+          stock_id: Stock.find_by(ticker: "ETH").id,
+        }])

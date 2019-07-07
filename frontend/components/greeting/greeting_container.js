@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  getWatchlists: (user_id) => dispatch(getWatchlists())
+  getWatchlists: (user_id) => dispatch(getWatchlists(user_id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Greeting);

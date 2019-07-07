@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
 
-  validates :stock_id, :user_id, :price, :amount, presence: true
+  validates :stock_id, :user_id, :buy_price, :quantity, presence: true
 
   after_create :add_portfolio
 
