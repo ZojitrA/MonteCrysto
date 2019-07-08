@@ -1,16 +1,16 @@
-import { RECEIVE_STOCK } from '../actions/stock_actions';
-import { RECEIVE_WATCHLISTS, RECEIVE_WATCHLIST } from '../actions/watchlist_portfolio_actions';
+import { RECEIVE_STOCKS, RECEIVE_ALL_STOCKS, DELETE_STOCKS } from '../actions/stock_actions';
+
 import merge from 'lodash/merge';
 
 const stocksReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
-    case RECEIVE_WATCHLISTS:
-      return merge({}, state, action.data.stocks);
-    case RECEIVE_WATCHLIST:
-      return merge({}, state, action.data.stocks);
-    case RECEIVE_STOCK:
-      return merge({}, state, { [action.data.ticker]: action.data});
+    case DELETE_STOCKS:
+      return {};
+    case RECEIVE_STOCKS:
+      return action.data;
+    case RECEIVE_ALL_STOCKS:
+      return action.data;
     default:
       return state;
   }

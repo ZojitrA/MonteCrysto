@@ -3,7 +3,7 @@ import axios from 'axios'
 import Suggestions from './suggestions'
 
 
-const API_URL = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH'
+const API_URL = 'api/stocks/search/'
 
 
 class Search extends Component {
@@ -20,12 +20,17 @@ class Search extends Component {
     this.wipeState = this.wipeState.bind(this);
 
   }
+  componentDidMount(){
+    this.props.getAllStocks()
+
+
+  }
 
   getInfo() {
-    axios.get(`${API_URL}&keywords=${this.state.query}&apikey=${window.search_api}`)
-      .then(({ data }) => {
+    axios.get(`${API_URL}${this.state.query}`).then( data => {
+      // debugger
         this.setState({
-          stockResults: data.bestMatches
+          stockResults: data.data
         })
       })
   }

@@ -8,8 +8,10 @@ Rails.application.routes.draw do
       resources :watchlists, only: [:index]
     end
 
+resources :stocks, only: [:index, :show, :create]
+
     resources :watchlists, except: [:index] do
-        resources :stocks, only: [:index]
+
         resources :watch_list_stock_joins, only: [:create]
         delete 'watch_list_stock_joins', to: "watch_list_stock_joins#destroy"
     end
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
     resources :watchlists, only:[:update]
     # custom for titled watchlists
     get 'watchlists/:selector', to: 'watchlists#titled'
+
+    get 'stocks/search/:input', :to => 'stocks#search'
   end
 
 

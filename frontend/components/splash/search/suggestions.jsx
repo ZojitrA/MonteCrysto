@@ -17,9 +17,8 @@ const Suggestions = (props) => {
 let options = [];
 
 if(props.results){
-
-  options = props.results.map((r, idx) => {
-    var symbol = r["1. symbol"];
+  options = Object.values(props.results).map((r, idx) => {
+    var symbol = r["ticker"];
     var symbolIdx = symbol.indexOf(props.query.toUpperCase());
     let lengthIdx;
     let normal1;
@@ -41,7 +40,7 @@ if(props.results){
 
     return(
 
-    <li key={idx} onClick={someFunc(r["1. symbol"])}>
+    <li key={idx} onClick={someFunc(r["ticker"])}>
       <div style={{display:"inline-block"}}>
         {normal1}
       </div>
@@ -52,7 +51,7 @@ if(props.results){
         {normal2}:&nbsp;
       </div>
       <div style={{display:"inline-block"}}>
-        {r["2. name"]}
+        {r["name"]}
       </div>
     </li>
 

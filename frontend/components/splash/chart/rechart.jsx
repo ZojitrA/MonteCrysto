@@ -23,12 +23,21 @@ class reChart extends Component {
 
   this.clearPriceInterval = this.clearPriceInterval.bind(this);
 
+  this.rendertooltip = this.rendertooltip.bind(this)
+
+  this.makePrevious = this.makePrevious.bind(this)
   }
 
+  makePrevious(){
+    let oldPrice = this.state.previousPrice
+    this.setState({
+      price: oldPrice
+    })
+  }
 
   setPriceInterval(){
     this.getPrice();
-    this.priceIntervalId = setInterval(this.getPrice, 2000);
+    this.priceIntervalId = setInterval(this.getPrice, 5000);
   }
 
   clearPriceInterval(){
@@ -47,27 +56,32 @@ class reChart extends Component {
 
 getPrice(){
 
-  const url = `https://api.iextrading.com/1.0//tops/last?symbols=${this.props.ticker}`
+
+  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD`
 
   axios.get(url)
   .then( data => {
-
     // const keyz = Object.keys(data[this.state.datakey])
-    const previousPrice = this.state.price;
-    const price = data.data[0].price;
-    let percentageChange;
-    if(previousPrice === null){
-      percentageChange = null;
-    } else
-    {
-      percentageChange = (price/previousPrice) - 1;
+    if(this.state.price !== data.data.USD){
+
+
+
+      const previousPrice = this.state.price;
+      const price = data.data.USD.toFixed(2);
+      let percentageChange;
+      if(previousPrice === null){
+        percentageChange = null;
+      } else
+      {
+        percentageChange = (price/previousPrice) - 1;
+      }
+      this.setState({
+        price: price,
+        previousPrice: previousPrice,
+        percentageChange: percentageChange
+      });
     }
-    this.setState({
-      price: price,
-      previousPrice: previousPrice,
-      percentageChange: percentageChange
-    });
-  });
+  })
 
 }
 
@@ -75,35 +89,43 @@ getChart(){
 
 let url;
   if(this.state.timeframe === "1d"){
-    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1d`;
+    url = `https://min-api.cryptocompare.com/data/histohour?fsym=${this.props.ticker}&tsym=USD&limit=24`;
   }
-  else{
-    url = `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/${this.state.timeframe}`;
+  else if(this.state.timeframe === "1m"){
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=30`;
+  }
+  else if(this.state.timeframe === "3m"){
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=90`;
+  }
+  else if(this.state.timeframe === "1y"){
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=360`;
+  }
+  else if(this.state.timeframe === "5y"){
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=1441`;
   }
   // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
-
-  axios.get(url)
-  .then( stash => {
-
+  axios.get(url).then( stash => {
     // const keyz = Object.keys(data[this.state.datakey])
-    const data = stash.data.map(datum => {
-     // if(this.state.timeframe === "1D")
-      let timeKey;
-      if(this.state.timeframe === "1d"){
-        timeKey = datum.minute;
-      } else {
-        timeKey = datum.date;
-      }
-     return{
-       time: timeKey,
-       price: datum.close,
-       change: datum.change,
-       percentageChange: datum.changePercent
-     };
-   });
-    this.setState({
-      data: data
-    });
+      // const data = theStuff.map(datum => {
+        // if(this.state.timeframe === "1D")
+      //   let timeKey;
+      //   if(this.state.timeframe === "1d"){
+      //     timeKey = datum.minute;
+      //   } else {
+      //     timeKey = datum.date;
+      //   }
+      //   return{
+      //     time: timeKey,
+      //     price: datum.close,
+      //     // change: datum.change,
+      //     // percentageChange: datum.changePercent
+      //   };
+      // });
+
+      this.setState({
+        data: stash.data
+      });
+
   });
 }
 
@@ -132,17 +154,20 @@ let url;
         this.setState({
           timeframe: "5y"
         }, this.getChart);
+      }else {
+        this.setState({
+        timeframe: "1d"
+      }, this.getChart)
       }
 
 
     }
 
 rendertooltip(e){
-
   if (e.payload.length>0){
-    document.getElementById("price-label").innerHTML = e.payload[0].payload.price;
+    document.getElementById("price-label").innerHTML = e.payload[0].payload.close;
 
-    document.getElementById("change-label").innerHTML = `${e.payload[0].payload.change} (${e.payload[0].payload.percentageChange}%)`;
+    // document.getElementById("change-label").innerHTML = `${e.payload[0].payload.change} (${e.payload[0].payload.percentageChange}%)`;
     // this.setState({price: e.payload[0].payload.price});
     // if(){
     // }
@@ -154,12 +179,25 @@ rendertooltip(e){
 }
 
 render(){
-  const data = this.state.data;
+  let data
+if(this.state.data){
+  data = this.state.data.Data;
+}
+
   let stroke;
-if(data && data[0].price > data[data.length-1].price){
+if(data && data[0].close > data[data.length-1].close){
   stroke = 'red';
 } else{
   stroke = 'green';
+}
+
+let color
+if(this.state.percentageChange < 0){
+  color = "red"
+} else if(this.state.percentageChange > 0){
+  color = "green"
+} else{
+  color = "gray"
 }
 return(
   <div>
@@ -168,7 +206,7 @@ return(
     <li className="companyName">
       {this.props.ticker}
     </li>
-    <li className="price-label" id="price-label"></li>
+    <li style={{color: color}}className="price-label" id="price-label">{this.state.price}</li>
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>
@@ -176,14 +214,17 @@ return(
     width={650}
     height={200}
     onMouseEnter={this.clearPriceInterval}
-    onMouseLeave={this.setPriceInterval}
+    onMouseLeave={()=>{
+      this.setPriceInterval();
+      this.makePrevious()
+    }}
     data={data}
     margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
   >
     <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
-    <Tooltip content={this.rendertooltip}/>
-<YAxis datakey="price" domain={['dataMin', 'dataMax']} hide={true} />
-    <Line dot={false} type="linear" dataKey="price" stroke={stroke} yAxisId={0}/>
+    <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip.bind(this)}/>
+<YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
+    <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
   </LineChart>
   <div className="chart-button-container">
     <button className="chart-button" onClick={() => this.handleClick("1d")}>1D</button>

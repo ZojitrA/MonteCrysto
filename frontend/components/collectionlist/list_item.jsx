@@ -8,7 +8,7 @@ import Radium from 'radium';
 class Item extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {data: null, price: null};
+    this.state = {data: null, prevprice: null, price: null};
 
     this.handleClick = this.handleClick.bind(this);
     this.getChart = this.getChart.bind(this);
@@ -18,7 +18,7 @@ class Item extends React.Component {
   componentDidMount() {
     this.getPrice();
     this.getChart();
-    this.intervalId = setInterval(this.getPrice, 1000);
+    this.intervalId = setInterval(this.getPrice, 500);
 
   }
   //
@@ -35,17 +35,24 @@ class Item extends React.Component {
     .then( data => {
 
       // const keyz = Object.keys(data[this.state.datakey])
-      const price = data.data.USD;
-      this.setState({
-        price: price,
-      });
+      const price = data.data.USD.toFixed(2);
+      // const prevPrice = this.state.price;
+      // this.setState({
+      //   prevprice: prevPrice,
+      //   price: price,
+      // });
+
+      this.setState((prevState, props) => ({
+        prevprice: prevState.price,
+        price: price
+}));
     });
 
   }
 
 
   getChart(){
-    const url = `https://min-api.cryptocompare.com/data/histominute?fsym=${this.props.ticker}&tsym=USD&limit=60`
+    const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=15`
 
     // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 
@@ -82,21 +89,18 @@ class Item extends React.Component {
 render(){
   const data = this.state.data;
   let stroke;
-  let className;
+  let priceColor;
 if(data && data[0].price > data[data.length-1].price){
   stroke = 'red';
 } else{
   stroke = 'green';
 }
 
-if(data && data[data.length-1].price > data[data.length-2].price){
-  className = "green-price";
+if(this.state.prevprice && this.state.price > this.state.prevprice){
+  priceColor = "green";
 }
-if(data && data[data.length-1].price < data[data.length-2].price){
-  className = "red-price";
-}
-else {
-  className = "gray-price";
+if(this.state.prevprice && this.state.price < this.state.prevprice){
+  priceColor = "red";
 }
 
 // let className
@@ -123,7 +127,7 @@ else {
     <div className="watchlist-item">
       <ul>
         <li style={stroke === 'red'? {':hover' : { color: "red", fontWeight: 600}} : {':hover' : { color: "green", fontWeight: 600}}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
-        <li style={stroke === 'red'? {color: "red"} : {color: "green"}}>{this.state.price}</li>
+        <li style={priceColor ? {color: priceColor} : {color: "gray"}}>{this.state.price}</li>
         <br/>
         <br/>
       </ul>
