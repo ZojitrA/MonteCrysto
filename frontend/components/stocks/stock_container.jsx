@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     currentUser: currentUser,
+    user_id: state.session.id,
     ticker: ownProps.match.params.ticker,
     watchlist_id: state.entities.watchlists.id,
     watchlist: state.entities.watchlists,

@@ -3,21 +3,12 @@ import Radium from 'radium';
 
 const NewsItem = (props) =>{
 
-let title;
-let url;
-let imageUrl;
-if(props.source === "newsApi"){
-  title = props.article.title;
-  url = props.article.url;
-  imageUrl = props.article.urlToImage;
-}
-else if(props.source === "azure"){
 
-  title = props.article.name;
-  url = props.article.url;
-  imageUrl = props.article.image.thumbnail.contentUrl;
+  let title = props.article.title;
+  let url = props.article.url;
+  let imageUrl = props.article.imageurl;
 
-}
+
 
   const imgStyle = {
     "width": "50%",

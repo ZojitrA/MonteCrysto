@@ -10,41 +10,25 @@ import NewsItem from './newsItem';
 class news extends Component {
   constructor(props){
     super(props);
-    this.state = {news: [], ticker: this.props.ticker};
+    this.state = {news: null, ticker: this.props.ticker};
 
-    this.getStuff.bind(this);
+    this.getStuff = this.getStuff.bind(this);
   }
 
 getStuff(){
 
 
-    const url1 = 'https://newsapi.org/v2/top-headlines?sources=business-insider&apiKey=77afed1e14d4491bae7f0dcabc44554f';
-    const url2 = 'https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=77afed1e14d4491bae7f0dcabc44554f';
-    const url3 = 'https://newsapi.org/v2/top-headlines?sources=reuters&apiKey=77afed1e14d4491bae7f0dcabc44554f';
+    let url1 = `https://min-api.cryptocompare.com/data/v2/news/?categories=blockchain&excludeCategories=Sponsored`;
 
-    axios.get(url1)
-    .then( payload => {
+    axios.get(url1).then( payload => (
 
-      let news = [...this.state.news].concat(payload.data.articles);
+
 
       this.setState({
-        news: news
-      });
-    }).then(
-    axios.get(url2)
-    .then( payload => {
-      let news = [...this.state.news].concat(payload.data.articles);
-      this.setState({
-        news: news
-      });
-    })).then(
-    axios.get(url3)
-    .then( payload => {
-      let news = [...this.state.news].concat(payload.data.articles);
-      this.setState({
-        news: news
-      });
-    }));
+        news: payload
+      })
+
+    ));
 }
 
 
@@ -83,16 +67,17 @@ shuffle(array) {
 
   render(){
 
-
     let articles;
-    if(this.state.news.length > 0){
+    if(this.state.news){
 
 
-    articles = this.shuffle([...this.state.news]).map(article => {
+      debugger
+    articles = this.state.news.data.data.map(article => {
         return(
           <NewsItem source="newsApi" article={article}/>
         );
-      }).filter((article, idx) => (idx%2 === 0));
+      });
+      debugger
     }
 
     var style = {

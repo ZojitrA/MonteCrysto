@@ -73,7 +73,7 @@ getPrice(){
 
 
       const previousPrice = this.state.price;
-      const price = data.data.USD.toFixed(2);
+      const price = data.data.USD.toFixed(3);
       let percentageChange;
       if(previousPrice === null){
         percentageChange = null;
@@ -199,14 +199,12 @@ if(data && data[0].close > data[data.length-1].close){
 } else{
   stroke = 'green';
 }
-
-let color
-if(this.state.percentageChange < 0){
-  color = "red"
-} else if(this.state.percentageChange > 0){
-  color = "green"
-} else{
-  color = "gray"
+let priceColor = "gray"
+if(this.state.previousPrice && (this.state.price > this.state.previousPrice)){
+  priceColor = "green";
+}
+if(this.state.previousPrice && (this.state.price < this.state.previousPrice)){
+  priceColor = "red";
 }
 return(
   <div>
@@ -215,7 +213,7 @@ return(
     <li className="companyName">
       {this.props.ticker}
     </li>
-    <li style={{color: color}}className="price-label" id="price-label">{this.state.price}</li>
+    <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.price}</li>
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>
@@ -223,9 +221,9 @@ return(
     width={650}
     height={200}
     onMouseEnter={this.clearPriceInterval}
-    onMouseLeave={()=>{
-      this.handleLeave()
-    }}
+    onMouseLeave={
+      this.handleLeave
+    }
     data={data}
     margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
   >

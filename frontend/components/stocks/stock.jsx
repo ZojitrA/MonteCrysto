@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Chart from '../splash/chart/rechart';
 import EveryPageNav from '../everyPageNav';
 import axios from 'axios';
-import News from '../news/stocknews';
+import News from '../news/news_container';
 
 class Stock extends Component {
 
@@ -41,7 +41,7 @@ class Stock extends Component {
 
 
 
-  // componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps){
   //   // let tickers = [];
   //   //
   //   // if(this.state.watchlists && this.state.stocks){
@@ -52,16 +52,19 @@ class Stock extends Component {
   //   //     );
   //   //   });
   //   // }
-  //   // this.grabWatchlists()
+  if(!this.props.watchlist.id){
+      this.grabWatchlists()
+
+  }
   //
   //
-  //   }
+    }
 
 
 
   grabWatchlists(){
 
-    this.props.getWatchlists(this.props.currentUser.id).then(data =>
+    this.props.getWatchlists(this.props.user_id).then(data =>
       this.setState({watchlists: data.data.watchlists, stocks: data.data.stocks}));
 
   }
@@ -79,7 +82,7 @@ class Stock extends Component {
         method: "POST",
         data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
       });
-
+      this.grabWatchlists()
   }
 
   handleDrop(){
@@ -92,7 +95,7 @@ class Stock extends Component {
         method: "DELETE",
         data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
       });
-
+ this.grabWatchlists()
   }
 
 
@@ -110,7 +113,7 @@ let buttonClass;
 let tickers = [];
 
 if(this.state.watchlists && this.state.stocks){
-  tickers = this.state.watchlists.stocks.map(entity => {
+  tickers = this.state.watchlist.stocks.map(entity => {
 
     return(
       entity.ticker
@@ -150,7 +153,7 @@ let buttonStyle ={
       </br>
     </div>
       <div>
-        <News companyName={"someting"} ticker={this.props.ticker}/>
+        <News ticker={this.props.ticker}/>
       </div>
     </div>
   );

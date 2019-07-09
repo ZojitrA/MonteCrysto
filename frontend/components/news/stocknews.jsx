@@ -18,27 +18,25 @@ class stockNews extends Component {
 
 getStuff(){
 
-  let credentials = new CognitiveServicesCredentials('6423b6d57d9f43a6bb7067829d60762c');
-  let search_term = `${this.props.companyName} stock`;
-  let client = new NewsSearchAPIClient(credentials);
 
-  client.newsOperations.search(search_term).then((result) => {
-    console.log(result);
-    this.setState({news: result.value});
+  let search_term = `${this.props.ticker}`;
+
+  axios.get(`https://min-api.cryptocompare.com/data/v2/news/?categories=${search_term}&excludeCategories=Sponsored`).then((result) => {
+    this.setState({news: result.data.Data});
 }).catch((err) => {
     throw err;
 });
 }
 
 
-  componentDidMount(){
-    if(this.props.companyName && this.props.companyName !== prevProps.companyName ){
+  componentDidMount(prevProps){
+
       this.getStuff();
-    }
+
 }
 
 componentDidUpdate(prevProps){
-  if(this.props.companyName !== prevProps.companyName){
+  if(this.props.ticker !== prevProps.ticker){
     this.getStuff();
   }
 }
@@ -49,7 +47,7 @@ shuffle(array) {
 	var temporaryValue, randomIndex;
 
 	// While there remain elements to shuffle...
-	while (0 !== currentIndex) {
+	while (currentIndex !== 0) {
 		// Pick a remaining element...
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
@@ -80,18 +78,32 @@ shuffle(array) {
 
 
 
-    articles = this.shuffle([...this.state.news]).filter((article) => (article.image)).map((article) => {
+    articles = this.shuffle([...this.state.news]).filter((article) => (article.imageurl)).map((article) => {
         return(
-          <NewsItem source="azure" article={article}/>
+          <NewsItem article={article}/>
         );
       });
     }
 
-    var style = {
-      "marginTop": "-50px",
-      "maxWidth": "280px",
-      "marginLeft": "900px"
-    };
+    let style
+
+    if(this.props.ticker === "blockchain"){
+      style = {
+        "marginTop": "70px",
+        "maxWidth": "300px",
+        "marginLeft": "40px"
+      };
+
+    }else{
+
+      style = {
+        "marginTop": "-90px",
+        "maxWidth": "280px",
+        "marginLeft": "900px"
+      };
+    }
+
+
 
 
     return(

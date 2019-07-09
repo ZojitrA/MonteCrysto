@@ -1,11 +1,10 @@
 import {connect} from 'react-redux';
+import News from './stocknews'
 
-
-const mapStateToProps = (state) => {
-
+const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.entities.users[state.session.id],
-    ticker: null
+    ticker: ownProps.ticker
   };
 
 };

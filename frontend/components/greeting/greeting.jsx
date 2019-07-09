@@ -5,7 +5,7 @@ import LandingChild1 from '../landing/landing_info_child1';
 import EveryPageNav from '../everyPageNav';
 import List from '../collectionlist/list_container';
 import Chart from '../splash/chart/rechart';
-import News from '../news/news';
+import News from '../news/stocknews';
 
 // <h1>Hello {props.currentUser.first_name}</h1>
 // <button onClick={props.logout}>Log Out</button>
@@ -41,10 +41,10 @@ const Greeting = props => {
           </div>
         </div>
         <div style={chartStyle}>
-          <Chart ticker="BTC"/>
+          <Chart stocks={props.stocks} ticker="BTC"/>
         </div>
         <div style={style}>
-          <News/>
+          <News ticker="blockchain"/>
         </div>
       </div>
     );

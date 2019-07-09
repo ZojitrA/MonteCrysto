@@ -35,7 +35,7 @@ class Item extends React.Component {
     .then( data => {
 
       // const keyz = Object.keys(data[this.state.datakey])
-      const price = data.data.USD.toFixed(2);
+      const price = data.data.USD.toFixed(3);
       // const prevPrice = this.state.price;
       // this.setState({
       //   prevprice: prevPrice,
