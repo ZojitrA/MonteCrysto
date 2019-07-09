@@ -5,7 +5,7 @@ import {getStockBy} from '../../../actions/stock_actions';
 const Suggestions = (props) => {
   const someFunc = (ticker) => {
     return () => {
-      props.getStockBy(ticker).then(
+      props.getAllStocks().then(
         () => props.history.push(`/stock/${ticker}`),
         (err) => 'this is an error'
       ).then(

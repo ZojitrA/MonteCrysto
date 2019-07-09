@@ -70,7 +70,7 @@ class Search extends Component {
           value={this.state.query}
         />
       </form>
-      <Suggestions wipeState={this.wipeState} results={this.state.stockResults} getStockBy={this.props.getStockBy} query={this.state.query}history={this.props.history} />
+      <Suggestions wipeState={this.wipeState} results={this.state.stockResults} getAllStocks={this.props.getAllStocks} query={this.state.query}history={this.props.history} />
     </div>
     )
   }
