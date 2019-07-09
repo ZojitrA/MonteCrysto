@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Chart from '../splash/chart/marketChart';
+import Chart from '../splash/chart/rechart';
 import EveryPageNav from '../everyPageNav';
 import axios from 'axios';
 import News from '../news/stocknews';
@@ -25,10 +25,10 @@ class Stock extends Component {
   }
 
   componentDidMount(){
-    this.props.getStock(this.props.ticker).then(data => this.setState({data: data.data}));
+    // this.props.getStock(this.props.ticker).then(data => this.setState({data: data.data}));
 
-    this.props.getWatchlists(this.props.currentUser.id).then(data =>
-      this.setState({watchlists: data.data.watchlists, stocks: data.data.stocks}));
+    this.grabWatchlists()
+
 
 
   }
@@ -36,62 +36,27 @@ class Stock extends Component {
     // this.props.getWatchlists()
 
 
-  compare(obj1, obj2){
-
-
-    // if(obj1.length === 0 && obj2.length === 0){
-    //   return true;
-    // }
-
-    let values1;
-    let values2;
-
-    if(obj1 && obj2){
-      values1 = Object.values(obj1);
-      values2 = Object.values(obj2);
-
-
-
-    for(var key in values1){
-      if(!obj2.hasOwnProperty(key)){
-        return false;
-      }
-      if(Array.isArray(values1[key])){
-        if(!Array.isArray(values2[key]) || values1[key].length !== values2[key].length){
-          return false;
-        }
-        for(var i = 0; i < values1[key].length; i++){
-          if(values2[key].indexOf(values1[key][i]) === -1){
-            return false;
-          }
-        }
-      }
-    }
-    return true;
-    }
-
-    return false
-  }
 
 
 
 
-  componentDidUpdate(prevProps){
 
-    if(prevProps.ticker !== this.props.ticker){
-      this.props.getStock(this.props.ticker).then(data => this.setState({data: data.data}));
+  // componentDidUpdate(prevProps){
+  //   // let tickers = [];
+  //   //
+  //   // if(this.state.watchlists && this.state.stocks){
+  //   //   tickers = this.state.watchlists.stocks.map(entity => {
+  //   //
+  //   //     return(
+  //   //       entity.ticker
+  //   //     );
+  //   //   });
+  //   // }
+  //   // this.grabWatchlists()
+  //
+  //
+  //   }
 
-      this.grabWatchlists();
-    }
-
-
-      if(this.compare(this.props.watchlists, this.state.watchlists)){
-        this.grabWatchlists();
-    //
-    //     this.grabWatchlists();
-    //
-      }
-}
 
 
   grabWatchlists(){
@@ -106,20 +71,27 @@ class Stock extends Component {
 
   handleAdd(){
 
-    let stock = {ticker: this.props.ticker};
-    console.log(this.props);
-    this.props.addToList(this.props.currentUser.primary_watchlist_id, stock).then(
-      () => this.grabWatchlists()
-    );
+    let stock_Id = this.props.stocks[this.props.ticker].id
+    let watchlist_Id = this.props.watchlist_id
+
+    $.ajax({
+        url: "api/watchlist_stock_joins",
+        method: "POST",
+        data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
+      });
 
   }
 
   handleDrop(){
 
-    let stock = {ticker: this.props.ticker};
+    let stock_Id = this.props.stocks[this.props.ticker].id
+    let watchlist_Id = this.props.watchlist.id
 
-    this.props.dropFromList(this.props.currentUser.primary_watchlist_id, stock).then(
-      () => this.grabWatchlists());
+    $.ajax({
+        url: "api/watchlist_stock_joins",
+        method: "DELETE",
+        data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
+      });
 
   }
 
@@ -128,9 +100,9 @@ class Stock extends Component {
 render(){
 
 
-  let data = Object.entries(this.state.data).map((datum, idx) => (
-    <li key={idx}>{datum}</li>
-  ));
+  // let data = Object.entries(this.state.data).map((datum, idx) => (
+  //   <li key={idx}>{datum}</li>
+  // ));
 
 let button;
 let buttonType;
@@ -138,10 +110,10 @@ let buttonClass;
 let tickers = [];
 
 if(this.state.watchlists && this.state.stocks){
-  tickers = this.state.watchlists[this.props.primary_id].stock_ids.map(id => {
+  tickers = this.state.watchlists.stocks.map(entity => {
 
     return(
-      this.state.stocks[id].ticker
+      entity.ticker
     );
   });
 }
@@ -169,11 +141,7 @@ let buttonStyle ={
     <div className="stock-show-page">
       <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout}/>
       <ul className="info-top">
-        <li className="companyName">
-          {this.state.data.companyName}
-        </li>
-        <li className="price-label" id="price-label">{this.state.data.latestPrice}</li>
-        <li className="change-label" id="change-label">{this.state.data.change} ({this.state.data.changePercent})</li>
+
       </ul>
       <Chart className="stock-chart" ticker={this.props.ticker}/>
 
@@ -182,7 +150,7 @@ let buttonStyle ={
       </br>
     </div>
       <div>
-        <News companyName={this.state.data.companyName} ticker={this.props.ticker}/>
+        <News companyName={"someting"} ticker={this.props.ticker}/>
       </div>
     </div>
   );

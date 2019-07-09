@@ -16,6 +16,7 @@ resources :stocks, only: [:index, :show, :create]
         delete 'watch_list_stock_joins', to: "watch_list_stock_joins#destroy"
     end
 
+    resources :watchlist_stock_joins, only: [:create, :delete]
 
 
     resource :session, only: [:create, :destroy, :show]

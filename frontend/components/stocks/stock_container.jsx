@@ -7,14 +7,15 @@ import Stock from './stock';
 const mapStateToProps = (state, ownProps) => {
 
   let currentUser = state.entities.users[state.session.id];
-  let primary_watchlist_id = currentUser.primary_watchlist_id;
+  let email = currentUser.email;
 
 
   return {
     currentUser: currentUser,
     ticker: ownProps.match.params.ticker,
-    primary_id: primary_watchlist_id,
-    watchlists: state.entities.watchlists
+    watchlist_id: state.entities.watchlists.id,
+    watchlist: state.entities.watchlists,
+    stocks: state.entities.stocks
   };
 
 };
@@ -22,7 +23,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: () => dispatch(logout()),
-  getStock: (ticker) => dispatch(getStockBy(ticker)),
   getWatchlists: (user_id) => dispatch(getWatchlists(user_id)),
   addToList: (id, ticker) => dispatch(addToList(id, ticker)),
   dropFromList: (id, ticker) => dispatch(dropFromList(id, ticker))

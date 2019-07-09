@@ -11,7 +11,7 @@ class reChart extends Component {
       data: null,
       price: null,
       previousPrice: null,
-      timeframe: "1m"
+      timeframe: "1d"
     };
 
   this.handleClick = this.handleClick.bind(this);
@@ -25,15 +25,14 @@ class reChart extends Component {
 
   this.rendertooltip = this.rendertooltip.bind(this)
 
-  this.makePrevious = this.makePrevious.bind(this)
+
+  this.handleLeave = this.handleLeave.bind(this)
   }
 
-  makePrevious(){
-    let oldPrice = this.state.previousPrice
-    this.setState({
-      price: oldPrice
-    })
-  }
+
+
+
+
 
   setPriceInterval(){
     this.getPrice();
@@ -46,6 +45,13 @@ class reChart extends Component {
 
   componentDidMount() {
     this.getChart();
+    this.setPriceInterval();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.ticker !== this.props.ticker)
+    this.getChart();
+    this.clearPriceInterval()
     this.setPriceInterval();
   }
   //
@@ -177,6 +183,9 @@ rendertooltip(e){
     );
   }
 }
+handleLeave(){
+  document.getElementById("price-label").innerHTML = this.state.price
+}
 
 render(){
   let data
@@ -215,8 +224,7 @@ return(
     height={200}
     onMouseEnter={this.clearPriceInterval}
     onMouseLeave={()=>{
-      this.setPriceInterval();
-      this.makePrevious()
+      this.handleLeave()
     }}
     data={data}
     margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
