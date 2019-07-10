@@ -12,7 +12,7 @@ class Api::WatchlistStockJoinsController < ApplicationController
   def destroy
     @watchlistStockJoin = WatchlistStockJoin.find_by(watchlist_params)
     if @watchlistStockJoin
-      @watchlistStockJoin.delete
+      @watchlistStockJoin.destroy
       render "api/watchliststockjoins/delete"
     else
       render json: ["Stock not on watchlist"], status: 404

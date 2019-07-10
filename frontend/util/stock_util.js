@@ -27,7 +27,7 @@ export const fetchStocksData = (symbols) => {
 
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symzed}&tsyms=USD`,
+      url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symzed}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -40,7 +40,7 @@ export const fetchStocksData = (symbols) => {
 
 export const fetchPrice = (sym) => (
   $.ajax({
-    url: `https://min-api.cryptocompare.com/data/price?fsym=${sym}&tsyms=USD`,
+    url: `https://min-api.cryptocompare.com/data/price?fsym=${sym}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
     method: "GET",
 
   })

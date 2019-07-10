@@ -10,6 +10,8 @@ class Collection extends React.Component {
   componentDidMount() {
     this.props.getWatchlists(this.props.user_id).then(data => {
 
+      
+
       let stuff = this.props.watchlist
       let ticks = [];
       for (var i = 0; i < stuff.stocks.length; i++) {

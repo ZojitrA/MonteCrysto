@@ -41,7 +41,7 @@ const Greeting = props => {
           </div>
         </div>
         <div style={chartStyle}>
-          <Chart stocks={props.stocks} ticker="BTC"/>
+          <Chart stocks={props.stocks} ticker="BTC"   xDataKey={"time"} yDataKey={"close"} place={"dash"}/>
         </div>
         <div style={style}>
           <News ticker="blockchain"/>

@@ -13,7 +13,7 @@ class Stock extends Component {
     super(props);
     this.state = {
       data: [],
-      watchlists: null,
+      watchlist: null,
       stocks: null,
       news: null
     };
@@ -52,9 +52,12 @@ class Stock extends Component {
   //   //     );
   //   //   });
   //   // }
-  if(!this.props.watchlist.id){
+  if(prevProps.watchlist.id){
+
+    if(prevProps.watchlist.stocks.length !== this.props.watchlist.stocks.length){
       this.grabWatchlists()
 
+    }
   }
   //
   //
@@ -64,8 +67,13 @@ class Stock extends Component {
 
   grabWatchlists(){
 
-    this.props.getWatchlists(this.props.user_id).then(data =>
-      this.setState({watchlists: data.data.watchlists, stocks: data.data.stocks}));
+    this.props.getWatchlists(this.props.user_id).then(data => {
+
+
+
+      this.setState({watchlist: data.data.stocks, stocks: data.data.stocks})
+    }
+    );
 
   }
 
@@ -81,21 +89,25 @@ class Stock extends Component {
         url: "api/watchlist_stock_joins",
         method: "POST",
         data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
-      });
-      this.grabWatchlists()
+      }).then(data => {
+        this.grabWatchlists()
+
+      })
   }
 
   handleDrop(){
 
     let stock_Id = this.props.stocks[this.props.ticker].id
-    let watchlist_Id = this.props.watchlist.id
+    let watchlist_Id = this.props.watchlist_id
 
     $.ajax({
-        url: "api/watchlist_stock_joins",
+        url: `api/watchlist_stock_joins`,
         method: "DELETE",
         data: {watchlistStockJoin: {watchlist_id: watchlist_Id, stock_id: stock_Id}}
-      });
- this.grabWatchlists()
+      }).then(data => {
+        this.grabWatchlists()
+
+      })
   }
 
 
@@ -112,15 +124,14 @@ let buttonType;
 let buttonClass;
 let tickers = [];
 
-if(this.state.watchlists && this.state.stocks){
-  tickers = this.state.watchlist.stocks.map(entity => {
+if(this.state.watchlist && this.state.stocks){
+  tickers = this.state.watchlist.map(entity => {
 
     return(
       entity.ticker
     );
   });
 }
-
   if(tickers.includes(this.props.ticker)){
     button = this.handleDrop;
     buttonType = "Remove from Watchlist";
@@ -146,7 +157,8 @@ let buttonStyle ={
       <ul className="info-top">
 
       </ul>
-      <Chart className="stock-chart" ticker={this.props.ticker}/>
+      <Chart className="stock-chart" ticker={this.props.ticker}
+        xDataKey={"time"} yDataKey={"close"}place={"stock"}/>
 
       <button style={buttonStyle} className={buttonClass} onClick={button}>{buttonType}</button>
       <br>

@@ -30,7 +30,7 @@ class Item extends React.Component {
 
   getPrice(){
 
-    const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD`
+    const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
     axios.get(url)
     .then( data => {
 
@@ -52,7 +52,7 @@ class Item extends React.Component {
 
 
   getChart(){
-    const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=15`
+    const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=15&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
     // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 

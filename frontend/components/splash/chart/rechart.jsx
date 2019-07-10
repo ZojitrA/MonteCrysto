@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
-
+import * as Icon from 'react-cryptocoins';
 
 class reChart extends Component {
 
@@ -63,7 +63,8 @@ class reChart extends Component {
 getPrice(){
 
 
-  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD`
+  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
+
 
   axios.get(url)
   .then( data => {
@@ -98,16 +99,16 @@ let url;
     url = `https://min-api.cryptocompare.com/data/histohour?fsym=${this.props.ticker}&tsym=USD&limit=24`;
   }
   else if(this.state.timeframe === "1m"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=30`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=30&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "3m"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=90`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "1y"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=360`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=360&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "5y"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=1441`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
   axios.get(url).then( stash => {
@@ -170,21 +171,69 @@ let url;
     }
 
 rendertooltip(e){
-  if (e.payload.length>0){
-    document.getElementById("price-label").innerHTML = e.payload[0].payload.close;
+  let yDataKey = this.props.yDataKey;
+    let xDataKey = this.props.xDataKey;
+    if (e.payload && e.payload.length > 0){
 
-    // document.getElementById("change-label").innerHTML = `${e.payload[0].payload.change} (${e.payload[0].payload.percentageChange}%)`;
-    // this.setState({price: e.payload[0].payload.price});
-    // if(){
-    // }
-    // document.getElementById("change-label").addclass("change")
-    return(
-      <div>{e.payload[0].payload.time}</div>
-    );
-  }
+
+      let payload = e.payload[0].payload;
+      const price = payload[yDataKey];
+      const date = new Date(payload[xDataKey]*1000);
+      //adjusts tooltip based on timescale selected
+      let hour, minutes, time;
+      if (date.getMinutes() < 10){
+        minutes = "0" + date.getMinutes().toString();
+      }else{
+        minutes = date.getMinutes();
+      };
+      if (date.getHours() > 12){
+        hour = date.getHours()%12;
+        if (hour === 0){
+          time = `12:00 AM`
+        }else{
+          time = `${hour}:${minutes} PM`
+        }
+      }else{
+        hour = date.getHours()%12;
+        if (hour === 0){
+          time = `12:00 PM`
+        }else{
+          time = `${hour}:${minutes} AM`
+        }
+      };
+
+      const day = date.toDateString();
+      document.getElementById("price-label").innerHTML = price.toFixed(3)+ " USD";
+
+      //if chart needs to display change overtime (i.e not dashboard)
+      //handle change overtime display
+      if (payload.change){
+        let change = this.round(payload.change,8).toString();
+        let pctChange = payload.pctchange.toFixed(2);
+        if (pctChange.toString().includes("Infinity") || pctChange.toString().includes("NaN")){
+          pctChange = "0";
+          change = "0";
+        };
+        if (change < 0){
+          document.getElementById("Change-Label").innerHTML = `-$${change.slice(1)} (${pctChange}%)`;
+        }else{
+          document.getElementById("Change-Label").innerHTML = `+$${change} (${pctChange}%)`;
+        }
+      }
+
+      if (!this.state.timeframe || this.state.timeframe === "1d"){
+        return(
+          <div className="tooltip">{time} {day.slice(4,-5)}</div>
+        )
+      }else{
+        return(
+          <div className="tooltip">{day.slice(4,-5)}, {day.slice(-5)}</div>
+        )
+      }
+    }
 }
 handleLeave(){
-  document.getElementById("price-label").innerHTML = this.state.price
+  document.getElementById("price-label").innerHTML = this.state.price + " USD"
 }
 
 render(){
@@ -202,33 +251,44 @@ if(data && data[0].close > data[data.length-1].close){
 let priceColor = "gray"
 if(this.state.previousPrice && (this.state.price > this.state.previousPrice)){
   priceColor = "green";
+  stroke = 'forestgreen'
 }
 if(this.state.previousPrice && (this.state.price < this.state.previousPrice)){
   priceColor = "red";
+  stroke = "darkred"
+}
+let topPadding = "90px 0"
+if(this.props.place === "stock"){
+  topPadding = "100px 0"
+}
+let iconify = "Usd"
+if(this.props.ticker){
+  iconify = "Icon." + this.props.ticker[0] + this.props.ticker.slice(1).toLowerCase()
 }
 return(
   <div>
 
-  <ul className="info-top">
+  <ul className="info-top" style={{padding: topPadding}}>
+
     <li className="companyName">
       {this.props.ticker}
     </li>
-    <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.price}</li>
+    <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.price + " USD"}</li>
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>
     <LineChart
     width={650}
-    height={200}
-    onMouseEnter={this.clearPriceInterval}
+    height={250}
+    onMouseEnter={() => this.clearPriceInterval()}
     onMouseLeave={
-      this.handleLeave
+      () => this.handleLeave()
     }
     data={data}
     margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
   >
     <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
-    <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip.bind(this)}/>
+    <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
 <YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
     <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
   </LineChart>
