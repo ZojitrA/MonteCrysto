@@ -6,7 +6,10 @@
     if @user.save
       # Watchlist.create(user_id: @user.id, title: "portfolio")
       # Watchlist.create(user_id: @user.id, title: "primary_watchlist")
-      login!(@user)
+      @watchlist = @user.watchlist
+      @watchlist_id = @user.watchlist.id
+      login(@user)
+
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422
