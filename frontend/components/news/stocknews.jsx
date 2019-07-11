@@ -78,7 +78,7 @@ shuffle(array) {
 
 
 
-    articles = this.shuffle([...this.state.news]).filter((article) => (article.imageurl)).map((article, idx) => {
+    articles = [...this.state.news].filter((article) => (article.imageurl)).map((article, idx) => {
         return(
           <NewsItem key={-idx}article={article}/>
         );
