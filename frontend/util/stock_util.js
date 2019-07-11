@@ -49,7 +49,7 @@ export const fetchPrice = (sym) => (
 export const fetchStockDailyByMin = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histominute?fsym=${sym}&tsym=USD&limit=1441`,
+      url: `https://min-api.cryptocompare.com/data/histominute?fsym=${sym}&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -58,7 +58,7 @@ export const fetchStockDailyByMin = (sym) => {
 export const fetchStockDailyByHour = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=25`,
+      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=25&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -68,7 +68,7 @@ export const fetchStockDailyByHour = (sym) => {
 export const fetchStockWeeklyByHour = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=169`,
+      url: `https://min-api.cryptocompare.com/data/histohour?fsym=${sym}&tsym=USD&limit=169&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -78,7 +78,7 @@ export const fetchStockWeeklyByHour = (sym) => {
 export const fetchStockMonthlyByDay = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=30`,
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=30&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -88,7 +88,7 @@ export const fetchStockMonthlyByDay = (sym) => {
 export const fetchStockQuarterlyByDay = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=90`,
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -99,7 +99,7 @@ export const fetchStockQuarterlyByDay = (sym) => {
 export const fetchStockYearlyByDay = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=365`,
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=365&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -109,7 +109,7 @@ export const fetchStockYearlyByDay = (sym) => {
 export const fetchStockFiveYearlyByDay = (sym) => {
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=1825`,
+      url: `https://min-api.cryptocompare.com/data/histoday?fsym=${sym}&tsym=USD&limit=1825&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET",
 
     })
@@ -123,7 +123,7 @@ export const fetchNews = (symbol) => {
   }
   return (
     $.ajax({
-      url: `https://min-api.cryptocompare.com/data/v2/news/?categories=${sym}&excludeCategories=Sponsored`,
+      url: `https://min-api.cryptocompare.com/data/v2/news/?categories=${sym}&excludeCategories=Sponsored&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
       method: "GET"
     })
   )

@@ -18,7 +18,7 @@ class news extends Component {
 getStuff(){
 
 
-    let url1 = `https://min-api.cryptocompare.com/data/v2/news/?categories=blockchain&excludeCategories=Sponsored`;
+    let url1 = `https://min-api.cryptocompare.com/data/v2/news/?categories=blockchain&excludeCategories=Sponsored&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
 
     axios.get(url1).then( payload => (
 

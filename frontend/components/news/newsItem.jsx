@@ -8,6 +8,18 @@ const NewsItem = (props) =>{
   let url = props.article.url;
   let imageUrl = props.article.imageurl;
 
+  const newsDate = new Date(props.article.published_on*1000);
+  const timediff = Date.now()-newsDate;
+  let newsDay;
+  if (timediff/1000/60 < 60){
+    newsDay = (timediff/1000/60).toFixed(0).toString() + "m";
+  }else{
+    if (timediff/1000/60/60 < 24){
+      newsDay = (timediff/1000/60/60).toFixed(0).toString() + "h";
+    }else{
+      newsDay = newsDate.toDateString().slice(4);
+    }
+  }
 
 
   const imgStyle = {
@@ -39,16 +51,31 @@ const NewsItem = (props) =>{
     }
   };
   return(
-    <div style={style}>
 
-      <a href={url}>
-        <p style={pStyle}>{title}</p>
-        <img style={imgStyle} src={imageUrl}></img>
-      </a>
+    <a className="news-link" href={url}>
+          <div  className="news-item">
+            <img src={imageUrl}/>
+            <div className="news-iteminfo">
+              <div className="news-itemsourceinfo">
+                <h2 className="news-itemsource">{props.article.name}</h2>
+                <h2 className="news-itemdatetime">{newsDay}</h2>
+              </div>
+              <h2 className="news-itemtitle">{title}</h2>
+              <h2 className="news-itemdescription">{props.article.body}</h2>
+              <h2></h2>
+            </div>
+          </div>
+        </a>
 
-    </div>
   );
 
 };
-
+// <div style={style}>
+//
+//   <a href={url}>
+//     <p style={pStyle}>{title}</p>
+//     <img style={imgStyle} src={imageUrl}></img>
+//   </a>
+//
+// </div>
 export default Radium(NewsItem);

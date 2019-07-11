@@ -18,6 +18,7 @@ const Greeting = props => {
     flexDirection: "column",
     maxWidth: "400px",
    height: "1120px",
+   zIndex: "-101"
   };
 
   const chartStyle = {

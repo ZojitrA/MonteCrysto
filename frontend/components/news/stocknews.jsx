@@ -21,7 +21,7 @@ getStuff(){
 
   let search_term = `${this.props.ticker}`;
 
-  axios.get(`https://min-api.cryptocompare.com/data/v2/news/?categories=${search_term}&excludeCategories=Sponsored`).then((result) => {
+  axios.get(`https://min-api.cryptocompare.com/data/v2/news/?categories=${search_term}&excludeCategories=Sponsored&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`).then((result) => {
     this.setState({news: result.data.Data});
 }).catch((err) => {
     throw err;
@@ -90,16 +90,14 @@ shuffle(array) {
     if(this.props.ticker === "blockchain"){
       style = {
         "marginTop": "70px",
-        "maxWidth": "300px",
-        "marginLeft": "40px"
+
       };
 
     }else{
 
       style = {
-        "marginTop": "-90px",
-        "maxWidth": "280px",
-        "marginLeft": "900px"
+        "marginTop": "500px",
+
       };
     }
 
@@ -107,9 +105,17 @@ shuffle(array) {
 
 
     return(
-      <div style={style}>
 
-        {articles}
+      <div style={style} className="news-divider">
+
+
+        <h1 className="news-header">Recent News</h1>
+
+        <div>
+
+          {articles}
+
+        </div>
 
       </div>
 

@@ -176,6 +176,73 @@ h1.logintitle {
 .loginpagelinktolanding:hover{
 color: gold;
 }
+
+
+.news-divider{
+  width:680px;
+}
+.news-header{
+
+  margin-bottom:40px;
+  margin-left: 30px;
+  width:100%;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  text-decoration-color: "red";
+  border-bottom: 1px solid lightgrey;
+}
+
+.news-item{
+  position:relative;
+  z-index:-101;
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  line-height: 22px;
+}
+
+.news-item:hover{
+  background-color:lightgray;
+  box-shadow: 0 0 10px #ccc;
+  transition-duration:0.2s;
+  transition-timing-function: ease-out;
+}
+.news-iteminfo{
+  margin-left:20px;
+  display:flex;
+  flex-direction: column;
+  width:365px;
+}
+
+.news-item img{
+  width: 196px;
+  height:134px;
+}
+
+.news-itemsource{
+  font-size:14px;
+}
+.news-itemdatetime{
+  font-size:14px;
+  margin-left:5px;
+  color:darkgrey;
+}
+.news-itemsourceinfo{
+  display:flex;
+  flex-direction: row;
+}
+.news-itemtitle{
+  font-size:18px;
+}
+
+.news-itemdescription{
+  margin-top:5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color:lightgray;
+}
 .notifications-tab{
   position: absolute;
   top: 50px;

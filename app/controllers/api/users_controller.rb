@@ -8,6 +8,18 @@
       # Watchlist.create(user_id: @user.id, title: "primary_watchlist")
       @watchlist = @user.watchlist
       @watchlist_id = @user.watchlist.id
+      WatchlistStockJoin.create!([{
+          watchlist_id: @watchlist_id,
+          stock_id: Stock.find_by(ticker: "ETH").id,
+        }])
+      WatchlistStockJoin.create!([{
+          watchlist_id: @watchlist_id,
+          stock_id: Stock.find_by(ticker: "ADX").id,
+        }])
+      WatchlistStockJoin.create!([{
+          watchlist_id: @watchlist_id,
+          stock_id: Stock.find_by(ticker: "QTUM").id,
+        }])
       login(@user)
 
       render "api/users/show"
