@@ -44,9 +44,9 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form">
 <Link to={"/"}><img className="logo" src={window.logo}></img></Link>
-        <h1 className="groove-title">Let's learn to fly.</h1>
+        <h1 className="groove-title">Let's learn to fly together.</h1>
 
-          <p className="signup-subtitle">High speed trading. Now for everyone.</p>
+          <p className="signup-subtitle">Cryptocurrency trading made simple.</p>
 
       <div className="signup-form-container">
         {this.renderErrors()}

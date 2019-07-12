@@ -12,10 +12,10 @@ const NewsItem = (props) =>{
   const timediff = Date.now()-newsDate;
   let newsDay;
   if (timediff/1000/60 < 60){
-    newsDay = (timediff/1000/60).toFixed(0).toString() + "m";
+    newsDay = (timediff/1000/60).toFixed(0).toString() + "m ago";
   }else{
     if (timediff/1000/60/60 < 24){
-      newsDay = (timediff/1000/60/60).toFixed(0).toString() + "h";
+      newsDay = (timediff/1000/60/60).toFixed(0).toString() + "h ago";
     }else{
       newsDay = newsDate.toDateString().slice(4);
     }

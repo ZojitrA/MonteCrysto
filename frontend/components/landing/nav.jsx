@@ -6,9 +6,8 @@ export default () => (
   <section className="landing-nav-container">
     <img className="logo" src={window.logo}></img>
     <div className="landing-nav-button-container">
-      <Link className="link-landing-buttons" to="/login">Blog</Link>
-      <Link className="link-landing-buttons" to="/login">Careers</Link>
-      <Link className="link-landing-buttons" to="/signup">Help</Link>
+
+      <a href="https://amirsojitra.nyc" className="link-landing-buttons"> Developer</a>
       <Link className="link-landing-buttons" to="/login">Log In</Link>
       <Link className="link-landing-buttons" to="/signup">Sign Up</Link>
     </div>

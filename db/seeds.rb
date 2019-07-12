@@ -13,10 +13,10 @@ User.destroy_all
 PortfolioHistory.destroy_all
 Portfolio.destroy_all
 User.create([{
-    email:"test@test.test",
+    email:"demo@demo.demo",
     password: "startrek",
-    first_name: "test",
-    last_name: "demo",
+    first_name: "Demo",
+    last_name: "Demo",
     funds_usd: 10000
   }
   ])
@@ -174,6 +174,11 @@ Stock.create([
     },
 
     {
+      name: "Function X",
+      ticker: "FX"
+    },
+
+    {
     name: "Dogecoin",
     ticker: "DOGE"
     },
@@ -196,6 +201,28 @@ Stock.create([
     {
     name: "Decred",
     ticker: "DCR"
+    },
+
+    {
+      name: "FunFair",
+      ticker: "FUN"
+
+    },
+
+    {
+      name: "Javascript Token",
+      ticker: "JS"
+
+    },
+    {
+      name: "Jarvis+",
+      ticker: "JAR"
+
+    },
+    {
+      name: "Yocoin",
+      ticker: "YOC"
+
     },
 
     {
@@ -531,13 +558,33 @@ Stock.create([
     ])
 
     Transaction.create([{
-        user_id: User.find_by(email: "test@test.test").id,
+        user_id: User.find_by(email: "demo@demo.demo").id,
         stock_id: Stock.find_by(ticker: "ETH").id,
         ticker: "ETH",
         buy_price: 323,
         quantity: 6
       }])
       WatchlistStockJoin.create([{
-          watchlist_id: User.find_by(email: "test@test.test").watchlist.id,
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
           stock_id: Stock.find_by(ticker: "ETH").id,
+        }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
+          stock_id: Stock.find_by(ticker: "FUN").id,
+        }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
+          stock_id: Stock.find_by(ticker: "BTC").id,
+        }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
+          stock_id: Stock.find_by(ticker: "BTG").id,
+        }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
+          stock_id: Stock.find_by(ticker: "QTUM").id,
+        }])
+      WatchlistStockJoin.create([{
+          watchlist_id: User.find_by(email: "demo@demo.demo").watchlist.id,
+          stock_id: Stock.find_by(ticker: "ADX").id,
         }])

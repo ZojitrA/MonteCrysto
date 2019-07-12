@@ -153,16 +153,19 @@
   display: flex;
   text-align: center;
   margin-top: 30px;
-  font-size: 18px;
+  font-size: 15px;
   flex-direction: column;
   border: 1px solid whitesmoke;
-  background-color: deepskyblue;
-  width: 100px;
+  background-color: skyblue;
+  width: 150px;
   border-radius: 4px;
   padding: 10px 20px;
   color: white;
   font-weight: 700;
 
+}
+.landing-signup-button:hover{
+  background-color: deepskyblue;
 }
 
 h1.logintitle {

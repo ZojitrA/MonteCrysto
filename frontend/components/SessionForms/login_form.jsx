@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
   }
 
   demo(){
-    this.setState({email: "test@test.test", password: "startrek"});
+    this.setState({email: "demo@demo.demo", password: "startrek"});
     this.props.action(this.state);
   }
 
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
 
 
       <div className="login-form-container">
-        <h1 className="logintitle">Welcome to <Link className="loginpagelinktolanding" to="/">Montecrysto</Link></h1>
+        <h1 className="logintitle">Welcome to <Link style={{color: "gold"}}className="loginpagelinktolanding" to="/">Monte Crypto</Link></h1>
         {this.renderErrors()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
 

@@ -8,7 +8,7 @@ export default () => (
       <p>Invest your way to fortune.</p>
       <p>To defeat your foes.</p>
       <Link className="landing-signup-button" to="/signup">Sign Up</Link>
-      <Link className="landing-signup-button" to="/login">DEMO/LOGIN</Link>
+      <Link className="landing-signup-button" to="/login">Demo or Log in</Link>
     </div>
     <img className="landing-image-cellphone2" src={window.diamond}></img>
   </div>

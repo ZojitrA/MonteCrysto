@@ -27,9 +27,13 @@ constructor(props){
     return (
     <section className="account-tab">
       <div>
-      <h1>Welcome {this.props.currentUser.first_name}</h1>
+      <h1>Welcome {this.props.currentUser.first_name}!</h1>
 
-<br></br>
+      <br></br>
+      <a href="https://amirsojitra.nyc" style={{color: "purple"}}>Meet Developer</a>
+
+      <br></br>
+      <br></br>
         <button
           className="account-tab-button"
           onClick={this.props.logout}>Log Out
