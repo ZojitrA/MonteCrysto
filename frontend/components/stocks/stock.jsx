@@ -4,6 +4,7 @@ import Chart from '../splash/chart/rechart';
 import EveryPageNav from '../everyPageNav';
 import axios from 'axios';
 import News from '../news/news_container';
+import TransactionBar from '../transactions/transactions_container'
 
 class Stock extends Component {
 
@@ -14,7 +15,6 @@ class Stock extends Component {
     this.state = {
       data: [],
       watchlist: null,
-      stocks: null,
       news: null
     };
     this.handleAdd = this.handleAdd.bind(this);
@@ -24,11 +24,14 @@ class Stock extends Component {
 
   }
 
+  componentWillMount(){
+    this.props.getAllShares(this.props.user_id)
+
+  }
   componentDidMount(){
     // this.props.getStock(this.props.ticker).then(data => this.setState({data: data.data}));
 
     this.grabWatchlists()
-
 
 
   }
@@ -71,7 +74,7 @@ class Stock extends Component {
 
 
 
-      this.setState({watchlist: data.data.stocks, stocks: data.data.stocks})
+      this.setState({watchlist: data.data.stocks})
     }
     );
 
@@ -123,8 +126,11 @@ let button;
 let buttonType;
 let buttonClass;
 let tickers = [];
+let name
 
-if(this.state.watchlist && this.state.stocks){
+
+if(this.state.watchlist){
+  name = this.props.stocks[this.props.ticker].name
   tickers = this.state.watchlist.map(entity => {
 
     return(
@@ -157,12 +163,13 @@ let buttonStyle ={
       <ul className="info-top">
 
       </ul>
-      <Chart className="stock-chart" ticker={this.props.ticker}
+      <Chart className="stock-chart" name={name} ticker={this.props.ticker}
         xDataKey={"time"} yDataKey={"close"}place={"stock"}/>
 
       <button style={buttonStyle} className={buttonClass} onClick={button}>{buttonType}</button>
       <br>
       </br>
+      <TransactionBar ticker={this.props.ticker}/>
     </div>
       <div>
         <News ticker={this.props.ticker}/>

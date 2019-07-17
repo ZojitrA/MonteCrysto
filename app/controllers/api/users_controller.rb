@@ -52,6 +52,8 @@
     @watchlist = @user.watchlist
   end
 
+  
+
 
   private
 

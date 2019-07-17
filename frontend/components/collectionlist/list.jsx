@@ -1,16 +1,23 @@
 import React from 'react';
 import Itemizer from './list_itemizer';
+import PortfolioItemizer from './portfolio_itemizer';
+
 
 class Collection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tickers: [], assets: [] };
+    this.state = { tickers: [], assets: [], stocks: {}};
+  }
+
+  componentWillMount(){
+    this.props.getAllShares(this.props.user_id);
+    this.props.getAllStocks().then(data => {
+      this.setState({stocks: data});
+    } );
   }
 
   componentDidMount() {
     this.props.getWatchlists(this.props.user_id).then(data => {
-
-      
 
       let stuff = this.props.watchlist
       let ticks = [];
@@ -18,13 +25,12 @@ class Collection extends React.Component {
         ticks.push(stuff.stocks[i].ticker)
       }
       this.setState({tickers: ticks})
-
       }
     )
-
   }
+
+
   componentDidUpdate(){
-    console.log(this.state.tickers)
   }
 
 
@@ -32,6 +38,7 @@ class Collection extends React.Component {
     return (
 
         <ul className="landing-watchlist">
+          <PortfolioItemizer history={this.props.history} title={"Portfolio"} tickers={this.state.tickers} stocks={this.props.stocks} shares={this.props.shares}/>
           <Itemizer history={this.props.history} title={"Watchlist"} tickers={this.state.tickers}/>
         </ul>
 

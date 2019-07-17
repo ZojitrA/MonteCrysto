@@ -5,19 +5,17 @@ import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
 import Radium from 'radium';
 import ReactLoading from 'react-loading';
 
-class Item extends React.Component {
+class PortfolioItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {data: null, prevprice: null, price: null};
 
     this.handleClick = this.handleClick.bind(this);
-    this.getChart = this.getChart.bind(this);
     this.getPrice = this.getPrice.bind(this);
     }
 
   componentDidMount() {
     this.getPrice();
-    this.getChart();
     this.intervalId = setInterval(this.getPrice, 500);
 
   }
@@ -51,29 +49,7 @@ class Item extends React.Component {
   }
 
 
-  getChart(){
-    const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=15&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
-    // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
-
-    // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
-
-    axios.get(url)
-    .then( chartdata => {
-
-      // const keyz = Object.keys(data[this.state.datakey])
-      const data = chartdata.data.Data.map(datum => {
-       // if(this.state.timeframe === "1D")
-       return{
-         time: datum.time,
-         price: datum.open
-       };
-     });
-      this.setState({
-        data: data,
-      });
-    });
-  }
 
 
       // componentDidUpdate(prevProps){
@@ -87,14 +63,9 @@ class Item extends React.Component {
     }
 
 render(){
-  const data = this.state.data;
-  let stroke;
+
   let priceColor;
-if(data && data[0].price > data[data.length-1].price){
-  stroke = 'red';
-} else{
-  stroke = 'green';
-}
+
 
 if(this.state.prevprice && this.state.price > this.state.prevprice){
   priceColor = "green";
@@ -123,7 +94,7 @@ if(this.state.prevprice && this.state.price < this.state.prevprice){
 // </div>
 // );
 // }
-if(!data || !this.state.price){
+if(!this.state.price){
   return(
        <div className="loader-container">
          <div className="loader">
@@ -133,18 +104,15 @@ if(!data || !this.state.price){
      );
    }
   return(
-    <div className="watchlist-item">
+    <div className="portfolio-item">
       <ul>
-        <li style={stroke === 'red'? {':hover' : { color: "red", fontWeight: 600}} : {':hover' : { color: "green", fontWeight: 600}}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
-        <li style={priceColor ? {color: priceColor} : {color: "gray"}}>{this.state.price}</li>
+        <li style={{':hover' : { color: priceColor, fontWeight: 600}}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.quantity} {this.props.ticker}</li>
+
         <br/>
         <br/>
       </ul>
-      <LineChart width={50} height={30} data={data}>
-        <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
-        <YAxis datakey="price"  hide={true} />
-        <Line dot={false} type='monotone' dataKey='price' stroke={stroke} strokeWidth={1} yAxisId={0} />
-      </LineChart>
+      <li>{(parseFloat(this.state.price) * this.props.quantity).toFixed(2)}</li>
+
     </div>
   );
 
@@ -154,4 +122,4 @@ if(!data || !this.state.price){
 }
 
 
-export default Radium(Item);
+export default Radium(PortfolioItem);

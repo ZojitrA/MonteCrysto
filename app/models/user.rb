@@ -99,7 +99,7 @@ has_many :shares,
   end
 
   def self.find_all_shares(userId)
-    am = Transaction.where("user_id = ?",userId).group(:stock_id).having("sum(quantity) > 0").sum(:quantity)
+    Transaction.joins(:stock).where("user_id = ?",userId).group(:ticker).having("sum(quantity) > 0").sum(:quantity)
   end
 
 

@@ -232,3 +232,136 @@ position: relative;
   font-weight: 500;
 
 }
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stock-sidebar-container {
+  margin-top: 100px;
+}
+
+.stock-sidebar {
+  position: fixed;
+  width: 276px;
+  box-shadow: 0 0 4px 1px rgba(225, 225, 225, 0.01), 0 3px 24px rgba(225, 225, 225, 0.6);
+  border-radius: 4px;
+  margin-left: 72px;
+}
+
+.stock-sidebar-price {
+  border-bottom: 1px solid #eee;
+}
+
+.stock-sidebar-form {
+  padding: 0 24px;
+}
+
+.sidebar-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 6px 0;
+  font-size: 13px;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.sidebar-output {
+  padding-top: 16px;
+}
+
+.sidebar-output-label {
+  padding-right: 14px;
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-order-btn {
+  background: green;
+  color: #fff;
+  border-radius: 4px;
+  height: 48px;
+  padding: 0 72px;
+  border: 1px solid transparent;
+  margin-bottom: 24px;
+  font-weight: 700;
+  transition: 0.20s;
+}
+
+.submit-order-btn:hover {
+  background: lightgreen;
+}
+
+.stock-sidebar > header {
+  margin: 0 24px;
+  border-bottom: 1px solid #eee;
+  padding-top: 22px;
+}
+
+.sidebar-output-container {
+  padding: 12px 0;
+}
+
+
+
+.tx-error-list-item {
+  font-size: 12px;
+}
+
+.tx-error-container {
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.red-theme {
+  // .stock-sidebar-container {
+
+  // }
+  .submit-order-btn {
+    background: red;
+  }
+
+  .submit-order-btn:hover {
+    background: red;
+  }
+
+
+
+  #share-input:focus {
+    border-color: red;
+  }
+}
+
+#share-input {
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 13px;
+  transition-duration: 0.2s;
+  border: 1px solid rgb(250, 250, 250);
+  background: #fafafa;
+  font-size: 100%;
+  width: 82px;
+  text-align: right;
+}
+
+#share-input:hover {
+  border-color: lightgrey;
+  background-color: #fff;
+}
+
+#share-input:focus {
+  border-color: green;
+  background-color: #fff;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
 import * as Icon from 'react-cryptocoins';
+import ReactLoading from 'react-loading';
 
 class reChart extends Component {
 
@@ -265,33 +266,60 @@ let iconify = "Usd"
 if(this.props.ticker){
   iconify = "Icon." + this.props.ticker[0] + this.props.ticker.slice(1).toLowerCase()
 }
+
+
+let name = this.props.name;
+var price = <div className="loader-container">
+  <div className="loader">
+    <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+  </div>
+</div>;
+
+    var linechart = <div className="loader-container">
+      <div className="loader">
+        <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+      </div>
+    </div>;
+if(data && this.state.price){
+
+
+  price = this.state.price + " USD";
+
+  linechart = <LineChart
+  width={650}
+  height={250}
+  onMouseEnter={() => this.clearPriceInterval()}
+  onMouseLeave={
+    () => this.handleLeave()
+  }
+  data={data}
+  margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+>
+  <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
+  <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
+<YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
+  <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
+</LineChart>;
+
+
+
+
+
+   }
+
 return(
   <div>
 
   <ul className="info-top" style={{padding: topPadding}}>
 
     <li className="companyName">
-      {this.props.ticker}
+      {name}  ({this.props.ticker})
     </li>
-    <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.price + " USD"}</li>
+    <li style={{color: priceColor}}className="price-label" id="price-label">{price}</li>
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>
-    <LineChart
-    width={650}
-    height={250}
-    onMouseEnter={() => this.clearPriceInterval()}
-    onMouseLeave={
-      () => this.handleLeave()
-    }
-    data={data}
-    margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-  >
-    <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
-    <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
-<YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
-    <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
-  </LineChart>
+    {linechart}
   <div className="chart-button-container">
     <button className="chart-button" onClick={() => this.handleClick("1d")}>1D</button>
     <button className="chart-button" onClick={() => this.handleClick("1m")}>1M</button>

@@ -11,7 +11,20 @@ import News from '../news/stocknews';
 // <button onClick={props.logout}>Log Out</button>
 // <Chart/>
 // <Chart className="splash-chart" ticker="aapl"/>
-const Greeting = props => {
+class Greeting extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+
+
+
+
+
+  render(){
+
+
 
   const style = {
     display: "flex",
@@ -32,17 +45,17 @@ const Greeting = props => {
 
 
 
-  if (props.currentUser) {
+  if (this.props.currentUser) {
     return (
       <div>
         <div className="splash-container">
-          <EveryPageNav currentUser={props.currentUser} logout={props.logout}/>
+          <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout}/>
           <div>
             <List/>
           </div>
         </div>
         <div style={chartStyle}>
-          <Chart stocks={props.stocks} ticker="BTC"   xDataKey={"time"} yDataKey={"close"} place={"dash"}/>
+          <Chart stocks={this.props.stocks} ticker="BTC"  name={"Bitcoin"} xDataKey={"time"} yDataKey={"close"} place={"dash"}/>
         </div>
         <div style={style}>
           <News ticker="blockchain"/>
@@ -63,6 +76,7 @@ const Greeting = props => {
 
     );
   }
-};
+}
+}
 
 export default Greeting;

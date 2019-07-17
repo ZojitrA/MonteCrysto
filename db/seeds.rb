@@ -396,11 +396,6 @@ Stock.create([
     },
 
     {
-    name: "GXChain",
-    ticker: "GXC"
-    },
-
-    {
     name: "Verge",
     ticker: "XVG"
     },

@@ -16,6 +16,9 @@ resources :stocks, only: [:index, :show, :create]
 
     end
 
+    get 'shares', :to => 'transactions#shares'
+    get 'holdings', :to=> 'transactions#holdings'
+
     resources :watchlist_stock_joins, only: [:create]
     
     delete 'watchlist_stock_joins', :to => 'watchlist_stock_joins#destroy'
