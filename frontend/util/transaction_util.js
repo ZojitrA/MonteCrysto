@@ -1,4 +1,4 @@
-export const createTransaction = (transaction,user) => {
+export const createTransaction = (transaction) => {
   return(
     $.ajax({
       url: "api/transactions",

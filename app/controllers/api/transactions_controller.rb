@@ -1,14 +1,23 @@
 class Api::TransactionsController < ApplicationController
 
   def create
-    funds_to_subtract = params[:quantity] * params[:buy_price]
-    @user = User.find_by(params[:user_id])
-    if @user.funds_usd < funds_to_subtract
-      render json ["Not Enough Funds"], status: 422
+    funds_to_subtract = transaction_params[:quantity].to_i * transaction_params[:buy_price].to_i
+    @user = User.find(transaction_params[:user_id])
+    ticker = Stock.find(transaction_params[:stock_id]).ticker
+
+    given_quantity = transaction_params[:quantity].to_i
+    stock_id = transaction_params[:stock_id].to_i
+    quantity = User.find_stock_shares(@user.id, stock_id)[stock_id]
+    if @user.funds_usd.to_i < funds_to_subtract
+      render json: ["Not Enough Funds USD"], status: 401
+    elsif given_quantity < 0 && given_quantity.abs > quantity
+      render json: ["Not Enough Cryptocurrency"], status: 401
     else
+
       @transaction = Transaction.new(transaction_params)
       if @transaction.save
-        @user.fund_usd = @user.funds_usd - funds_to_subtract
+        funds = @user.funds_usd.to_i
+        @user.update(funds_usd: funds - funds_to_subtract)
         render "api/transactions/holdings"
       else
         render json: @transaction.errors.full_messages, status: 422
@@ -30,6 +39,6 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:transaction).permit(:user_id, :stock_id, :quantity, :buy_price)
+    params.require(:transaction).permit(:user_id, :stock_id, :quantity, :buy_price, :ticker)
   end
 end

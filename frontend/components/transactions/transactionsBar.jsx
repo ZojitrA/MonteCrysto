@@ -8,7 +8,7 @@ class StockSideBar extends React.Component {
 
     this.state = {
       transactionType: 'buy',
-      shareDifference: 0,
+      shareDifference: null,
       sharePrice: 0,
       estimateTotal: 0,
       currentBuyingPower: currentUser.funds_usd,
@@ -16,6 +16,7 @@ class StockSideBar extends React.Component {
     };
 
     this.handleTransactionSubmit = this.handleTransactionSubmit.bind(this);
+    this.calcSharesOwned = this.calcSharesOwned.bind(this)
   }
 
   handleTransactionSubmit(e) {
@@ -24,11 +25,14 @@ class StockSideBar extends React.Component {
     const { currentUser, createTransaction, ticker, allStocks } = this.props;
     const sign = transactionType === 'buy' ? 1 : -1;
 
+    const stock_id = allStocks[ticker].id
+
     const transaction = {
       user_id: currentUser.id,
       quantity: shareDifference * sign,
       buy_price: sharePrice,
-      ticker: ticker,
+      stock_id: stock_id,
+      ticker: ticker
     };
 
     const totalPrice = sharePrice * shareDifference * sign;
@@ -42,7 +46,7 @@ class StockSideBar extends React.Component {
 
   handleTab(e, transactionType) {
     e.preventDefault();
-    
+
     this.setState({ transactionType });
   }
 
@@ -65,7 +69,11 @@ class StockSideBar extends React.Component {
 
 
   calcSharesOwned() {
-    return this.props.shares[this.props.allStocks[this.props.ticker].id];
+    if(this.props.shares){
+      return this.props.shares[this.props.ticker];
+
+    }
+    return 0
   }
 
   componentDidMount() {
@@ -114,7 +122,7 @@ class StockSideBar extends React.Component {
   update(field) {
     if (field === 'shareDifference') {
       return (e) => {
-        const input = e.currentTarget.value === '' ? '0' : e.currentTarget.value;
+        const input = e.currentTarget.value === '' ? '' : e.currentTarget.value;
         this.setState({ [field]: parseInt(input) });
       };
     }
@@ -124,8 +132,8 @@ class StockSideBar extends React.Component {
   render() {
     const { sharePrice, shareDifference, transactionType } = this.state;
     const { ticker, currentUser } = this.props;
-    const marketPrice = this.state.buy_price
-    const transactionTotal = sharePrice * shareDifference;
+    const marketPrice = this.state.sharePrice
+    const transactionTotal =  isNaN(sharePrice * shareDifference) || sharePrice * shareDifference === 0 ? "" : sharePrice * shareDifference;
     const buyingPower = currentUser.funds_usd;
     if (!buyingPower) return null;
     this.calcSharesOwned();
@@ -147,7 +155,6 @@ class StockSideBar extends React.Component {
                 <label htmlFor="share-input">Shares</label>
                 <input
                   type="number"
-                  placeholder="0"
                   value={shareDifference}
                   id="share-input"
                   onChange={this.update('shareDifference')}
@@ -162,7 +169,7 @@ class StockSideBar extends React.Component {
                 <span className="sidebar-output-label">{transactionTotal}</span>
               </div>
             </div>
-
+            {this.renderErrors()}
             <div className="submit-btn-container">
               <input
                 type="submit"
@@ -173,7 +180,7 @@ class StockSideBar extends React.Component {
             <div className="buying-power-container">
               <span>
                 {' '}
-
+                  {this.renderAssets()}
                 {' '}
               </span>
             </div>
