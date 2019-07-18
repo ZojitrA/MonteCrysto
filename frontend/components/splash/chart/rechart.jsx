@@ -3,6 +3,7 @@ import axios from 'axios';
 import {LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, LinearGradient} from 'recharts';
 import * as Icon from 'react-cryptocoins';
 import ReactLoading from 'react-loading';
+import Radium from 'radium';
 
 class reChart extends Component {
 
@@ -47,6 +48,7 @@ class reChart extends Component {
   componentDidMount() {
     this.getChart();
     this.setPriceInterval();
+    document.getElementById('defaultButton').focus();
   }
 
   componentDidUpdate(prevProps) {
@@ -237,6 +239,7 @@ handleLeave(){
   document.getElementById("price-label").innerHTML = this.state.price + " USD"
 }
 
+
 render(){
   let data
 if(this.state.data){
@@ -244,10 +247,11 @@ if(this.state.data){
 }
 
   let stroke;
+
 if(data && data[0].close > data[data.length-1].close){
-  stroke = 'red';
+  stroke = '#f45531';
 } else{
-  stroke = 'green';
+  stroke = '#21ce99';
 }
 let priceColor = "gray"
 if(this.state.previousPrice && (this.state.price > this.state.previousPrice)){
@@ -262,10 +266,11 @@ let topPadding = "90px 0"
 if(this.props.place === "stock"){
   topPadding = "100px 0"
 }
-let iconify = "Usd"
-if(this.props.ticker){
-  iconify = "Icon." + this.props.ticker[0] + this.props.ticker.slice(1).toLowerCase()
-}
+
+let focusStyle = {":focus":{
+  color: stroke,
+
+}}
 
 
 let name = this.props.name;
@@ -299,6 +304,7 @@ if(data && this.state.price){
   <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
 <YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
   <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
+  <Line animationDuration={850} dataKey="close" stroke={stroke} dot={false} strokeWidth={2} />
 </LineChart>;
 
 
@@ -312,8 +318,8 @@ return(
 
   <ul className="info-top" style={{padding: topPadding}}>
 
-    <li className="companyName">
-      {name}  ({this.props.ticker})
+    <li style={{color:stroke}} className="companyName">
+      {name}
     </li>
     <li style={{color: priceColor}}className="price-label" id="price-label">{price}</li>
     <li className="change-label" id="change-label"></li>
@@ -321,11 +327,11 @@ return(
   <div>
     {linechart}
   <div className="chart-button-container">
-    <button className="chart-button" onClick={() => this.handleClick("1d")}>1D</button>
-    <button className="chart-button" onClick={() => this.handleClick("1m")}>1M</button>
-    <button className="chart-button" onClick={() => this.handleClick("3m")}>3M</button>
-    <button className="chart-button" onClick={() => this.handleClick("1y")}>1Y</button>
-    <button className="chart-button" onClick={() => this.handleClick("5y")}>5Y</button>
+    <button key={1} style={focusStyle} id={"defaultButton"}className="chart-button" onClick={() => this.handleClick("1d")}>1D</button>
+    <button key={2} style={focusStyle} className="chart-button" onClick={() => this.handleClick("1m")}>1M</button>
+    <button key={3} style={focusStyle} className="chart-button" onClick={() => this.handleClick("3m")}>3M</button>
+    <button key={4} style={focusStyle} className="chart-button" onClick={() => this.handleClick("1y")}>1Y</button>
+    <button key={5} style={focusStyle} className="chart-button" onClick={() => this.handleClick("5y")}>5Y</button>
   </div>
 </div>
 </div>
@@ -336,4 +342,4 @@ return(
 // <Line type="monotone" dataKey="time" stroke="#ff7300" yAxisId={0} />
 
 
-export default reChart;
+export default Radium(reChart);

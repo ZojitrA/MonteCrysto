@@ -220,10 +220,17 @@ position: relative;
 .watchlist-item{
   display: flex;
   flex-direction: row;
+
 }
+
 
 .watchlist-ticker{
   cursor: pointer;
+
+}
+.watchlist-ticker:hover{
+  opacity: 1 !important;
+
 }
 
 .watchlist-title{

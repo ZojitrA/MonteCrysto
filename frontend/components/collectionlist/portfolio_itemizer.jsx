@@ -14,13 +14,16 @@ class PortfolioItemizer extends React.Component {
 
     return(
       <div>
-        <li className="watchlist-title">{this.props.title}</li>
+        <div className="watchlistTitleContainer">
+          <li className="watchlist-title">{this.props.title}</li>
+          <li style={{textAlign: "right", fontSize: "14px", fontWeight:"500"}}>Market Value</li>
+        </div>
         <br/>
         {Object.keys(this.props.shares).map( (id, idx) =>
 
             {
               return(
-                <PortfolioItem key={idx} history={this.props.history} ticker={this.props.stocks[id].ticker} quantity={this.props.shares[id]}/>
+                <PortfolioItem className="listItem" key={idx} history={this.props.history} ticker={this.props.stocks[id].ticker} quantity={this.props.shares[id]}/>
               );
           }
         )}

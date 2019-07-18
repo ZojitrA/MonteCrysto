@@ -52,7 +52,8 @@ class Item extends React.Component {
 
 
   getChart(){
-    const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=15&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
+
+    const url = `https://min-api.cryptocompare.com/data/histohour?fsym=${this.props.ticker}&tsym=USD&limit=24&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
     // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 
@@ -91,16 +92,17 @@ render(){
   let stroke;
   let priceColor;
 if(data && data[0].price > data[data.length-1].price){
-  stroke = 'red';
+  stroke = '#f45531';
 } else{
-  stroke = 'green';
+  stroke = '#21ce99';
 }
 
+
 if(this.state.prevprice && this.state.price > this.state.prevprice){
-  priceColor = "green";
+  priceColor = '#21ce99';
 }
 if(this.state.prevprice && this.state.price < this.state.prevprice){
-  priceColor = "red";
+  priceColor = '#f45531';
 }
 
 // let className
@@ -135,8 +137,8 @@ if(!data || !this.state.price){
   return(
     <div className="watchlist-item">
       <ul>
-        <li style={stroke === 'red'? {':hover' : { color: "red", fontWeight: 600}} : {':hover' : { color: "green", fontWeight: 600}}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
-        <li style={priceColor ? {color: priceColor} : {color: "gray"}}>{this.state.price}</li>
+        <li style={{ color: stroke, fontWeight: 600, opacity: .7}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
+        <li style={priceColor ? {color: priceColor} : {color: "lightgray"}}>{this.state.price}</li>
         <br/>
         <br/>
       </ul>

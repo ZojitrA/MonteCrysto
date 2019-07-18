@@ -48,21 +48,19 @@ text-align: center;
   width: 40px;
   box-sizing: border-box;
   flex-direction: row;
+  align-items: center;
 }
-.chart-button:focus{
-  color: red;
-  border-bottom: 2px solid red;
-}
+
 
 .chart-button-container{
   display: flex;
   flex-direction: row;
-  width: 650px;
+
   height: 40px;
   margin-left: 240px;
 
-
-  border-bottom: 1px solid black;
+  width: 676px;
+   border-bottom: 1px solid #ddd
 
 }
 .companyName{

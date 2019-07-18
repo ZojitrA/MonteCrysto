@@ -71,7 +71,6 @@
   border-radius: 30px;
   font-family: 'Raleway', sans-serif;
   position: fixed;
-  z-index: -100;
   // bottom: -150px;
   right: 100px;
   // height: 100vh;
@@ -88,6 +87,10 @@
 .link-signup-button{
   color: deepskyblue;
 
+}
+
+.listItem:hover{
+  background-color: lightgray;
 }
 
 .login-form-container{
@@ -188,13 +191,13 @@ color: gold;
 .news-header{
 
   margin-bottom:40px;
-  margin-left: 30px;
-  width:100%;
+  margin-left: 35px;
   font-family: 'PT Sans', sans-serif;
   font-size: 25px;
   font-weight: 700;
   text-decoration-color: "red";
-  border-bottom: 1px solid lightgrey;
+  width: 676px;
+   border-bottom: 1px solid #ddd
 }
 
 .news-item{
