@@ -8,7 +8,7 @@ return(
 
   <section className="notifications-tab">
     <h3 >Funds Available</h3>
-    <h2 className="notifications-subtitle-with-value"> {args.currentUser.funds_usd ? args.currentUser.funds_usd : 0 } USD</h2>
+    <h2 className="notifications-subtitle-with-value"> { args.currentUser ? args.currentUser.funds_usd : 0 } USD</h2>
   </section>
 
 );

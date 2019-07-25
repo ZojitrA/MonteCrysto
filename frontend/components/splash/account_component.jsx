@@ -19,16 +19,16 @@ constructor(props){
 
 
   render() {
-
     if(!this.props.onOff){
       return null;
     }
 
     let name
 
-    if(this.props.currentUser.first_name){
+    if(this.props.currentUser){
       name = this.props.currentUser.first_name
     }
+
 
 
     return (
