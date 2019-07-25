@@ -15,6 +15,8 @@ class reChart extends Component {
       LTCdata: null,
       price: null,
       previousPrice: null,
+      previousETHPrice: null,
+      previousLTCPrice: null,
       timeframe: "1d",
       ETHprice: null,
       LTCprice: null
@@ -70,21 +72,24 @@ class reChart extends Component {
 getPrice(){
 
 
-  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD,ETH,LTC&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
+  const url = `https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,LTC&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
 
   axios.get(url)
   .then( data => {
     // const keyz = Object.keys(data[this.state.datakey])
-    if(this.state.price !== data.data.USD){
+    if(this.state.price !== (1/data.data.BTC).toFixed(3)){
 
-      let ETHprice = data.data.ETH.toFixed(3);
-      let LTCprice = data.data.LTC.toFixed(3);
+      let ETHprice = (1/data.data.ETH).toFixed(3);
+      let LTCprice = (1/data.data.LTC).toFixed(3);
+      const price = (1/data.data.BTC).toFixed(3);
 
 
 
       const previousPrice = this.state.price;
-      const price = data.data.USD.toFixed(3);
+      const previousETHPrice = this.state.ETHprice;
+      const previousLTCPrice = this.state.LTCprice;
+
       let percentageChange;
       if(previousPrice === null){
         percentageChange = null;
@@ -95,6 +100,8 @@ getPrice(){
       this.setState({
         price: price,
         previousPrice: previousPrice,
+        previousETHPrice: previousETHPrice,
+        previousLTCPrice: previousLTCPrice,
         percentageChange: percentageChange,
         ETHprice: ETHprice,
         LTCprice: LTCprice
@@ -120,17 +127,27 @@ let url3;
     url3 = `https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=USD&limit=30&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "3m"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url2 = `https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url3 = `https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=USD&limit=90&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "1y"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=360&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=360&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url2 = `https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=360&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url3 = `https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=USD&limit=360&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   else if(this.state.timeframe === "5y"){
-    url = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.ticker}&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url = `https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url2 = `https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
+    url3 = `https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=USD&limit=1441&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`;
   }
   // `https://www.alphavantage.co/query?${this.state.func}&symbol=${this.state.symb}${this.state.interval}&apikey=ZRQW53GP2UJEJ1UK`
   axios.get(url).then( stash => {
     // const keyz = Object.keys(data[this.state.datakey])
+    if(!stash.data.Data){
+      this.getChart()
+      throw new Error('btc')
+    }
       const data = stash.data.Data.map((datum, idx) => {
         if(idx === 0){
           return datum
@@ -153,6 +170,10 @@ let url3;
 
     for(let i = 0; i< stash.data.Data.length -1; i++){
 
+      if(!data || !data[i]){
+        this.getChart()
+        throw new Error('eth')
+      }
       data[i].ETHtime = stash.data.Data[i+1].time
       data[i].ETHclose = (stash.data.Data[i+1].close - stash.data.Data[0].close) / stash.data.Data[0].close * 100
     }
@@ -163,6 +184,26 @@ let url3;
   this.setState({
     data: data
   });
+})).then(axios.get(url3).then(stash => {
+  let data = this.state.data
+
+  for(let i = 0; i< stash.data.Data.length -1; i++){
+
+    if(!data || !data[i]){
+      this.getChart()
+      throw new Error('ltc')
+    }
+
+    data[i].LTCtime = stash.data.Data[i+1].time
+    data[i].LTCclose = (stash.data.Data[i+1].close - stash.data.Data[0].close) / stash.data.Data[0].close * 100
+  }
+
+
+
+
+this.setState({
+  data: data
+});
 }))
 }
 
@@ -205,9 +246,12 @@ rendertooltip(e){
     let xDataKey = this.props.xDataKey;
     if (e.payload && e.payload.length > 0){
 
-
       let payload = e.payload[0].payload;
-      const price = payload[yDataKey];
+      let ETHpayload = e.payload[1].payload;
+      let LTCpayload = e.payload[2].payload;
+      const price = payload.close;
+      const ETHprice = ETHpayload.ETHclose;
+      const LTCprice = LTCpayload.LTCclose;
       const date = new Date(payload[xDataKey]*1000);
       //adjusts tooltip based on timescale selected
       let hour, minutes, time;
@@ -233,7 +277,9 @@ rendertooltip(e){
       };
 
       const day = date.toDateString();
-      document.getElementById("price-label").innerHTML = price.toFixed(3)+ " USD";
+      document.getElementById("price-label").innerHTML = price.toFixed(3)+ " %";
+      document.getElementById("ethprice-label").innerHTML = ETHprice.toFixed(3)+ " %";
+      document.getElementById("ltcprice-label").innerHTML = LTCprice.toFixed(3)+ " %";
 
       //if chart needs to display change overtime (i.e not dashboard)
       //handle change overtime display
@@ -263,7 +309,9 @@ rendertooltip(e){
     }
 }
 handleLeave(){
-  document.getElementById("price-label").innerHTML = this.state.price + " USD"
+  document.getElementById("price-label").innerHTML = this.state.price + " BTC/USD"
+  document.getElementById("ethprice-label").innerHTML = this.state.ETHprice + " ETH/USD"
+  document.getElementById("ltcprice-label").innerHTML = this.state.LTCprice + " LTC/USD"
 }
 
 
@@ -280,15 +328,8 @@ if(data && data[0].close > data[data.length-1].close){
 } else{
   stroke = '#21ce99';
 }
-let priceColor = "gray"
-if(this.state.previousPrice && (this.state.price > this.state.previousPrice)){
-  priceColor = "green";
-  stroke = 'forestgreen'
-}
-if(this.state.previousPrice && (this.state.price < this.state.previousPrice)){
-  priceColor = "red";
-  stroke = "darkred"
-}
+
+
 let topPadding= "100px 0px 20px";
 
 
@@ -298,7 +339,7 @@ let focusStyle = {":focus":{
 }}
 
 
-let name = this.props.name;
+let name = "Performance Benchmark";
 var price = <div className="loader-container">
   <div className="loader">
     <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
@@ -314,18 +355,12 @@ var price = <div className="loader-container">
     let ethPrice
     let ltcPrice
 
-if(data && this.state.price){
+if(data && this.state.price && data[0].ETHclose && data[0].LTCclose){
 
-  if(this.state.ETHprice){
-    ethPrice = <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.ETHprice}</li>
-    ltcPrice = <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.LTCprice}</li>
-  }
-  let ETHline
-  if(data[0].ETHclose){
-    ETHline = <Line dot={false} type="linear" dataKey="ETHclose" stroke={"Purple"} yAxisId={0}/>
-  }
 
-  price = this.state.price + " USD";
+    ethPrice = this.state.ETHprice + " ETH/USD"
+    ltcPrice = this.state.LTCprice + " LTC/USD"
+    price = this.state.price + " BTC/USD";
 
   linechart = <LineChart
   width={650}
@@ -340,8 +375,10 @@ if(data && this.state.price){
   <XAxis dataKey="time" domain={['dataMin', 'dataMax']} hide={true}/>
   <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
 <YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
-  <Line animationDuration={850} dataKey="close" stroke={stroke} dot={false} strokeWidth={2} />
-  {ETHline}
+  <Line animationDuration={850} dataKey="close" stroke={"gold"} dot={false} strokeWidth={2} />
+  <Line animationDuration={850} dataKey="ETHclose" stroke={"purple"} dot={false} strokeWidth={2} />
+  <Line animationDuration={850} dataKey="LTCclose" stroke={"silver"} dot={false} strokeWidth={2} />
+
 </LineChart>;
 
 
@@ -358,9 +395,9 @@ return(
     <li style={{color:stroke}} className="companyName">
       {name}
     </li>
-    <li style={{color: priceColor}}className="price-label" id="price-label">{price}</li>
-    {ethPrice}
-    {ltcPrice}
+    <li style={{color: "gold"}}className="price-label" id="price-label">{price}</li>
+    <li style={{color: "purple"}}className="price-label" id="ethprice-label">{ethPrice}</li>
+    <li style={{color: "silver"}}className="price-label" id="ltcprice-label">{ltcPrice}</li>
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>
