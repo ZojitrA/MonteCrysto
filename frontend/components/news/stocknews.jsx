@@ -96,7 +96,7 @@ shuffle(array) {
     }else{
 
       style = {
-        "marginTop": "500px",
+        "marginTop": "50px",
 
       };
     }

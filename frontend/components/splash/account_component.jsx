@@ -17,17 +17,24 @@ constructor(props){
 
 
 
+
   render() {
 
     if(!this.props.onOff){
       return null;
     }
 
+    let name
+
+    if(this.props.currentUser.first_name){
+      name = this.props.currentUser.first_name
+    }
+
 
     return (
     <section className="account-tab">
       <div>
-      <h1>Welcome {this.props.currentUser.first_name}!</h1>
+      <h1>Welcome {name}!</h1>
 
       <br></br>
       <a href="https://amirsojitra.nyc" style={{color: "purple"}}>Meet Developer</a>

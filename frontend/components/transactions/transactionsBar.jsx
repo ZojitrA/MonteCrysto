@@ -82,7 +82,7 @@ class StockSideBar extends React.Component {
 
   renderAssets() {
     const buyingPower = this.props.currentUser.funds_usd;
-    return this.state.transactionType === 'buy' ? `${"$" + buyingPower} Buying Power Available` : `${this.calcSharesOwned()} Shares Owned`;
+    return this.state.transactionType === 'buy' ? `${"$" + buyingPower} Buying Power Available` : `${this.calcSharesOwned()} Coins in Wallet`;
   }
 
   renderSellButton() {
@@ -116,7 +116,7 @@ class StockSideBar extends React.Component {
 
   setClassName(type) {
     const { transactionType } = this.state;
-    return `interval-btn ${transactionType === type ? 'active-button' : ''}`;
+    return `interval-btn${transactionType === type ? '-active-button' : ''}`;
   }
 
   update(field) {
@@ -152,7 +152,7 @@ class StockSideBar extends React.Component {
           <form onSubmit={this.handleTransactionSubmit} className="stock-sidebar-form">
             <div className="sidebar-output">
               <div className="stock-sidebar-shares sidebar-label">
-                <label htmlFor="share-input">Shares</label>
+                <label htmlFor="share-input">Coins</label>
                 <input
                   type="number"
                   value={shareDifference}
@@ -165,7 +165,7 @@ class StockSideBar extends React.Component {
                 <span className="sidebar-output-label">{marketPrice}</span>
               </div>
               <div className="stock-sidebar-cost sidebar-label">
-                <span>Estimate Cost</span>
+                <span>Estimated Cost</span>
                 <span className="sidebar-output-label">{transactionTotal}</span>
               </div>
             </div>

@@ -13,7 +13,9 @@ class reChart extends Component {
       data: null,
       price: null,
       previousPrice: null,
-      timeframe: "1d"
+      timeframe: "1d",
+      ETHprice: null,
+      LTCprice: null
     };
 
   this.handleClick = this.handleClick.bind(this);
@@ -66,7 +68,7 @@ class reChart extends Component {
 getPrice(){
 
 
-  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
+  const url = `https://min-api.cryptocompare.com/data/price?fsym=${this.props.ticker}&tsyms=USD,ETH,LTC&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
 
   axios.get(url)
@@ -74,6 +76,13 @@ getPrice(){
     // const keyz = Object.keys(data[this.state.datakey])
     if(this.state.price !== data.data.USD){
 
+      let ETHprice
+      let LTCprice
+      if(this.props.benchmark){
+
+        ETHprice = data.data.ETH.toFixed(3);
+        LTCprice = data.data.LTC.toFixed(3);
+      }
 
 
       const previousPrice = this.state.price;
@@ -88,7 +97,9 @@ getPrice(){
       this.setState({
         price: price,
         previousPrice: previousPrice,
-        percentageChange: percentageChange
+        percentageChange: percentageChange,
+        ETHprice: ETHprice,
+        LTCprice: LTCprice
       });
     }
   })
@@ -262,7 +273,8 @@ if(this.state.previousPrice && (this.state.price < this.state.previousPrice)){
   priceColor = "red";
   stroke = "darkred"
 }
-let topPadding = "90px 0"
+let topPadding = "120px 0 0";
+
 if(this.props.place === "stock"){
   topPadding = "100px 0"
 }
@@ -285,8 +297,16 @@ var price = <div className="loader-container">
         <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
       </div>
     </div>;
+
+    let ethPrice
+    let ltcPrice
+
 if(data && this.state.price){
 
+  if(this.state.ETHprice){
+    ethPrice = <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.ETHprice}</li>
+    ltcPrice = <li style={{color: priceColor}}className="price-label" id="price-label">{this.state.LTCprice}</li>
+  }
 
   price = this.state.price + " USD";
 
@@ -322,6 +342,8 @@ return(
       {name}
     </li>
     <li style={{color: priceColor}}className="price-label" id="price-label">{price}</li>
+    {ethPrice}
+    {ltcPrice}
     <li className="change-label" id="change-label"></li>
   </ul>
   <div>

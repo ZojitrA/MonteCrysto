@@ -13,12 +13,26 @@
 }
 
 .info-top{
-
-  margin-left: 250px;
+  margin-left: 50px;
   padding-left: 200px;
 }
+.interval-btn-active-button{
+  color: #21ce99;
+border-bottom: 3px solid;
+font-size: 13px;
+font-weight: 700;
+margin-left: 12px;
+margin-right: 12px;
+padding-bottom: 13px;
+}
 
-
+.interval-btn {
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-bottom: 13px;
+  }
 
 .landing-container{
   display: flex;
@@ -71,6 +85,7 @@
   border-radius: 30px;
   font-family: 'Raleway', sans-serif;
   position: fixed;
+  z-index: -50;
   // bottom: -150px;
   right: 100px;
   // height: 100vh;
@@ -254,7 +269,9 @@ color: gold;
   border: none;
   border-radius: 4px;
   text-align: center;
-  padding: 12px;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 15px;
 
 }
 .portfolio-item{

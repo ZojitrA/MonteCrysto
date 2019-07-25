@@ -64,7 +64,7 @@ class Search extends Component {
       <div >
       <form className="search-bar">
         <input
-          placeholder="Search For Ticker"
+          placeholder="Search For Coin..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
           value={this.state.query}

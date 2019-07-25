@@ -150,9 +150,9 @@ if(this.state.watchlist){
 
 
 let buttonStyle ={
-  position: "relative",
-  marginTop: "-450px",
-  // zIndex: "-10"
+  position: "fixed",
+  marginTop: "520px",
+  right: "138px"
 };
 
 

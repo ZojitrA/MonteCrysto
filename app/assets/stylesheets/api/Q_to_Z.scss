@@ -1,6 +1,6 @@
 .recharts-wrapper{
 // margin-top: 300px;
-margin-left: 240px;
+margin-left: 40px;
 }
 .recharts-surface{
   position: relative;
@@ -13,14 +13,14 @@ margin-left: 240px;
 .remove-button{
 
   font-family: 'Raleway', sans-serif;
-  color: red;
+  color: #f45531;
   text-align: center;
   font-weight: 500px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
   padding: 10px 20px;
-  border: 2px solid red;
+  border: 2px solid #f45531;
     width: 150px;
     border-radius: 6px;
     font-size: 13px;
@@ -220,7 +220,7 @@ position: relative;
 .watchlist-item{
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
 }
 
 
@@ -248,7 +248,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .stock-sidebar-container {
-  margin-top: 100px;
+  top: 130px;
+right: 450px;
+
+position: absolute;
 }
 
 .stock-sidebar {
@@ -265,6 +268,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .stock-sidebar-form {
   padding: 0 24px;
+}
+.buying-power-container {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
 }
 
 .sidebar-label {
@@ -294,7 +306,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .submit-order-btn {
-  background: green;
+  background: #21ce99;
   color: #fff;
   border-radius: 4px;
   height: 48px;

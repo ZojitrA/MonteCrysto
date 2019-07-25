@@ -4,7 +4,7 @@ import LandingNav from '../landing/nav';
 import LandingChild1 from '../landing/landing_info_child1';
 import EveryPageNav from '../everyPageNav';
 import List from '../collectionlist/list_container';
-import Chart from '../splash/chart/rechart';
+import MarketChart from '../splash/chart/marketChart';
 import News from '../news/stocknews';
 
 // <h1>Hello {props.currentUser.first_name}</h1>
@@ -16,6 +16,8 @@ class Greeting extends React.Component {
     super(props);
 
   }
+
+
 
 
 
@@ -36,7 +38,6 @@ class Greeting extends React.Component {
 
   const chartStyle = {
   // marginTop: "100px",
-  marginLeft: "-200px",
   // position: "relative",
   // position: "absolute",
   zIndex: "-10px",
@@ -55,7 +56,7 @@ class Greeting extends React.Component {
           </div>
         </div>
         <div style={chartStyle}>
-          <Chart stocks={this.props.stocks} ticker="BTC"  name={"Bitcoin"} xDataKey={"time"} yDataKey={"close"} place={"dash"}/>
+          <MarketChart stocks={this.props.stocks} ticker="BTC"  name={"Bitcoin"} xDataKey={"time"} yDataKey={"close"} place={"dash"}/>
         </div>
         <div style={style}>
           <News ticker="blockchain"/>
