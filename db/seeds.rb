@@ -174,11 +174,6 @@ Stock.create([
     },
 
     {
-      name: "Function X",
-      ticker: "FX"
-    },
-
-    {
     name: "Dogecoin",
     ticker: "DOGE"
     },
