@@ -1,14 +1,14 @@
 class Api::TransactionsController < ApplicationController
 
   def create
-    funds_to_subtract = transaction_params[:quantity].to_i * transaction_params[:buy_price].to_i
+    funds_to_subtract = transaction_params[:quantity].to_i * transaction_params[:buy_price].to_f
     @user = User.find(transaction_params[:user_id])
     ticker = Stock.find(transaction_params[:stock_id]).ticker
 
     given_quantity = transaction_params[:quantity].to_i
     stock_id = transaction_params[:stock_id].to_i
     quantity = User.find_stock_shares(@user.id, stock_id)[stock_id]
-    if @user.funds_usd.to_i < funds_to_subtract
+    if @user.funds_usd.to_f < funds_to_subtract
       render json: ["Not Enough Funds USD"], status: 401
     elsif given_quantity < 0 && given_quantity.abs > quantity
       render json: ["Not Enough Cryptocurrency"], status: 401
@@ -16,7 +16,7 @@ class Api::TransactionsController < ApplicationController
 
       @transaction = Transaction.new(transaction_params)
       if @transaction.save
-        funds = @user.funds_usd.to_i
+        funds = @user.funds_usd.to_f
         @user.update(funds_usd: funds - funds_to_subtract)
         render "api/transactions/holdings"
       else
