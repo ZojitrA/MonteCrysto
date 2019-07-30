@@ -50,7 +50,7 @@ class Greeting extends React.Component {
     return (
       <div>
         <div className="splash-container">
-          <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout}/>
+          <EveryPageNav page="greeting" currentUser={this.props.currentUser} logout={this.props.logout}/>
           <div>
             <List/>
           </div>

@@ -23,10 +23,14 @@ constructor(props){
       return null;
     }
 
-    let name
+    let welcome
 
-    if(this.props.currentUser){
-      name = this.props.currentUser.first_name
+    if(this.props.currentUser && this.props.page !== "stock"){
+      welcome = <div>
+          <h1 style={{fontWeight: "500"}}>Welcome {this.props.currentUser.first_name}!</h1>
+          <br/>
+      </div>
+
     }
 
 
@@ -34,10 +38,10 @@ constructor(props){
     return (
     <section className="account-tab">
       <div>
-      <h1>Welcome {name}!</h1>
+      {welcome}
 
-      <br></br>
-      <a href="https://amirsojitra.nyc" style={{color: "purple"}}>Meet Developer</a>
+
+      <a href="https://amirsojitra.nyc" style={{color: "purple", fontWeight:"500"}}>Meet Developer</a>
 
       <br></br>
       <br></br>

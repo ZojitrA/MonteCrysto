@@ -50,7 +50,7 @@ border-radius: 8px;
 
 
 .session-submit{
-  background-color: deepskyblue;
+  background-color: lightgrey;
     border: none;
     border-radius: 8px;
     color: white;
@@ -61,7 +61,7 @@ border-radius: 8px;
     font-weight: 700;
 }
 .session-submit:hover{
-  background-color: lightskyblue;
+  background-color: #ffdc73;
 }
 
 
@@ -250,7 +250,6 @@ input[type=number]::-webkit-outer-spin-button {
 .stock-sidebar-container {
   top: 130px;
 right: 450px;
-
 position: absolute;
 }
 

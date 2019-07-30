@@ -39,7 +39,8 @@ class Collection extends React.Component {
 
         <ul className="landing-watchlist">
           <PortfolioItemizer history={this.props.history} title={"Wallet"} tickers={this.state.tickers} stocks={this.props.stocks} shares={this.props.shares}/>
-          <Itemizer history={this.props.history} title={"Watchlist"} tickers={this.state.tickers}/>
+          <br/>
+        <Itemizer history={this.props.history} title={"Watchlist"} tickers={this.state.tickers}/>
         </ul>
 
     );

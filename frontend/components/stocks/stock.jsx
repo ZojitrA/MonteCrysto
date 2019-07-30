@@ -159,7 +159,7 @@ let buttonStyle ={
   return(
     <div>
     <div className="stock-show-page">
-      <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout}/>
+      <EveryPageNav currentUser={this.props.currentUser} logout={this.props.logout} page="stock"/>
       <ul className="info-top">
 
       </ul>

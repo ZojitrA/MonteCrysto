@@ -27,13 +27,14 @@ class Splash extends React.Component {
       }
     }
 
-  
+
 
 
   render(){
     return(
       <section className="splash-nav">
           <Link className="splash-nav-buttons" to="/">Home</Link>
+          <Link className="splash-nav-buttons" to="/stock">Index</Link>
           <button className="splash-nav-buttons" onClick={() => this.toggle("notifications", "account")}>Notifications</button>
           <NotificationsComponent
             onOff={this.state.notifications}
@@ -44,6 +45,7 @@ class Splash extends React.Component {
             onOff={this.state.account}
             currentUser={this.props.currentUser}
             logout={this.props.logout}
+            page ={this.props.page}
             />
       </section>
     );

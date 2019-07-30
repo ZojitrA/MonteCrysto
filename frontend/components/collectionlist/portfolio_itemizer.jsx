@@ -9,6 +9,21 @@ class PortfolioItemizer extends React.Component {
 
   render(){
 
+    let list
+
+    if(!this.props.shares || Object.keys(this.props.shares).length === 0){
+
+      list = <li style={{fontSize: "28px"}}>(No Coins in Wallet)</li>
+    }else{
+      list = Object.keys(this.props.shares).map( (id, idx) =>
+
+          {
+            return(
+              <PortfolioItem className="listItem" key={idx} history={this.props.history} ticker={this.props.stocks[id].ticker} quantity={this.props.shares[id]}/>
+            );
+        }
+      )
+    }
 
 
 
@@ -19,14 +34,7 @@ class PortfolioItemizer extends React.Component {
           <li style={{textAlign: "right", fontSize: "14px", fontWeight:"500"}}>Market Value</li>
         </div>
         <br/>
-        {Object.keys(this.props.shares).map( (id, idx) =>
-
-            {
-              return(
-                <PortfolioItem className="listItem" key={idx} history={this.props.history} ticker={this.props.stocks[id].ticker} quantity={this.props.shares[id]}/>
-              );
-          }
-        )}
+        {list}
       </div>
 
     );

@@ -506,8 +506,8 @@ Stock.create([
     },
 
     {
-    name: "ELA",
-    ticker: "Elastos"
+    name: "Elastos",
+    ticker: "ELA"
     },
 
     {

@@ -8,7 +8,8 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       first_name: '',
-      last_name: ''
+      last_name: '',
+      funds_usd: ""
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -76,6 +77,14 @@ class SignupForm extends React.Component {
             </section>
             <br/>
             <section className="signup-credential-inputs">
+              <label>Desired Starting USD Value (Paper Money):
+                <input type="text"
+                  value={this.state.funds_usd}
+                  onChange={this.update('funds_usd')}
+                  className="signup-input"
+                  />
+              </label>
+              <br/>
               <label>Email Address:
                 <input type="text"
                   value={this.state.email}

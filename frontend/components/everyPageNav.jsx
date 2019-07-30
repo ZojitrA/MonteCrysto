@@ -4,6 +4,8 @@ import Search from './splash/search/search_container';
 import SplashNav from './splash/nav';
 
 export default (props) => {
+
+
   return(
 
     <div className="splash-container">
@@ -12,7 +14,7 @@ export default (props) => {
         <Search/>
       </div>
       <section className="splash-nav-button-container">
-        <SplashNav currentUser={props.currentUser} logout={props.logout}/>
+        <SplashNav currentUser={props.currentUser} page={props.page} logout={props.logout}/>
       </section>
     </div>
 

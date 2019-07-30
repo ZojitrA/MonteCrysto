@@ -13,9 +13,7 @@ class reChart extends Component {
       data: null,
       price: null,
       previousPrice: null,
-      timeframe: "1d",
-      ETHprice: null,
-      LTCprice: null
+      timeframe: "1d"
     };
 
   this.handleClick = this.handleClick.bind(this);
@@ -76,13 +74,7 @@ getPrice(){
     // const keyz = Object.keys(data[this.state.datakey])
     if(this.state.price !== data.data.USD){
 
-      let ETHprice
-      let LTCprice
-      if(this.props.benchmark){
 
-        ETHprice = data.data.ETH.toFixed(3);
-        LTCprice = data.data.LTC.toFixed(3);
-      }
 
 
       const previousPrice = this.state.price;
@@ -98,8 +90,7 @@ getPrice(){
         price: price,
         previousPrice: previousPrice,
         percentageChange: percentageChange,
-        ETHprice: ETHprice,
-        LTCprice: LTCprice
+      
       });
     }
   })
@@ -285,16 +276,16 @@ let focusStyle = {":focus":{
 }}
 
 
-let name = this.props.name;
+let name = null;
 var price = <div className="loader-container">
   <div className="loader">
-    <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+    <ReactLoading type="spinningBubbles" color="#21ce99" height={78} width={78} />
   </div>
 </div>;
 
     var linechart = <div className="loader-container">
       <div className="loader">
-        <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+        <ReactLoading type="spinningBubbles" color="#21ce99" height={250} width={250} />
       </div>
     </div>;
 
@@ -309,7 +300,9 @@ if(data && this.state.price){
   }
 
   price = this.state.price + " USD";
-
+  name =   <li style={{color:stroke}} className="companyName">
+      {this.props.name}
+    </li>
   linechart = <LineChart
   width={650}
   height={250}
@@ -338,9 +331,9 @@ return(
 
   <ul className="info-top" style={{padding: topPadding}}>
 
-    <li style={{color:stroke}} className="companyName">
+
       {name}
-    </li>
+
     <li style={{color: priceColor}}className="price-label" id="price-label">{price}</li>
     {ethPrice}
     {ltcPrice}

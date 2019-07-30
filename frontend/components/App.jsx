@@ -12,6 +12,7 @@ import SignUpFormContainer from './SessionForms/signup_form_container';
 import LogInFormContainer from './SessionForms/login_form_container';
 import {AuthRoute, ProtectedRoute} from '../util/route_util';
 import StockContainer from './stocks/stock_container';
+import IndexContainer from './index/index_container';
 import Favicon from 'react-favicon';
 const App = () => (
   <div>
@@ -21,6 +22,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <ProtectedRoute exact path="/stock/:ticker" component={StockContainer}/>
+      <Route exact path="/stock" component={IndexContainer}/>
     </Switch>
   </div>
 );
