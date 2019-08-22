@@ -60,4 +60,4 @@ Top currencies are displayed in one chart for performance visualization of alter
 ## Transactions
 Simple to use transactions bar, that automatically removes sell button if one currently has no coins in wallet. Displays current number of coins in wallet when on sell tab, and buying power when on buy tab. Updates all figures upon buy or sell and displays errors if not enough coins to sell, or not enough funds for any lofty purchase.
 
-![screenshot](screenshot8.png) ![screenshot](screenshot9.png)
+![screenshot](screenshot8.png)![screenshot](screenshot9.png)
