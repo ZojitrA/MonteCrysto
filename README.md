@@ -18,7 +18,7 @@
  * Watchlists allow users to keep track of coins
  * Sidebar lists all coins in portfolio and watchlist
 
-![screenshot](screenshot1.png)
+![screenshot](screenshot.png)
 
 ## About
  Single-page Cryptocurrency tracking and investment app inspired by online brokerage and trading site Robinhood
