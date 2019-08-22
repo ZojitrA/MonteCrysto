@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import {getWatchlists} from '../../actions/watchlist_portfolio_actions';
 import Index from "./index";
 import {getShare, getAllShares} from '../../actions/share_actions';
-import { getStockBy, getAllStocks} from '../../actions/stock_actions';
+import { getStockBy, getAllStocks, getAllStocksData} from '../../actions/stock_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -18,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    getAllStocks: () => dispatch(getAllStocks())
+    getAllStocks: () => dispatch(getAllStocks()),
+    getAllStocksData: (syms) => dispatch(getAllStocksData(syms))
   };
 };
 

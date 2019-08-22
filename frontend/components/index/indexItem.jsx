@@ -111,14 +111,17 @@ if(!this.state.price){
      );
    }
   return(
-    <div className="index-item">
-      <ul>
+
+      <ul className="stock-index-list-holder">
         <li style={{ fontWeight: 600}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.ticker}</li>
+        <li style={{ fontWeight: 600}} className="watchlist-ticker" onClick={this.handleClick}>{this.props.name}</li>
         <li style={priceColor ? {color: priceColor} : {color: "lightgray"}}>{this.state.price}</li>
+        <li style={{ fontWeight: 600}} className="watchlist-ticker">{this.props.change}</li>
+        <li style={{ fontWeight: 600}} className="watchlist-ticker">{this.props.marketCap}</li>
         <br/>
         <br/>
       </ul>
-    </div>
+
   );
 
 

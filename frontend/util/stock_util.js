@@ -22,9 +22,10 @@ export const searchStocks = (input) => (
 
 
 
-export const fetchStocksData = (symbols) => {
-  const symzed = symbols.map((arr)=>(arr[0])).join(",");
 
+
+export const fetchStocksData = (symbols) => {
+  const symzed = symbols.map((arr)=>(arr)).join(",");
   return (
     $.ajax({
       url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symzed}&tsyms=USD&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`,
