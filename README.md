@@ -32,9 +32,9 @@ Real time news for each currency, displayed with time or date of release dynamic
 
 ![screenshot](screenshot3.png)
 
-## Transactions and coin pages
+## Coins page
 
-Simple to use transactions bar, that automatically removes sell button if one currently has no coins in wallet. Coins page charts change color between green and red depending on trend of coin. If downward trend, red is the theme, if upward, green.
+Coins page charts change color between green and red depending on trend of coin. If downward trend, red is the theme, if upward, green. Each coin has coin specific news for accurate diagnosis of investment before purchase. Price on chart is update every 5 seconds.
 
 
 
@@ -55,3 +55,9 @@ Search bar from application backend for quick symbol lookup. Upon click, new dat
 Top currencies are displayed in one chart for performance visualization of alternate coins alongside bitcoin. Upon hover, percentage change is calculated based on time period.
 
 ![screenshot](screenshot7.png)
+
+
+## Transactions
+Simple to use transactions bar, that automatically removes sell button if one currently has no coins in wallet. Displays current number of coins in wallet when on sell tab, and buying power when on buy tab. Updates all figures upon buy or sell and displays errors if not enough coins to sell, or not enough funds for any lofty purchase.
+
+![screenshot](screenshot8.png) ![screenshot](screenshot9.png)
