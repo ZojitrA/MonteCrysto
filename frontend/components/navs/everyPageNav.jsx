@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import React from 'react';
-import Search from './splash/search/search_container';
-import SplashNav from './splash/nav';
+import Search from '../search/search_container';
+import SplashNav from '../navs/nav';
 
 export default (props) => {
 

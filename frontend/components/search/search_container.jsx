@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import { getStockBy, getAllStocks} from '../../../actions/stock_actions';
+import { getStockBy, getAllStocks} from '../../actions/stock_actions';
 import Search from './search';
 import {withRouter} from 'react-router-dom';
 

@@ -71,13 +71,11 @@ shuffle(array) {
     if(this.state.news){
 
 
-      debugger
     articles = this.state.news.data.data.map(article => {
         return(
           <NewsItem source="newsApi" article={article}/>
         );
       });
-      debugger
     }
 
     var style = {

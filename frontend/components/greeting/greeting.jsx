@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import LandingNav from '../landing/nav';
+import LandingNav from '../navs/landingNav';
 import LandingChild1 from '../landing/landing_info_child1';
-import EveryPageNav from '../everyPageNav';
+import EveryPageNav from '../navs/everyPageNav';
 import List from '../collectionlist/list_container';
-import MarketChart from '../splash/chart/marketChart';
+import MarketChart from '../charts/marketChart';
 import News from '../news/stocknews';
 
 // <h1>Hello {props.currentUser.first_name}</h1>

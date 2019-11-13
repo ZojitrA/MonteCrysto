@@ -38,7 +38,7 @@ class reChart extends Component {
 
   setPriceInterval(){
     this.getPrice();
-    this.priceIntervalId = setInterval(this.getPrice, 5000);
+    this.priceIntervalId = setInterval(this.getPrice, 1000);
   }
 
   clearPriceInterval(){
@@ -51,12 +51,12 @@ class reChart extends Component {
     document.getElementById('defaultButton').focus();
   }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.ticker !== this.props.ticker)
-    this.getChart();
-    this.clearPriceInterval()
-    this.setPriceInterval();
-  }
+  // componentDidUpdate(prevProps) {
+  //   if(prevProps.ticker !== this.props.ticker)
+  //   this.getChart();
+  //   this.clearPriceInterval()
+  //   this.setPriceInterval();
+  // }
   //
   componentWillUnmount() {
 
@@ -90,7 +90,7 @@ getPrice(){
         price: price,
         previousPrice: previousPrice,
         percentageChange: percentageChange,
-      
+
       });
     }
   })
@@ -255,14 +255,18 @@ if(data && data[0].close > data[data.length-1].close){
 } else{
   stroke = '#21ce99';
 }
-let priceColor = "gray"
+let priceColor = "lightgray"
+let strokeWidth = 2
 if(this.state.previousPrice && (this.state.price > this.state.previousPrice)){
-  priceColor = "green";
-  stroke = 'forestgreen'
+  priceColor = '#21ce99';
+  strokeWidth = '4'
+  this.state.previousPrice = this.state.price
 }
 if(this.state.previousPrice && (this.state.price < this.state.previousPrice)){
-  priceColor = "red";
-  stroke = "darkred"
+  priceColor = "#f45531";
+  strokeWidth = "4"
+  this.state.previousPrice = this.state.price
+
 }
 let topPadding = "120px 0 0";
 
@@ -317,7 +321,7 @@ if(data && this.state.price){
   <Tooltip isAnimationActive={false} position={{ y: 10 }} offset={-32} content={this.rendertooltip}/>
 <YAxis datakey="close" domain={['dataMin', 'dataMax']} hide={true} />
   <Line dot={false} type="linear" dataKey="close" stroke={stroke} yAxisId={0}/>
-  <Line animationDuration={850} dataKey="close" stroke={stroke} dot={false} strokeWidth={2} />
+  <Line animationDuration={850} dataKey="close" stroke={stroke} dot={false} strokeWidth={strokeWidth} />
 </LineChart>;
 
 

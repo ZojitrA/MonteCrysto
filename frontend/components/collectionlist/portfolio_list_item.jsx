@@ -28,7 +28,7 @@ class PortfolioItem extends React.Component {
   }
 
   getChart(){
-    const url = `https://min-api.cryptocompare.com/data/histohour?fsym=${this.props.ticker}&tsym=USD&limit=24&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
+    const url = `https://min-api.cryptocompare.com/data/histohour?fsym=${this.props.ticker ?  this.props.ticker : 'BTC'}&tsym=USD&limit=24&api_key={28d3b41970a81c30692ae9e00cc7174860d55306f66aa7c6f26a0f2bc7d2f6cd}`
 
     // `https://api.iextrading.com/1.0/stock/${this.props.ticker}/chart/1y?chartInterval=20`;
 
@@ -36,15 +36,15 @@ class PortfolioItem extends React.Component {
 
     axios.get(url)
     .then( chartdata => {
-
+      console.log(chartdata)
       // const keyz = Object.keys(data[this.state.datakey])
-      const data = chartdata.data.Data.map(datum => {
+      const data = chartdata.data.Data ? chartdata.data.Data.map(datum => {
        // if(this.state.timeframe === "1D")
        return{
          time: datum.time,
          price: datum.open
        };
-     });
+     }) : [];
       this.setState({
         data: data,
       });
@@ -59,7 +59,7 @@ class PortfolioItem extends React.Component {
     .then( data => {
 
       // const keyz = Object.keys(data[this.state.datakey])
-      const price = data.data.USD.toFixed(3);
+      const price = data.data.USD? data.data.USD.toFixed(3) : data.data.USD;
       // const prevPrice = this.state.price;
       // this.setState({
       //   prevprice: prevPrice,
@@ -125,6 +125,8 @@ if(this.state.prevprice && this.state.price < this.state.prevprice){
 // </div>
 // );
 // }
+
+
 if(!this.state.price){
   return(
        <div className="loader-container">
@@ -134,6 +136,8 @@ if(!this.state.price){
        </div>
      );
    }
+
+ let displayPrice = this.props.quantity && this.state.price ? (parseFloat(this.state.price) * this.props.quantity).toFixed(2) : ""
   return(
     <div className="portfolio-item">
       <ul>
@@ -143,7 +147,7 @@ if(!this.state.price){
         <br/>
         <br/>
       </ul>
-      <li style={{color: priceColor}}>{(parseFloat(this.state.price) * this.props.quantity).toFixed(2)}</li>
+      <li style={{color: priceColor}}>{displayPrice}</li>
 
     </div>
   );

@@ -90,14 +90,14 @@ shuffle(array) {
     if(this.props.ticker === "blockchain"){
       style = {
         "marginTop": "70px",
-
+        "paddingLeft": "35px"
       };
 
     }else{
 
       style = {
         "marginTop": "50px",
-
+        "paddingLeft": "35px"
       };
     }
 

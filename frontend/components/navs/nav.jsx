@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import React from 'react';
-import AccountComponent from './account_component';
-import NotificationsComponent from './notifications_component';
+import AccountComponent from '../splash/account_component';
+import NotificationsComponent from '../splash/notifications_component';
 
 
 class Splash extends React.Component {

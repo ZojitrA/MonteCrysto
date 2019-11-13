@@ -19,7 +19,7 @@ class PortfolioItemizer extends React.Component {
 
           {
             return(
-              <PortfolioItem className="listItem" key={idx} history={this.props.history} ticker={this.props.stocks[id].ticker} quantity={this.props.shares[id]}/>
+              <PortfolioItem className="listItem" key={idx} history={this.props.history} ticker={this.props.stocks[id] ? this.props.stocks[id].ticker : ""} quantity={this.props.shares[id]}/>
             );
         }
       )

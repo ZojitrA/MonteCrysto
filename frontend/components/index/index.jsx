@@ -1,6 +1,6 @@
 import React from 'react';
 import IndexItemizer from './indexItemizer';
-import EveryPageNav from '../everyPageNav';
+import EveryPageNav from '../navs/everyPageNav';
 
 
 class Index extends React.Component {

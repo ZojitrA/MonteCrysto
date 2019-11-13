@@ -40,7 +40,7 @@ const NewsItem = (props) =>{
     // "padding": "3px",
     borderRight: "2px solid whitesmoke",
     borderTop: "2px solid whitesmoke",
-    // "boxShadow": "1px 0px rgb(223, 225, 229)",
+    boxShadow: "0 2px 6px rgba(0,0 , 0, 0.26)",
     borderRadius: "0px 8px 0px 0px",
     fontFamily: "'Raleway', sans-serif",
     fontSize: "13px",
@@ -52,7 +52,7 @@ const NewsItem = (props) =>{
   };
   return(
 
-    <a className="news-link" href={url}>
+    <a href={url}>
           <div  className="news-item">
             <img src={imageUrl}/>
             <div className="news-iteminfo">

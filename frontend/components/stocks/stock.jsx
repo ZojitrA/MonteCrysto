@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Chart from '../splash/chart/rechart';
-import EveryPageNav from '../everyPageNav';
+import Chart from '../charts/rechart';
+import EveryPageNav from '../navs/everyPageNav';
 import axios from 'axios';
 import News from '../news/news_container';
 import TransactionBar from '../transactions/transactions_container'

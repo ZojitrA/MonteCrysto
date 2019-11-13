@@ -155,7 +155,7 @@ class StockSideBar extends React.Component {
                 <label htmlFor="share-input">Coins</label>
                 <input
                   type="number"
-                  value={shareDifference}
+                  value={shareDifference ? shareDifference : ''}
                   id="share-input"
                   onChange={this.update('shareDifference')}
                 />

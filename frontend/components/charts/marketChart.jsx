@@ -57,12 +57,12 @@ class reChart extends Component {
     document.getElementById('defaultButton').focus();
   }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.ticker !== this.props.ticker)
-    this.getChart();
-    this.clearPriceInterval()
-    this.setPriceInterval();
-  }
+  // componentDidUpdate(prevProps) {
+  //   if(prevProps.ticker !== this.props.ticker)
+  //   this.getChart();
+  //   this.clearPriceInterval()
+  //   this.setPriceInterval();
+  // }
   //
   componentWillUnmount() {
 
@@ -309,9 +309,9 @@ rendertooltip(e){
     }
 }
 handleLeave(){
-  document.getElementById("price-label").innerHTML = this.state.price + " BTC/USD"
-  document.getElementById("ethprice-label").innerHTML = this.state.ETHprice + " ETH/USD"
-  document.getElementById("ltcprice-label").innerHTML = this.state.LTCprice + " LTC/USD"
+  document.getElementById("price-label").innerHTML = this.state.price + " btc"
+  document.getElementById("ethprice-label").innerHTML = this.state.ETHprice + " eth"
+  document.getElementById("ltcprice-label").innerHTML = this.state.LTCprice + " ltc"
 }
 
 
@@ -340,15 +340,14 @@ let focusStyle = {":focus":{
 
 
 let name = "Performance Benchmark";
-var price = <div className="loader-container">
-  <div className="loader">
-    <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+var price = <div className="loader">
+    <ReactLoading type="spinningBubbles" color="#21ce99" height={33} width={33} />
   </div>
-</div>;
+;
 
     var linechart = <div className="loader-container">
       <div className="loader">
-        <ReactLoading type="spinningBubbles" color="#21ce99" height={125} width={125} />
+        <ReactLoading type="spinningBubbles" color="#21ce99" height={250} width={250} />
       </div>
     </div>;
 
@@ -358,9 +357,9 @@ var price = <div className="loader-container">
 if(data && this.state.price && data[0].ETHclose && data[0].LTCclose){
 
 
-    ethPrice = this.state.ETHprice + " ETH/USD"
-    ltcPrice = this.state.LTCprice + " LTC/USD"
-    price = this.state.price + " BTC/USD";
+    ethPrice = this.state.ETHprice + " eth"
+    ltcPrice = this.state.LTCprice + " ltc"
+    price = this.state.price + " btc";
 
   linechart = <LineChart
   width={650}
