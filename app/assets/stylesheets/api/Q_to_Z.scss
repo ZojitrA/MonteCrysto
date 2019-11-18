@@ -126,7 +126,6 @@ border-radius: 8px;
   margin-right: 40px;
   display: flex;
   justify-content: flex-end;
-opacity: .9;
 }
 
 .splash-logo{
@@ -157,9 +156,14 @@ opacity: .9;
 
   padding: 20px 30px;
   background-color: white;
-  color: black;
-  font-weight: 700;
+  color:darkgrey;
+  font-weight: 500;
+  font-size: 19px;
   font-family: 'PT Sans', sans-serif;
+}
+
+.splash-nav-buttons:hover{
+  font-weight: 600;
 }
 
 .splash-logo-link{
@@ -174,7 +178,6 @@ opacity: .9;
   display: flex;
   position: fixed;
   background-color: white;
-  opacity: .90;
   width: 100%;
 }
 
@@ -257,7 +260,7 @@ position: absolute;
   position: fixed;
   width: 276px;
   box-shadow: 0 0 4px 1px rgba(225, 225, 225, 0.01), 0 3px 24px rgba(225, 225, 225, 0.6);
-  border-radius: 4px;
+  border-radius: 20px;
   margin-left: 72px;
 }
 

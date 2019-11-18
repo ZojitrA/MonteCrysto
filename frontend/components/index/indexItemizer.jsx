@@ -13,7 +13,7 @@ class IndexItemizer extends React.Component {
     let items;
 
     if(this.props.stocks['ETH'].USD){
-
+      console.log(this.props.stocks)
       items = Object.keys(this.props.stocks).map( (ticker, idx) =>
 
       {

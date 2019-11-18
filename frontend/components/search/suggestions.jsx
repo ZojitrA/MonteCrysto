@@ -44,13 +44,13 @@ if(props.results){
       <div style={{display:"inline-block"}}>
         {normal1}
       </div>
-      <div style={{display:"inline-block", fontWeight: "600"}}>
+      <div style={{display:"inline-block", color: "#21ce99", fontWeight: "600"}}>
         {bold}
       </div>
-      <div style={{display:"inline-block"}}>
+      <div style={{ fontWeight: "500", color: "darkgrey",  display:"inline-block"}}>
         {normal2}:&nbsp;
       </div>
-      <div style={{display:"inline-block"}}>
+      <div style={{color: "#f45531", fontWeight: "600", display:"inline-block"}}>
         {r["name"]}
       </div>
     </li>

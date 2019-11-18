@@ -34,7 +34,6 @@ class Splash extends React.Component {
     return(
       <section className="splash-nav">
           <Link className="splash-nav-buttons" to="/">Dash</Link>
-          <Link  className="splash-nav-buttons" to="/stock">Index</Link>
           <button className="splash-nav-buttons" onClick={() => this.toggle("notifications", "account")}>Notifications</button>
           <NotificationsComponent
             onOff={this.state.notifications}
@@ -51,19 +50,4 @@ class Splash extends React.Component {
     );
   }
 }
-
-
-  //   if(this.state.notifications){
-  //     return (
-  //       <NotificationComponent currentUser={this.props.currentUser}/>
-  //     )
-  // }}
-
-  // {
-  //     if(this.state.account){
-  //       return (
-  //         <AccountComponent/ currentUser={this.props.currentUser}>
-  //       )
-  //   }}
-
 export default Splash;

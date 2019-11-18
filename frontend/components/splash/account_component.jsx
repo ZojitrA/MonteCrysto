@@ -27,7 +27,7 @@ constructor(props){
 
     if(this.props.currentUser && this.props.page !== "stock"){
       welcome = <div>
-          <h1 style={{fontWeight: "500"}}>Welcome {this.props.currentUser.first_name}!</h1>
+          <h1 style={{color: "darkgrey", fontWeight: "700"}}>Welcome {this.props.currentUser.first_name}!</h1>
           <br/>
       </div>
 
@@ -41,11 +41,12 @@ constructor(props){
       {welcome}
 
 
-      <a href="https://amirsojitra.nyc" style={{color: "purple", fontWeight:"500"}}>Meet Developer</a>
+      <a href="https://amirsojitra.nyc" style={{color: "darkgrey", fontWeight:"700"}}>Meet Developer</a>
 
       <br></br>
       <br></br>
         <button
+          style={{color: "red"}}
           className="account-tab-button"
           onClick={this.props.logout}>Log Out
         </button>
