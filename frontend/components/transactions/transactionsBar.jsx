@@ -88,7 +88,7 @@ class StockSideBar extends React.Component {
   renderSellButton() {
     if (this.calcSharesOwned() > 0) {
       return (
-        <button type="button" onClick={e => this.handleTab(e, 'sell')} className={this.setClassName('sell')}>
+        <button type="button" onClick={e => this.handleTab(e, 'sell')} className={this.setClassName('sell')} style={this.state.transactionType === 'sell' ? {color: "#f45531"} : {color: "black"}}>
           Sell
           {' '}
           {this.props.ticker}
@@ -174,7 +174,7 @@ class StockSideBar extends React.Component {
               <input
                 type="submit"
                 value={transactionType === 'sell' ? 'Submit Sell' : 'Submit Buy'}
-                className="submit-order-btn"
+                className="submit-order-btn"   style={transactionType === 'sell' ? {backgroundColor: " #f45531"} : {backgroundColor: "#21ce99"}}
               />
             </div>
             <div className="buying-power-container">
