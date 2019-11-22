@@ -63,7 +63,7 @@ class Item extends React.Component {
     .then( chartdata => {
 
       // const keyz = Object.keys(data[this.state.datakey])
-      const data = chartdata.data.Data ? chartdata.data.Data.map(datum => {
+      const data = chartdata.data && chartdata.data.Data ? chartdata.data.Data.map(datum => {
        // if(this.state.timeframe === "1D")
        return{
          time: datum.time,

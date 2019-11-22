@@ -73,13 +73,18 @@ class StockSideBar extends React.Component {
       return this.props.shares[this.props.ticker];
 
     }
-    return 0
+    return "Transacting"
   }
 
   componentDidMount() {
     this.calcMarketPrice(this.props.ticker);
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.ticker !== this.props.ticker)
+    this.calcMarketPrice(this.props.ticker);
+
+  }
   renderAssets() {
     const buyingPower = this.props.currentUser.funds_usd;
     return this.state.transactionType === 'buy' ? `${"$" + buyingPower} Buying Power Available` : `${this.calcSharesOwned()} Coins in Wallet`;

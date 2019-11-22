@@ -51,12 +51,11 @@ class reChart extends Component {
     document.getElementById('defaultButton').focus();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if(prevProps.ticker !== this.props.ticker)
-  //   this.getChart();
-  //   this.clearPriceInterval()
-  //   this.setPriceInterval();
-  // }
+  componentDidUpdate(prevProps) {
+    if(prevProps.ticker !== this.props.ticker)
+    this.getChart();
+
+  }
   //
   componentWillUnmount() {
 

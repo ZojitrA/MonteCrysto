@@ -155,7 +155,7 @@ let buttonStyle ={
   right: "138px"
 };
 
-
+console.log(this.props.ticker)
   return(
     <div>
     <div className="stock-show-page">
