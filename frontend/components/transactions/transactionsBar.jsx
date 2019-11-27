@@ -65,7 +65,17 @@ class StockSideBar extends React.Component {
     }
 
 
+  setPriceInterval(){
+    this.priceIntervalId = setInterval(()=>this.calcMarketPrice(this.props.ticker), 2000);
+  }
 
+  clearPriceInterval(){
+    clearInterval(this.priceIntervalId);
+  }
+  componentWillUnmount() {
+
+    this.clearPriceInterval();
+  }
 
 
   calcSharesOwned() {
@@ -77,12 +87,15 @@ class StockSideBar extends React.Component {
   }
 
   componentDidMount() {
-    this.calcMarketPrice(this.props.ticker);
+    this.calcMarketPrice(this.props.ticker)
+    this.setPriceInterval()
   }
 
   componentDidUpdate(prevProps) {
     if(prevProps.ticker !== this.props.ticker)
     this.calcMarketPrice(this.props.ticker);
+    this.clearPriceInterval()
+    this.setPriceInterval()
 
   }
   renderAssets() {

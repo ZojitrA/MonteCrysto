@@ -47,6 +47,10 @@ class PortfolioItem extends React.Component {
       this.setState({
         data: data,
       });
+    }).catch(err => {
+      this.setState({
+        data: null,
+      })
     });
   }
 

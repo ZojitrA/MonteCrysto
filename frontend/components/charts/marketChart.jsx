@@ -146,7 +146,6 @@ let url3;
     // const keyz = Object.keys(data[this.state.datakey])
     if(!stash.data.Data){
       this.getChart()
-      throw new Error('btc')
     }
       const data = stash.data.Data.map((datum, idx) => {
         if(idx === 0){
@@ -172,7 +171,6 @@ let url3;
 
       if(!data || !data[i]){
         this.getChart()
-        throw new Error('eth')
       }
       data[i].ETHtime = stash.data.Data[i+1].time
       data[i].ETHclose = (stash.data.Data[i+1].close - stash.data.Data[0].close) / stash.data.Data[0].close * 100
@@ -191,7 +189,6 @@ let url3;
 
     if(!data || !data[i]){
       this.getChart()
-      throw new Error('ltc')
     }
 
     data[i].LTCtime = stash.data.Data[i+1].time
